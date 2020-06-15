@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const passport = require('passport');
+const sass = require('node-sass');
 
 
 const users = require("./routes/api/users");
