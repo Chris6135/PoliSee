@@ -5,16 +5,18 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 require('dotenv').config();
+const secret = process.env.SECRET_OR_KEY;
+
+const getPayload = (user) => {
+  return {
+    id: user.id, email: user.email, zip: user.zip 
+  }
+}
 
 
 
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-
-
-
-
-router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
 router.post('/register', (req, res) => {
 
@@ -42,7 +44,19 @@ router.post('/register', (req, res) => {
             if (err) throw err;
             newUser.password = hash;
             newUser.save()
-              .then(user => res.json(user))
+              .then(user => {
+                console.log(getPayload(user));
+                jwt.sign(
+                  getPayload(user),
+                  secret,
+                  { expiresIn: 3600 },
+                  (err, token) => {
+                    res.status(201).json({
+                      success: true,
+                      token: 'Bearer ' + token
+                    });
+                  });
+                })
               .catch(err => console.log(err));
           })
         })
@@ -71,11 +85,10 @@ router.post('/login', (req, res) => {
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            const payload = { id: user.id, handle: user.handle };
 
             jwt.sign(
-              payload,
-              process.env.SECRET_OR_KEY,
+              getPayload(user),
+              secret,
               { expiresIn: 3600 },
               (err, token) => {
                 res.json({
@@ -93,8 +106,8 @@ router.post('/login', (req, res) => {
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({
     id: req.user.id,
-    handle: req.user.handle,
-    email: req.user.email
+    email: req.user.email,
+    zip: req.user.zip
   });
 })
 
