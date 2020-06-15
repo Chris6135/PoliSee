@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 import SessionAPI from "./util/session_api_util";
 import configureStore from "./store/store";
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (localStorage.jwt) {
     SessionAPI.setAuthToken(localStorage.jwt);
-    const user = jwt_decode(localStorage.jwt);
+    const user = jwtDecode(localStorage.jwt);
     const preloadedState = { session: { user: user } };
     store = configureStore(preloadedState);
     const currentTime = Date.now() / 1000;

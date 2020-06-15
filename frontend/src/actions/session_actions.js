@@ -1,4 +1,4 @@
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 import SessionAPI from "../util/session_api_util";
 
@@ -24,7 +24,7 @@ const getUser = (res) => {
   const { token } = res.data;
   localStorage.setItem("jwt", token);
   SessionAPI.setAuthToken(token);
-  return jwt_decode(token);
+  return jwtDecode(token);
 };
 
 export const register = (userData) => (dispatch) =>
