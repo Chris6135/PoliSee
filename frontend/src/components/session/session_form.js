@@ -13,9 +13,9 @@ const SessionForm = ({ match }) => {
     : { email: "", password: "" };
 
   const [user, setUser] = useState(initialUser);
-  const dispatch = useDispatch();
   const [localErrors, setLocalErrors] = useState([]);
   const serverErrors = useSelector((state) => sessionErrors(state));
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setUser(initialUser);
@@ -43,7 +43,7 @@ const SessionForm = ({ match }) => {
   };
 
   const validateEmail = (email) =>
-    Boolean(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email));
+    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
   const handleSubmit = (e) => {
     e.preventDefault();
