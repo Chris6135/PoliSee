@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import jwtDecode from "jwt-decode";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import SessionAPI from "./util/session_api_util";
+import configureStore from "./store/store";
+import { logout } from "./actions/session_actions";
+import Root from "./components/app/root";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+document.addEventListener("DOMContentLoaded", () => {
+  let store;
+
+  if (localStorage.jwt) {
+    SessionAPI.setAuthToken(localStorage.jwt);
+    const user = jwtDecode(localStorage.jwt);
+    const preloadedState = { session: { user: user } };
+    store = configureStore(preloadedState);
+    const currentTime = Date.now() / 1000;
+    if (user.exp < currentTime) {
+      store.dispatch(logout());
+      window.location.href = "/login";
+    }
+  } else {
+    store = configureStore();
+  }
+
+  ReactDOM.render(<Root store={store} />, document.getElementById("root"));
+});
