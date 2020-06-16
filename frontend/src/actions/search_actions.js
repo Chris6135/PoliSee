@@ -15,5 +15,8 @@ export const receiveCivicsApiError = (error) => ({
 
 export const fetchRepresentatives = (address) => (dispatch) =>
   CivicsAPI.representativesByAddress(address)
-    .then((res) => dispatch(receiveReps(res.data)))
-    .catch((e) => dispatch(receiveCivicsApiError(...e.data)));
+    .then((res) => {
+      const data = CivicsAPI.formatResponse(res.data);
+      return dispatch(receiveReps(data));
+    })
+    .catch((e) => dispatch(receiveCivicsApiError(e.response.data)));

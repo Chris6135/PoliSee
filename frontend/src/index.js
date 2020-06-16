@@ -9,6 +9,7 @@ import SessionAPI from "./util/session_api_util";
 import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
+import CivicsAPI from "./util/civics_api_util";
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -31,3 +32,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.axios = axios;
+window.representatives = CivicsAPI.representativesByAddress;
+window.format = CivicsAPI.formatResponse;
