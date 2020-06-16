@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { fetchRepresentatives } from "../../actions/search_actions";
 
 const SearchBar = ({ history }) => {
