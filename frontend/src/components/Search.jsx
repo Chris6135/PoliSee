@@ -7,7 +7,25 @@ class Search extends React.Component{
     super(props);
     this.state = {
       govLevels: [],
+      interests: [],
     }
+  }
+
+  componentDidMount(){
+    this.props.fetchPolicians()
+  }
+
+  handleInterest(interest){
+    if(this.state.interests.includes(interest)){
+      this.setState(interests)
+    }
+    else{
+      this.setState(govLevels)
+    }
+  } 
+  
+  handleScope(scope){
+
   }
 
   render(){
@@ -20,7 +38,9 @@ class Search extends React.Component{
         </div>
         <ul className="gov-level-officials-list">
           {this.props.politicians[govLevel].map((politician, idx) => {
-            <li className="official-preview" key={idx}><Link to={`/politicians/${politician.id}`}><PoliticianPreview politician={politician} /></Link></li>
+            <li className="official-preview" key={idx}>
+              <Link to={`/politicians/${politician.id}`}><PoliticianPreview politician={politician} /></Link>
+            </li>
           })}
         </ul>
       </div>
@@ -41,10 +61,16 @@ class Search extends React.Component{
             </div>
           </div>
           <div className="search-page-sidebar-interests">
-
+            <button onClick={this.handleInterest("justice")}>Justice</button>
+            <button onClick={this.handleInterest("education")}>Education</button>
+            <button onClick={this.handleInterest("legislature")}>Legislature</button>
           </div>
           <div className="search-page-sidebar-scope">
-
+            <button onClick={this.handleScope("local")}>Local</button>
+            <button onClick={this.handleScope("county")}>County</button>
+            <button onClick={this.handleScope("district")}>District</button>
+            <button onClick={this.handleScope("state")}>State</button>
+            <button onClick={this.handleScope("national")}>National</button>
           </div>
         </div>
         <div className="search-page-main">
