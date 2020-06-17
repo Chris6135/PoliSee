@@ -1,65 +1,172 @@
 .splash{
-    padding: 30px;
-    color: red;
+    // padding: 30px;
+    background: red;
+    // height: 4000px;
+    width: 100vw;
+    // z-index:5;
 }
 .splash-top{
-    padding: 30px;
-    color: blue;
+    padding: 10px;
+    width:100%;
+    height: 815px;
+    // height:20%; //may need to change to 20%
+    background: blue;
+    display: flex;
+    flex-direction: column;
+}
+
+.splash-top > * {
+    // width:50%;
 }
 .splash-header{
     padding: 30px;
-    color: yellow;
+    background: yellow;
+    display: flex;
+    justify-content: space-between;
 }
 .splash-header-left{
     padding: 30px;
-    color: purple;
+    background: purple;
+    display: flex;
 }
 .splash-header-logo{
     padding: 30px;
-    color: red;
+    background: red;
 }
 .splash-header-left-dropdown{
     padding: 30px;
-    color: blue;
+    background: blue;
 }
 .splash-header-right{
     padding: 30px;
-    color: yellow;
+    background: yellow;
+    display: flex;
 }
+
 .splash-header-search-bar{
     padding: 30px;
-    color: purple;
+    background: purple;
 }
 .signin-button{ 
-     padding: 30px;
-    color: red;
+    padding: 30px;
+    background: red;
 }
 
-.signup-button{}
-.splash-searchbar{}
-.splash-searchbar-searchbar{}
-.splash-searchbar-gov-lvl{}
-.splash-searchbar-interests{}
-.splash-searchbar-search-btn{}
-.splash-body{}
-.splash-body-one{}
-.splash-body-one-one{}
-.splash-body-one-two{}
-.splash-body-one-three{}
-.sesplash-body-two{}
-.splash-body-politician-show{}
-.splash-body-politician-show-explanation{}
-.sesplash-body-three{}
-.splash-about-and-why{}
-.splash-about-and-why-data{}
-.splash-about-and-why-datum{}
-.splash-source-information{}
-.open-source-header{}
-.github-repo-info{}
+.signup-button{
+    padding: 30px;
+    background: blue;
+}
 
-.api-boxes{}
-.api-box{}
-.splash-body-bottom{}
-.logo{}
-.splash-body-bottom-links{}
+.splash-search-text{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20%; //might look better at 11%
+}
+
+.splash-search-text-title{
+    font-size: 36px;
+    color: white;
+
+}
+
+.splash-search-text-subtitle{
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: lighter;
+    color: white;
+}
+
+.splash-searchbar{
+    margin:1.5%; //might need to change ot 1.3%
+    background: orange;
+    display:flex;
+    justify-content: center;
+
+}
+.splash-searchbar-searchbar{
+    padding: 30px;
+    background: purple;
+}
+.splash-searchbar-gov-lvl{
+    padding: 30px;
+    background: red;
+}
+.splash-searchbar-interests{
+    padding: 30px;
+    background: blue;
+}
+.splash-searchbar-search-btn{
+    padding: 30px;
+    background: yellow;
+}
+.splash-body{
+    padding: 30px;
+    background: purple;
+}
+.splash-body-one{
+    padding: 30px;
+    background: red;
+}
+.splash-body-one-one{
+    padding: 30px;
+    background: blue;
+}
+.splash-body-one-two{
+    padding: 30px;
+    background: yellow
+}
+.splash-body-one-three{
+    padding: 30px;
+    background: green;
+}
+.sesplash-body-two{
+    padding: 30px;
+    background: blue;
+}
+.splash-body-politician-show{
+    padding: 30px;
+    background: green;
+}
+.splash-body-politician-show-explanation{ 
+     padding: 30px;
+    background: blue}
+.splash-body-three{
+    padding: 30px;
+    background: yellow
+}
+
+.splash-source-information{
+    padding: 30px;
+    background: green;
+}
+.open-source-header{
+    padding: 30px;
+    background: red;;
+}
+.github-repo-info{
+    padding: 30px;
+    background: yellow;
+}
+
+.api-boxes{
+    padding: 30px;
+    background: blue;
+}
+.api-box{
+    padding: 30px;
+    background: green;
+    border: solid 3px orange
+}
+.splash-body-bottom{ 
+    padding: 30px;
+    background: blue;
+}
+.logo{ padding: 30px;
+    background: yellow;}
+.splash-body-bottom-links{
+    padding: 30px;
+    background: green;
+    border: solid 3px orange
+}
 

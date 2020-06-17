@@ -1,3 +1,5 @@
+import React from "react"
+
 const Splash = () => (
   <div className="splash">
     <section className="splash-top">
@@ -7,7 +9,7 @@ const Splash = () => (
           <div className="splash-header-logo">
 
           </div>
-          <div classname="splash-header-left-dropdown">
+          <div className="splash-header-left-dropdown">
 
           </div>
         </div>
@@ -25,6 +27,18 @@ const Splash = () => (
         </div>
 
       </section>
+      <section className="splash-search-text">
+          <div className="splash-search-text-container">
+              <div className="splash-search-text-title">
+                Find your representatives
+              </div>
+              <div className="splash-search-text-subtitle">
+                Participate in your government
+              </div>
+          </div>
+
+
+        </section> 
       <section className="splash-searchbar">
         <div className="splash-searchbar-searchbar">
 
