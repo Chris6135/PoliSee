@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { fetchRepresentatives } from "../../actions/search_actions";
+import CivicsAPI from "../../util/civics_api_util";
 
 const SearchBar = ({ history }) => {
   const [address, setAddress] = useState("");
@@ -10,13 +11,23 @@ const SearchBar = ({ history }) => {
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
+  const formatAddress = (string) =>
+    string
+      .trim()
+      .split("")
+      .filter((c) => c !== "," || c !== ".")
+      .join("")
+      .split(" ")
+      .join("%20");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (address.trim().length) {
       const lvls = levels.join("%20").replace(/\s/, "%20") || "all";
       const issu = issues.join("%20") || "all";
-      return dispatch(fetchRepresentatives(address)).then(
-        history.push(`/results?levels=${lvls}&issues=${issu}`)
+      const search = formatAddress(address);
+      return dispatch(fetchRepresentatives(search)).then(
+        history.push(`/search?address=${search}&levels=${lvls}&issues=${issu}`)
       );
     } else {
       setError(true);
