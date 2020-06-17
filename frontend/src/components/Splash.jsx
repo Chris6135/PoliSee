@@ -19,9 +19,10 @@ const Splash = () => (
 
           </div>
           <div className="signin-button">
-
+              <div>Sign In</div>
           </div>
           <div className="signup-button">
+          <div>Sign Up</div>
 
           </div>
         </div>
@@ -58,7 +59,7 @@ const Splash = () => (
     <section className="splash-body">
       <section className="splash-body-one">
         <div className="splash-body-one-one">
-
+            G
         </div>
         <div className="splash-body-one-two">
 
@@ -74,23 +75,6 @@ const Splash = () => (
         </div>
         <div className="splash-body-politician-show-explanation">
 
-        </div>
-      </section>
-
-      <section className="splash-body-three">
-        <div className="splash-about-and-why">
-
-        </div>
-        <div className="splash-about-and-why-data">
-          <div className="splash-about-and-why-datum">
-
-          </div>
-          <div className="splash-about-and-why-datum">
-
-          </div>
-          <div className="splash-about-and-why-datum">
-
-          </div>
         </div>
       </section>
 
