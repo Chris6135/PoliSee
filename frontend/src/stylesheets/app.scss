@@ -7,9 +7,13 @@
 @import "./auth/signup.scss";
 @import "./auth/signin.scss";
 
+@import "./headandfoot/header.scss";
+
+
 .app {
     background: $background;
     min-height: 100vh;
     @include flex(column, space-between, center);
     font-family: $font;
 }
+

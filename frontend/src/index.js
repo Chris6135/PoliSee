@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 
 import "./stylesheets/app.scss";
 
-import library from "./icons/library";
+import "./icons/library";
 import SessionAPI from "./util/session_api_util";
 import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
@@ -29,5 +29,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   ReactDOM.render(<Root store={store} />, document.getElementById("root"));
-  window.axios = axios;
 });
