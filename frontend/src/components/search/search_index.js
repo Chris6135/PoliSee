@@ -1,29 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 
-import { officesByLevel, officials } from "../../reducers/selectors/selectors";
-
-const SearchIndex = ({ location }) => {
-  // const dispatch = useDispatch();
-  const o = useSelector((state) => officesByLevel(state));
-  const pols = useSelector((state) => officials(state));
-  const [levels, setLevels] = useState([]);
-  const [issues, setIssues] = useState([]);
-
-  // useEffect(() => {
-  //   setOffices(o);
-  // }, [o]);
-
-  useEffect(() => {
-    const lvls = location.search.match(/\?levels=(.+)&/)[1];
-    const iss = location.search.match(/\&issues=(.+)$/)[1];
-    setLevels(lvls === "all" ? [] : lvls.split("%20"));
-    setIssues(iss === "all" ? [] : iss.split("%20"));
-  }, [location.search]);
-
-  // return <div className="search-index">{levels.map(l => (<div>
-  //   {}
-  // </div>))}</div>;
+const SearchIndex = ({ levelsObj, levels, getOffices }) => {
+  const { federal, state, county, local } = levels;
+  return (
+    <div className="search-index">
+      {Boolean(Object.keys(levelsObj).length) && (
+        <ul>
+          {federal && (
+            <li>
+              <h1>FEDERAL</h1>
+              <ul>{getOffices("federal")}</ul>
+            </li>
+          )}
+          {state && (
+            <li>
+              <h1>STATE</h1>
+              <ul>{getOffices("state")}</ul>
+            </li>
+          )}
+          {county && (
+            <li>
+              <h1>COUNTY</h1>
+              <ul>{getOffices("county")}</ul>
+            </li>
+          )}
+          {local && (
+            <li>
+              <h1>LOCAL</h1>
+              <ul>{getOffices("local")}</ul>
+            </li>
+          )}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default SearchIndex;

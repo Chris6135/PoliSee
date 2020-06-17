@@ -37,18 +37,38 @@ const formatDivisions = (offices, divisions) => {
   return newDivisions;
 };
 
+const formatLvl = (lvl) => {
+  switch (lvl) {
+    case "country":
+      return "federal";
+    case "administrativeArea1":
+      return "state";
+    case "administrativeArea2":
+      return "county";
+    case "locality":
+      return "local";
+    case "subLocality1":
+      return "local";
+    case "subLocality2":
+      return "local";
+    default:
+      return lvl;
+  }
+};
+
 const getOptions = (offices) => {
   const roles = {};
   const levels = {};
   offices.forEach((o) => {
     o.roles.forEach((r) => {
-      roles[r] = roles[r] || { name: r, offices: [] };
-      roles[r].offices.push(o.id);
+      roles[r] = roles[r] || []; // roles[r] = roles[r] || { name: r, offices: [] };
+      roles[r].push(o.id);
     });
 
     o.levels.forEach((l) => {
-      levels[l] = levels[l] || { name: l, offices: [] };
-      levels[l].offices.push(o.id);
+      const lvl = formatLvl(l);
+      levels[lvl] = levels[lvl] || []; // levels[l] = levels[l] || { name: l, offices: [] };
+      levels[lvl].push(o.id);
     });
   });
   return { roles, levels };

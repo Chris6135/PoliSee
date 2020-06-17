@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-
-import { fetchRepresentatives } from "../../actions/search_actions";
-import CivicsAPI from "../../util/civics_api_util";
+import { withRouter } from "react-router-dom";
 
 const SearchBar = ({ history }) => {
   const [address, setAddress] = useState("");
   const [levels, setLevels] = useState([]);
   const [issues, setIssues] = useState([]);
   const [error, setError] = useState(false);
-  const dispatch = useDispatch();
 
   const formatAddress = (string) =>
     string
@@ -26,8 +22,8 @@ const SearchBar = ({ history }) => {
       const lvls = levels.join("%20").replace(/\s/, "%20") || "all";
       const issu = issues.join("%20") || "all";
       const search = formatAddress(address);
-      return dispatch(fetchRepresentatives(search)).then(
-        history.push(`/search?address=${search}&levels=${lvls}&issues=${issu}`)
+      return history.push(
+        `/search?address=${search}&levels=${lvls}&issues=${issu}`
       );
     } else {
       setError(true);
@@ -59,10 +55,10 @@ const SearchBar = ({ history }) => {
           multiple
           onChange={handleOptions("levels")}
         >
-          <option value="country">Federal</option>
-          <option value="administrativeArea1">State</option>
-          <option value="administrativeArea2">County</option>
-          <option value="locality subLocality1 subLocality2">Local</option>
+          <option value="federal">Federal</option>
+          <option value="state">State</option>
+          <option value="county">County</option>
+          <option value="local">Local</option>
         </select>
         <select
           defaultValue={issues}
@@ -82,4 +78,4 @@ const SearchBar = ({ history }) => {
   );
 };
 
-export default SearchBar;
+export default withRouter(SearchBar);

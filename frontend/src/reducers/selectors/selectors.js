@@ -10,18 +10,17 @@ export const officesByRole = (state) => {
   }));
 };
 
-export const officesByLevel = (state, lvl) => {
-  const levels = Object.keys(state.entities.levels);
-  return levels.map((l) => ({
-    ...state.entities.levels[l],
-    offices: state.entities.levels[l].offices.map(
-      (o) => state.entities.offices[o]
-    ),
-  }));
-};
+export const levels = (state) => state.entities.levels;
 
 export const officials = (state) => state.entities.officials;
 
 export const address = (state) => state.entities.address;
 
 export const offices = (state) => state.entities.offices;
+
+export const searchResults = (state) => ({
+  address: address(state),
+  officesObj: offices(state),
+  officialsObj: officials(state),
+  levelsObj: levels(state),
+});
