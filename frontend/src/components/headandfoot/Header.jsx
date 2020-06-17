@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 class Header extends React.Component{
   constructor(props){
@@ -30,14 +32,46 @@ class Header extends React.Component{
   }
 
   render(){
+    const dropdown = (path) => {
+      switch(path){
+        case "/login": //when we figure out cases and content we can expand this
+          return (
+            <div className="header-drop-content">
+              <p>Funky Kong</p>
+              <p>Funky Kong</p>
+              <p>Funky Kong</p>
+            </div>
+          )
+        case "/":
+          return (
+            <div className="header-drop-content">
+              <p>Funky Kong</p>
+              <p>Funky Kong</p>
+              <p>Funky Kong</p>
+            </div>
+          )
+        default:
+          return (
+            <div className="header-drop-content">
+              <p>Funky Kong</p>
+              <p>Funky Kong</p>
+              <p>Funky Kong</p>
+            </div>
+          )
+      }
+    }
+
     return (
       <div className="header">
         <div className="header-left">
-          <div className="logo">
+          <div className="header-logo">
             Logo
           </div>
-          <div className="information-btn">
-            <span>?</span>
+          <div className="information-dropdown">
+            <div className="header-drop-btn">
+              <span>?</span>
+            </div>
+            {dropdown(this.props.history.location.pathname)}
           </div>
         </div>
         <div className="header-skinny-middle">
@@ -51,8 +85,11 @@ class Header extends React.Component{
               onChange={this.handleChange}
               placeholder="Find Your Representatives"
             />
+            <button className="header-search-icon" onClick={this.handleSubmit}>
+              <FontAwesomeIcon icon="search" flip="horizontal"/>
+            </button>
           </form>
-          <Link to="/login" className="login-link">SIGN IN</Link>
+          <Link to="/login" className="login-link">SIGN IN </Link>
         </div>
       </div>
     )

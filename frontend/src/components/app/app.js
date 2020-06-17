@@ -9,6 +9,7 @@ import Footer from '../headandfoot/Footer'
 function App() {
   return (
     <div className="App">
+      {/* <Route exact path={["/"]} component={Splash} /> */}
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
       <Route path="/" component={HeaderContainer} />
       <Route path="/" component={Footer} />

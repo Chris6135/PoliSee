@@ -4,6 +4,7 @@ import jwtDecode from "jwt-decode";
 
 import "./stylesheets/app.scss";
 
+import "./icons/library";
 import SessionAPI from "./util/session_api_util";
 import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
