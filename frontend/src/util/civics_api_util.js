@@ -67,13 +67,13 @@ const getOptions = (offices) => {
   const levels = {};
   offices.forEach((o) => {
     o.roles.forEach((r) => {
-      roles[r] = roles[r] || []; // roles[r] = roles[r] || { name: r, offices: [] };
+      roles[r] = roles[r] || [];
       roles[r].push(o.id);
     });
 
     o.levels.forEach((l) => {
       const lvl = formatLvl(l);
-      levels[lvl] = levels[lvl] || []; // levels[l] = levels[l] || { name: l, offices: [] };
+      levels[lvl] = levels[lvl] || [];
       levels[lvl].push(o.id);
     });
   });

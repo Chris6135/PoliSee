@@ -36,6 +36,20 @@ const SearchLanding = ({ location }) => {
     legislation: false,
   };
 
+  const issueMap = {
+    justice: ["judge", "highestCourtJudge"],
+    education: ["schoolBoard"],
+    legislation: ["specialPurposeOfficer", "governmentOfficer"],
+    all: [
+      "headOfGovernment",
+      "deputyHeadOfGovernment",
+      "headOfState",
+      "legislatorLowerBody",
+      "legislatorUpperBody",
+      "executiveCouncil",
+    ],
+  };
+
   const [levels, setLevels] = useState(initialLevels);
   const [issues, setIssues] = useState(initialIssues);
   const {
@@ -89,23 +103,42 @@ const SearchLanding = ({ location }) => {
     }
   };
 
+  const chosenIssues = Object.keys(issues).filter((k) => issues[k]);
+  const allIssues = chosenIssues.length === Object.keys(issues);
+
   const getOfficials = (id, office) =>
-    offices[id].officials.map((o) =>
-      o === undefined ? null : (
+    offices[id].officials.map((o) => {
+      if (o === undefined) return null;
+      if (allIssues) {
+        return (
+          <SearchResult
+            key={shortid.generate()}
+            official={officials[o]}
+            office={office}
+          />
+        );
+      }
+      const relevant = chosenIssues.some(
+        (i) =>
+          issueMap[i].some((r) => office.roles.includes(r)) ||
+          issueMap["all"].some((r) => office.roles.includes(r))
+      );
+
+      return relevant ? (
         <SearchResult
           key={shortid.generate()}
           official={officials[o]}
           office={office}
         />
-      )
-    );
+      ) : null;
+    });
 
   const getOffices = (lvl) => {
     if (levelsObj[lvl]) {
       return levelsObj[lvl].map((oId) =>
         oId === undefined ? null : (
           <li key={shortid.generate()}>
-            <ul>{getOfficials(oId, offices[oId].name)}</ul>
+            <ul>{getOfficials(oId, offices[oId])}</ul>
           </li>
         )
       );

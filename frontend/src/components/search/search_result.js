@@ -6,7 +6,7 @@ const SearchResult = ({ official, office }) => {
     <div className="search-result">
       <header>
         <h2>{official.name}</h2>
-        <h3>{office}</h3>
+        <h3>{office.name}</h3>
       </header>
       <img src={official.photoUrl} alt="" />
       <footer>
