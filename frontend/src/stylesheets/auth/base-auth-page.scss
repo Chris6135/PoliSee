@@ -1,19 +1,10 @@
-$auth-background-grey: #dcdcd8;
-$red-equiv-to-darker-grey: #dcb2b2ff;
-$blue-equiv-to-darker-grey: #8585a9ba;
-$darker-grey: #b9b9b9;
-$form-bg: #fefefe;
-$form-font-color: #666666;
-$button: #999999;
-
-$labels-font-color: #8b8b8b;
-$switch-text: #787878;
-
-
-.app {
-    background: $background;
-    height: 100vh;
-}
+// .test-div { 
+    /* Note: this is height that header should be*/
+//     content: "";
+//     display: block;
+//     height: 130.5px;
+//     width: 100%;
+// }
 
 .session-page {
     color: $form-font-color;
@@ -21,7 +12,6 @@ $switch-text: #787878;
     background: $auth-background-grey;
     width: 100vw;
     height: 66.2vh;
-    margin: 14vh 0;
     @include flex(row, center, center);
     .session-form-backdrop {
         width: 669px;
