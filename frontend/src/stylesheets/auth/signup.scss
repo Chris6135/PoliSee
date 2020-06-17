@@ -1,0 +1,46 @@
+$subheader-text: #9e9e9e;
+
+
+.session-form.reg {
+    padding: 20px 0;
+    h3 {
+        font-weight: 300;
+        font-size: 25px;
+        color: $subheader-text;
+        margin-top: 2px;
+    }
+    > button {
+        margin-top: 20px;
+    }
+    .reg-group {
+        @include flex(column, flex-start, center);
+
+        .reg-submit-group {
+            width: 100%;
+            @include flex(row, space-between, flex-end);
+            input {
+                padding-left: 20px;
+                width: 226px;
+                letter-spacing: 4px;
+            }
+            button {
+                position: relative;
+                bottom: -5px;
+                width: 167px;
+                height: 48.5px;
+                text-align: center;
+                border-radius: 5px;
+                vertical-align: center;
+                background: $button;
+                color: white;
+                font-size: 22px;
+                font-weight: 600;
+                &:disabled {
+                    background: $auth-background-grey;
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+}
