@@ -104,33 +104,90 @@ const Splash = () => (
       <section className="splash-body-two">
         <div className="splash-body-politician-show">
 
+          <div className="splash-body-politican-show-upper-container">
+              <div className="splash-body-politician-show-upper-photo"> 
+              </div>
+
+              <div className="splash-body-politician-show-upper-text-container"> 
+
+              <div className="splash-body-politician-show-upper-text-box"> 
+              </div>
+              <div className="splash-body-politician-show-upper-text-box"> 
+              </div>
+              <div className="splash-body-politician-show-upper-text-box"> 
+              </div>
+
+
+
+
+              </div>
+
+
+          </div>
+
+          <div className="splash-body-politican-show-middle-container">
+            
+          </div>
+
+          <div className="splash-body-politican-show-lower-container">
+          
+              <div className="splash-body-politican-show-middle-container-left">
+              </div>
+
+              <div className="splash-body-politican-show-middle-container-right">
+              </div>
+            
+          </div>
+
         </div>
         <div className="splash-body-politician-show-explanation">
 
-        </div>
+            <div className="splash-body-politician-show-description-title">
+                    Profiles Worth Reading 
+                  </div>
+                  <div className="splash-body-politician-show-description-body">
+                    Check to see how long they've been in office, when they're up for re-election, voting history, adn recent news.
+                  </div>
+                  <div className="splash-body-politician-show-description-body">
+                    save and watch your representatives to stay up to date on how they treat your issues. 
+                  </div>
+
+            </div>
       </section>
 
       <section className="splash-source-information">
-        <div className="open-source-header">
+        <div className="open-source-header"> 
+            This project is open source
 
         </div>
+            <div className="open-source-subtitle" >
+              find us on 
+            </div>
         <div className="github-repo-info">
 
         </div>
+        <div className="open-source-subtitle" >
+              Data sourced from
+            </div>
         <div className="api-boxes">
           <div className="api-box">
+          propublica congress API
+
 
           </div>
           <div className="api-box">
+          news API
 
           </div>
           <div className="api-box">
+          google civics API
 
           </div>
         </div>
       </section>
 
       <section className="splash-body-bottom">
+       
         <div className="logo">
 
         </div>
@@ -138,7 +195,6 @@ const Splash = () => (
 
         </div>
         <div className="splash-body-bottom-links">
-
         </div>
         <div className="splash-body-bottom-links">
 
