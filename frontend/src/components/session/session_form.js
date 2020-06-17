@@ -64,7 +64,7 @@ const SessionForm = ({ match }) => {
   const zipError = localErrors.find((e) => e.match(/zip/)) || serverErrors.zip;
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
+    <form className={`session-form` + ( reg ? " reg" : "" ) } onSubmit={handleSubmit}>
       <h1>{formHead}</h1>
       {reg && <h3>AND STAY INFORMED</h3>}
       <button>GOOGLE BUTTON GOES HERE</button>
@@ -113,11 +113,11 @@ const SessionForm = ({ match }) => {
                 id="zip"
               />
             </label>
-            <button type="submit">SIGN UP</button>
+            <button type="submit" disabled={ localErrors.length }>SIGN UP</button>
           </div>
         </div>
       ) : (
-        <button type="submit">SIGN IN</button>
+        <button type="submit" disabled={ localErrors.length }>SIGN IN</button>
       )}
       {reg ? (
         <p>
