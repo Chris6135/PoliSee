@@ -10,8 +10,6 @@ import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
 import axios from 'axios';
 
-// import sass from "node-sass";
-
 document.addEventListener("DOMContentLoaded", () => {
   let store;
 
