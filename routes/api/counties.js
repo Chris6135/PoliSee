@@ -15,27 +15,13 @@ router.patch('/search', async (req, res) => {
       updatedInterests[interests[i]] = 1
     }
   }
-  // res.status(200).json(updatedInterests);
 
   const county = await County.findOneAndUpdate(params,
     {
       $inc: updatedInterests
     },
     {new:true},
-    // (err, doc) => {
-    //   if(doc){
-    //     res.json(doc)
-    //   }else{
-    //     res.status(404).send()
-    //   }
-    // }
-  )
-  // .then((updatedCounty) => res.json(updatedCounty))
-    if(county){
-      console.log(county)
-      res.json(county)
-    }else{
-      res.status(404).send()
-    }})
+  ).then((updatedCounty) => res.json(updatedCounty))
+})
 
 module.exports = router;

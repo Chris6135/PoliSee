@@ -10,31 +10,21 @@ const CountySchema = new Schema({
     type: String,
     required: true
   },
-  Education: {
+  education: {
     type: Number,
     required: true,
     default: 0,
   },
-  criminalJustice: {
+  justice: {
     type: Number,
     required: true,
     default: 0,
   },
-  labor:{
+  legislation:{
     type: Number,
     required: true,
     default: 0
   },
-  healthcare:{
-    type: Number, 
-    required: true,
-    default: 0
-  },
-  environment:{
-    type: Number,
-    required: true,
-    default: 0
-  }
 })
 
 module.exports = County = mongoose.model('County', CountySchema);

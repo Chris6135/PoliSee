@@ -19,17 +19,15 @@ const countyPOJOs = stateCountyArray.map((tuple) => {
     state: tuple[0],
     county: tuple[1],
     education: 0,
-    criminalJustice: 0,
-    labor: 0,
-    healthcare: 0,
-    environment: 0
+    justice: 0,
+    legislation: 0,
   }
 })
 
 const counties = [
   {
     model: "County",
-    documents: [countyPOJOs[0]]
+    documents: [countyPOJOs]
   }
 ];
 
