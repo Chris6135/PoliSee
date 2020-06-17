@@ -1,13 +1,19 @@
 import axios from "axios";
-import shortid from "shortid";
 
 const key = process.env.REACT_APP_GCIV_API_KEY;
 
-const formatAddress = (string) =>
-  string.trim().split(",").join("").split(" ").join("%20");
+const formatString = (string) =>
+  string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
 
-const formatOfficials = (officials) =>
-  officials.map((o) => ({ ...o, id: shortid.generate() }));
+const formatOfficials = (officials, offices, zip) =>
+  officials.map((o, i) => {
+    const office = offices.find((off) => off.officialIndices.includes(i));
+    return {
+      ...o,
+      id: `${zip}${formatString(o.name)}${formatString(office.name)}`,
+      office: office.name,
+    };
+  });
 
 const formatOffices = (officials, offices) => {
   const updatedOffices = offices.map((o) => ({
@@ -15,7 +21,7 @@ const formatOffices = (officials, offices) => {
     roles: o.roles || [],
     levels: o.levels || [],
     officials: o.officialIndices.map((i) => officials[i].id),
-    id: shortid.generate(),
+    id: o.name,
   }));
   updatedOffices.forEach((u) => delete u.officialIndices);
   return updatedOffices;
@@ -77,12 +83,16 @@ const getOptions = (offices) => {
 const CivicsAPI = {
   representativesByAddress: (address) =>
     axios.get(
-      `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${formatAddress(
+      `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${formatString(
         address
       )}`
     ),
   formatResponse: (res) => {
-    const officials = formatOfficials(res.officials);
+    const officials = formatOfficials(
+      res.officials,
+      res.offices,
+      res.normalizedInput.zip
+    );
     const offices = formatOffices(officials, res.offices);
     const divisions = formatDivisions(offices, res.divisions);
     const options = getOptions(offices);

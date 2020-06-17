@@ -1,15 +1,29 @@
 import React from "react";
 
-const SearchSidebar = ({ levels, issues, handleToggle, address }) => {
+const SearchSidebar = ({
+  levels,
+  issues,
+  handleToggle,
+  address,
+  divisions,
+}) => {
   const { federal, state, county, local } = levels;
   const { education, justice, legislation } = issues;
+
+  const ocdIds = Object.keys(divisions);
+
+  const cdId = ocdIds.find((id) => id.match(/\/cd:(\d+)$/));
+  const coId = ocdIds.find((id) => id.match(/\/county:(\w+)$/));
+  const cd = divisions[cdId];
+  const countyDiv = divisions[coId];
 
   return (
     <div className="search-sidebar">
       <header className="search-sidebar-head">
         <div className="search-sidebar-head-left">
-          <h1>{address.city}</h1>
-          <h2>{address.state}</h2>
+          <h1>{`${address.city}, ${address.state} ${address.zip}`}</h1>
+          <h2>{countyDiv ? countyDiv.name : ""}</h2>
+          <h3>{cd ? cd.name : ""}</h3>
           <div className="search-sidebar-head-left-county"></div>
           <div className="search-sidebar-head-left-district"></div>
         </div>

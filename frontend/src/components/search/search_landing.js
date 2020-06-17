@@ -40,8 +40,9 @@ const SearchLanding = ({ location }) => {
   const [issues, setIssues] = useState(initialIssues);
   const {
     address,
-    officialsObj,
-    officesObj,
+    officials,
+    offices,
+    divisions,
     levelsObj,
   } = useSelector((state) => searchResults(state));
 
@@ -89,20 +90,22 @@ const SearchLanding = ({ location }) => {
   };
 
   const getOfficials = (id, office) =>
-    officesObj[id].officials.map((o) => (
-      <SearchResult
-        key={shortid.generate()}
-        official={officialsObj[o]}
-        office={office}
-      />
-    ));
+    offices[id].officials.map((o) =>
+      o === undefined ? null : (
+        <SearchResult
+          key={shortid.generate()}
+          official={officials[o]}
+          office={office}
+        />
+      )
+    );
 
   const getOffices = (lvl) => {
     if (levelsObj[lvl]) {
       return levelsObj[lvl].map((oId) =>
         oId === undefined ? null : (
           <li key={shortid.generate()}>
-            <ul>{getOfficials(oId, officesObj[oId].name)}</ul>
+            <ul>{getOfficials(oId, offices[oId].name)}</ul>
           </li>
         )
       );
@@ -118,6 +121,7 @@ const SearchLanding = ({ location }) => {
         issues={issues}
         handleToggle={handleToggle}
         address={address}
+        divisions={divisions}
       />
       <SearchIndex
         levels={levels}

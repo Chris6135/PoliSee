@@ -8,13 +8,7 @@ const SearchBar = ({ history }) => {
   const [error, setError] = useState(false);
 
   const formatAddress = (string) =>
-    string
-      .trim()
-      .split("")
-      .filter((c) => c !== "," || c !== ".")
-      .join("")
-      .split(" ")
-      .join("%20");
+    string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
 
   const handleSubmit = (e) => {
     e.preventDefault();

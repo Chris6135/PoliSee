@@ -18,9 +18,12 @@ export const address = (state) => state.entities.address;
 
 export const offices = (state) => state.entities.offices;
 
+export const divisions = (state) => state.entities.divisions;
+
 export const searchResults = (state) => ({
   address: address(state),
-  officesObj: offices(state),
-  officialsObj: officials(state),
+  offices: offices(state),
+  officials: officials(state),
+  divisions: divisions(state),
   levelsObj: levels(state),
 });

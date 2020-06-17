@@ -1,7 +1,7 @@
 import React from "react";
 
 const SearchResult = ({ official, office }) => {
-  const [phone] = official.phones;
+  const [phone] = official.phones ? official.phones : [""];
   return (
     <div className="search-result">
       <header>
