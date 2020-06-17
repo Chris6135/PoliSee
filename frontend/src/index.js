@@ -8,8 +8,7 @@ import SessionAPI from "./util/session_api_util";
 import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
-
-// import sass from "node-sass";
+import axios from 'axios';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -29,4 +28,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   ReactDOM.render(<Root store={store} />, document.getElementById("root"));
+  window.axios = axios;
 });

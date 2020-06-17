@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { register, login } from "../../actions/session_actions";
 import { sessionErrors } from "../../reducers/selectors/selectors";
-import { Link } from "react-router-dom";
 
 const SessionForm = ({ match }) => {
   const reg = match.path === "/register";
@@ -64,13 +64,12 @@ const SessionForm = ({ match }) => {
   const zipError = localErrors.find((e) => e.match(/zip/)) || serverErrors.zip;
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
+    <form className={`session-form` + ( reg ? " reg" : "" ) } onSubmit={handleSubmit}>
       <h1>{formHead}</h1>
       {reg && <h3>AND STAY INFORMED</h3>}
       <button>GOOGLE BUTTON GOES HERE</button>
       <label htmlFor="email">
         <h6>EMAIL</h6>
-
         {emailError && <span className="err-msg">{emailError}</span>}
         <input
           type="text"
@@ -114,11 +113,11 @@ const SessionForm = ({ match }) => {
                 id="zip"
               />
             </label>
-            <button type="submit">SIGN UP</button>
+            <button type="submit" disabled={ localErrors.length }>SIGN UP</button>
           </div>
         </div>
       ) : (
-        <button type="submit">SIGN IN</button>
+        <button type="submit" disabled={ localErrors.length }>SIGN IN</button>
       )}
       {reg ? (
         <p>

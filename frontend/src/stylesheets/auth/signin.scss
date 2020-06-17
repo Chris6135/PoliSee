@@ -1,0 +1,25 @@
+.session-form:not(.reg) {
+    padding: 45px;
+    h1 {
+        margin-bottom: 40px;
+    }
+    button:first-of-type {
+        margin-bottom: 15px;
+    }
+
+    input#password {
+        margin-bottom: 40px;
+    }
+    button[type="submit"] {
+        margin-bottom: 25px;
+        width: 250px;
+        background: $button;
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+        &:disabled {
+            background: $auth-background-grey;
+            cursor: default;
+        }
+    }
+}

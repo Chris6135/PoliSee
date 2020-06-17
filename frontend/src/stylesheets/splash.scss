@@ -4,13 +4,14 @@
     // height: 4000px;
     width: 100vw;
     // z-index:5;
+    font-family: $font;;
 }
 .splash-top{
     padding: 10px;
     width:100%;
     height: 815px;
     // height:20%; //may need to change to 20%
-    background: blue;
+    background: #C4C4C0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,14 +23,12 @@
 .splash-header{
     width: 100%;
     height: 11%; //math said 11%
-    background: yellow;
     display: flex;
     justify-content: space-between;
 }
 .splash-header-left{
     height: 100%;
     width:27.5%;
-    background: purple;
     display: flex;
     justify-content: space-between;
     margin-left:20px;
@@ -47,33 +46,35 @@
 }
 .splash-header-right{
     width:37.7%;
-    height:55.5%;
-    background: green;
+    // height:55.5%;
     display: flex;
     margin-right:1%;
+    align-items: center;
+    
 
 }
 
 .splash-header-search-bar{
     background: purple;
     width:56%;
-    height: 93%;
+    height: 60px;
 
 }
 .signin-button{ 
     position:relative;
-    background: red;
+    background: #A6A6A6;
     width: 17.6%;
     padding: 8px;
-    height: 67.2%;
-    top: 15%;
+    height:50px;
+    // top: 15%;
     margin-left:2.5%;
     margin-right:1%;
     display:flex;
     justify-content: center;
     align-items: center;
-}
+    border-radius: 5px;
 
+}
 .signin-button > *{ 
     color: white;
     font-size: 20px;
@@ -82,16 +83,18 @@
 
 .signup-button{
     position:relative; 
-    background: blue;
+    background: #818181;
     padding: 8px;
     width: 17.6%;
-    height: 67.2%;
-    top: 15%;
+    height:50px;
+    // top: 15%;
     margin-left:2.5%;
     margin-right:1%;
     display:flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
+
 }
 
 .signup-button > *{ 
@@ -112,7 +115,8 @@
 }
 
 .splash-search-text-title{
-    font-size: 46px;
+    font-size: 56px;
+    font-weight: 500;
     color: white;
 
 }
@@ -120,7 +124,7 @@
 .splash-search-text-subtitle{
     text-transform: uppercase;
     font-size: 36px;
-    font-weight: lighter;
+    font-weight: 300;
     color: white;
 }
 
@@ -160,26 +164,63 @@
     height: 815px;
     display: flex;
     justify-content: center;
-    background: red;
+    background: #F2F1EC;
     align-items: center;
 }
 .splash-body-one-one{
     height:375px;
     width: 350px;
-    background: blue;
+    background: #DCDCDC;
 }
 .splash-body-one-two{
     position: relative;
     top:40px;
     height:580px;
     width: 550px;
-    background: yellow;
+    background: #EBEBEB;
     margin: 40px;
 }
+
+.splash-body-one-two-title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:40px
+
+}
+
+.splash-body-one-two-title-bold{
+    font-size: 48px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+}
+
+.splash-body-one-two-title-thin{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 300;
+
+}
+
+
+.splash-body-one-two-body-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:40px
+}
+
+.splash-body-one-two-body-container > *{
+ font-size: 24px;
+ margin:20px
+
+}
+
 .splash-body-one-three{
     height:375px;
     width: 350px;
-    background: green;
+    background: #DCDCDC;
 }
 .splash-body-two{
     height: 750px;
@@ -234,6 +275,8 @@
 }
 .logo{ padding: 30px;
     background: yellow;}
+
+
 .splash-body-bottom-links{
     padding: 30px;
     background: green;

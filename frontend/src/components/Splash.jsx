@@ -1,4 +1,6 @@
 import React from "react"
+import {Link} from "react-router-dom"
+import SearchBar from "./search/search_bar"
 
 const Splash = () => (
   <div className="splash">
@@ -18,13 +20,13 @@ const Splash = () => (
           <div className="splash-header-search-bar">
 
           </div>
-          <div className="signin-button">
+          <Link to="/login" className="signin-button">
               <div>Sign In</div>
-          </div>
-          <div className="signup-button">
+          </Link>
+          <Link to="/register" className="signup-button">
           <div>Sign Up</div>
 
-          </div>
+          </Link>
         </div>
 
       </section>
@@ -41,7 +43,9 @@ const Splash = () => (
 
         </section> 
       <section className="splash-searchbar">
-        <div className="splash-searchbar-searchbar">
+        <SearchBar />
+
+        {/* <div className="splash-searchbar-searchbar">
 
         </div>
         <div className="splash-searchbar-gov-lvl">
@@ -52,16 +56,44 @@ const Splash = () => (
         </div>
         <div className="splash-searchbar-search-btn">
 
-        </div>
+        </div> */}
       </section>
     </section>
     
     <section className="splash-body">
       <section className="splash-body-one">
         <div className="splash-body-one-one">
-            G
+            
         </div>
         <div className="splash-body-one-two">
+          <div className="splash-body-one-two-title-container">
+              <div className="splash-body-one-two-title-bold">
+                get your voice
+
+              </div>
+              <div className="splash-body-one-two-title-thin">
+                to the
+
+              </div>
+              <div className="splash-body-one-two-title-bold">
+                right people
+
+              </div>
+
+          </div>
+
+
+          <div className="splash-body-one-two-body-container">
+                <div className="splash-body-one-two-body">
+                  PoliSee makes it easy to see representatives for your area that can affect your issues
+
+                </div>
+                <div className="splash-body-one-two-body">
+                  We can tell you who is in charge of making the changes that matter most to you.
+
+                </div>
+
+          </div>
 
         </div>
         <div className="splash-body-one-three">
