@@ -2,8 +2,9 @@
   display: flex;
   width: 100vw;
   justify-content: space-evenly;
-  height: 14vh;
-  border: 1px solid black;
+  height: 70px; 
+  // you can the height of this header and everything else should change accordingly
+  font-family: $font;
 }
 
 .header-left{
@@ -11,7 +12,9 @@
   justify-content: space-between;
   align-items: center;
   width: 33.33%;
-  border: 1px solid black;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+  border-bottom-right-radius: 10px;
 
 }
 
@@ -26,13 +29,18 @@
   margin-right: 8%;
   width: 20%;
   height: 60%;
-  border: 1px solid black;
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  border-radius: 3px;
   text-align: center;
 }
 
 .information-btn span{
-  border: 1px solid black;
-  padding: 0% 6%;
+  border: 2px solid whitesmoke;
+  font-size: 125%;
+  font-weight: 700;
+  color: whitesmoke;
+  padding: 0% 8%;
   border-radius: 50px;
 
 }
@@ -40,7 +48,8 @@
 .header-skinny-middle{
   width: 33.33%;
   height: 40%;
-  border: 1px solid black;
+  border: 1px solid darkgray;
+  background-color: darkgray;
 
 }
 
@@ -48,32 +57,45 @@
   width: 33.33%;
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+  border-bottom-left-radius: 10px;
   align-items: center;
 }
 
 .header-search-bar{
-  width: 60%;
+  width: 63%;
   height: 60%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid black;
-  margin-left: 5%
+  border: 2px solid white;
+  border-radius: 3px;
+  background-color: whitesmoke;
+  margin-left: 5%;
+  font-variant: small-caps;
+
 }
 
 .header-search-bar input{
   width: 100%;
   height: 100%;
   margin-left: 5%;
+  font-size: 17px;
 }
 
 .header-right a{
-  width: 30%;
+  width: 27%;
   height: 60%;
-  border: 1px solid black;
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  font-weight: 500;
+  border-radius: 3px;
+  font-size: 18px;
   margin-right: 2%;
-  display: inline-block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2.5% 0%;
+  color: white;
 }

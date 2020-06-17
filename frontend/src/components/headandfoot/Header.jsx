@@ -12,7 +12,16 @@ class Header extends React.Component{
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.fetchRepresentatives(this.state.searchQuery)
+    const formatAddress = (string) =>
+      string
+        .trim()
+        .split("")
+        .filter((c) => c !== "," || c !== ".")
+        .join("")
+        .split(" ")
+        .join("%20");
+    const search = formatAddress(this.state.searchQuery);
+    this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=all`))
   }
 
   handleChange(e){
