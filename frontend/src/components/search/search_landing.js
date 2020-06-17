@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import shortid from "shortid";
-
 import { useDispatch, useSelector } from "react-redux";
+
 import { searchResults } from "../../reducers/selectors/selectors";
 import { fetchRepresentatives } from "../../actions/search_actions";
 import SearchResult from "./search_result";
@@ -75,10 +75,6 @@ const SearchLanding = ({ location }) => {
   }, []);
 
   // useEffect(() => {
-  //   filterOffices();
-  // }, [levelsObj]);
-
-  // useEffect(() => {
   //   setState();
   // }, [location.search]);
 
@@ -91,8 +87,6 @@ const SearchLanding = ({ location }) => {
       setIssues({ ...issues, [name]: !bool });
     }
   };
-
-  const { federal, state, county, local } = levels;
 
   const getOfficials = (id, office) =>
     officesObj[id].officials.map((o) => (
@@ -121,6 +115,7 @@ const SearchLanding = ({ location }) => {
     <div className="search-landing">
       <SearchSidebar
         levels={levels}
+        issues={issues}
         handleToggle={handleToggle}
         address={address}
       />
