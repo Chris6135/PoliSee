@@ -1,6 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import SearchBar from "./search/search_bar"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 
 const Splash = () => (
   <div className="splash">
@@ -63,24 +64,43 @@ const Splash = () => (
     <section className="splash-body">
       <section className="splash-body-one">
         <div className="splash-body-one-one">
-            
-        </div>
-        <div className="splash-body-one-two">
-          <div className="splash-body-one-two-title-container">
-              <div className="splash-body-one-two-title-bold">
-                get your voice
+              <div className="splash-body-one-one-title-container">
+                  <div className="splash-body-one-one-title-thin">
+                    Regular contact
+                  </div>
 
-              </div>
-              <div className="splash-body-one-two-title-thin">
-                to the
-
-              </div>
-              <div className="splash-body-one-two-title-bold">
-                right people
-
+                  <div className="splash-body-one-one-title-bold">
+                      Made Easy
+                  </div>
               </div>
 
-          </div>
+            <div className="splash-body-one-one-body-container">
+                <div className="splash-body-one-one-body">
+                      Persistence is key!
+                </div>
+                <div className="splash-body-one-one-body">
+                     Regular emails and texts make it easy to keep contact consistent. 
+                </div>
+
+             </div>
+         </div>
+        
+          <div className="splash-body-one-two">
+            <div className="splash-body-one-two-title-container">
+                <div className="splash-body-one-two-title-bold">
+                  get your voice
+
+               </div>
+               <div className="splash-body-one-two-title-thin">
+                 to the
+
+               </div>
+               <div className="splash-body-one-two-title-bold">
+                  right people
+
+               </div>
+
+             </div>
 
 
           <div className="splash-body-one-two-body-container">
@@ -94,9 +114,27 @@ const Splash = () => (
                 </div>
 
           </div>
+         </div>
 
-        </div>
         <div className="splash-body-one-three">
+
+        <div className="splash-body-one-three-title-container">
+                  <div className="splash-body-one-three-title-thin">
+                    Keep tabs on your offcials
+                  </div>
+              </div>
+
+            <div className="splash-body-one-three-body-container">
+                <div className="splash-body-one-three-body">
+                      Live news updates and voter information 
+                      keep you informed on exactly what your representitive
+                      is for
+                </div>
+                <div className="splash-body-one-three-body">
+                     ...and against!
+                </div>
+
+             </div>
 
         </div>
       </section>
@@ -163,26 +201,27 @@ const Splash = () => (
             <div className="open-source-subtitle" >
               find us on 
             </div>
-        <div className="github-repo-info">
+        <a href="https://github.com/Chris6135/PoliSee" className="github-repo-info">
+          <FontAwesomeIcon ClassName="github-icon" icon={["fab", "github"]} size="6x"/>
 
-        </div>
+        </a>
         <div className="open-source-subtitle" >
               Data sourced from
             </div>
         <div className="api-boxes">
-          <div className="api-box">
+        <a href="https://www.propublica.org/datastore/api/propublica-congress-api" className="api-box">
           propublica congress API
 
 
-          </div>
-          <div className="api-box">
+          </a>
+          <a href="https://newsapi.org/"className="api-box">
           news API
 
-          </div>
-          <div className="api-box">
-          google civics API
+          </a>
+          <a href="https://developers.google.com/civic-information" className="api-box">
+          google civic API
 
-          </div>
+          </a>
         </div>
       </section>
 
