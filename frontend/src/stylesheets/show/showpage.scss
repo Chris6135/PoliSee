@@ -1,0 +1,57 @@
+$border: #c5c5c3;
+$stripe-width: 63.5px;
+$flag-margin: 49.5px;
+$image-dimensions: 312px;
+// Need to refactor colors: noticed mistakes when pulling them
+.politician-show {
+  .main-info {
+    padding: 60px 0;
+    border-bottom: 2.5px solid $border;
+    margin-bottom: 60px;
+    max-width: 83.5vw;
+    height: 644px;
+    @include flex(row, $justify: space-between);
+    .flag {
+      width: 59vw;
+      .flag-top {
+        @include flex(row, $align: center);
+        .image {
+          flex: 0 0 auto;
+          height: $image-dimensions;
+          width: $image-dimensions;
+          background: $border;
+        }
+        aside {
+          @include flex(column, $justify: center);
+          flex: 1 1 auto;
+          padding-left: $stripe-width;
+          div {
+            width: 100%;
+            height: $stripe-width;
+            background: rgba($color: $border, $alpha: 0.5);
+            margin-bottom: $flag-margin;
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      > aside {
+        background: rgba($color: $border, $alpha: 0.5);
+        height: $stripe-width;
+        &:first-of-type {
+          height: $stripe-width - 10px;
+          $lower-margin: $flag-margin - 11.25px;
+          margin: $lower-margin 0 $flag-margin;
+        }
+        // height: $stripe-width;
+      }
+    }
+    .propublica {
+      margin-left: 100px;
+      width: 334.5px;
+      height: 100%;
+      background: $border;
+    }
+  }
+}

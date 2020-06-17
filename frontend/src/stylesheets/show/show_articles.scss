@@ -1,0 +1,27 @@
+.politician-show .news {
+  margin-bottom: 60px;
+  @include flex(row, $justify: center);
+  ul {
+    max-width: 1000.5px;
+    @include flex(row, $justify: space-between);
+    flex-wrap: wrap;
+    .show-page-article {
+      height: 269px;
+      width: 318px;
+      background: $border;
+      margin-bottom: 23.25px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .politician-show .news ul {
+    width: 660px
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .politician-show .news ul {
+    width: 320px
+  }
+}
