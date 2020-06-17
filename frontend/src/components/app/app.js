@@ -10,7 +10,7 @@ import PoliticianShow from "../politician/politician_show"
 function App() {
   return (
     <div className="app">
-      <div style={{height: "130.5px", color: "blue", width: "100vw"}}/> 
+      <div style={{height: "103.5px", color: "blue", width: "100vw"}}/> 
       {/* Remove above when header is present */}
       <Route exact path={["/"]} component={Splash} />
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
