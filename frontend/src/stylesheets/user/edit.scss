@@ -1,0 +1,36 @@
+.user-edit {
+  color: $form-font-color;
+  font-family: $font;
+  background: $auth-background-grey;
+  width: 100vw;
+  height: 66.2vh;
+  @include flex(row, center, center);
+  .user-edit-backdrop {
+    width: 669px;
+    height: 491px;
+    background: $darker-grey;
+    font-weight: 500;
+    .user-edit-options {
+      border-radius: 4px;
+      background: $form-bg;
+      width: 493px;
+      height: 527px;
+      position: relative;
+      left: 88px;
+      top: -18px;
+      @include flex(column, center, center);
+      a {
+          line-height: 48.5px;
+          width: 330px;
+          margin: 20px;
+          background: $button;
+          border-radius: 7px;
+          text-align: center;
+      }
+      a:hover{
+        background: lightgray;
+      }
+    }
+  }
+}
+
