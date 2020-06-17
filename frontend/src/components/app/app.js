@@ -1,4 +1,5 @@
 import React from "react";
+// import { Route } from "react-router-dom";
 
 import { AuthRoute } from "../../util/route_util";
 import Session from "../session/session";
@@ -6,7 +7,6 @@ import Session from "../session/session";
 function App() {
   return (
     <div className="App">
-   authComponents
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
     </div>
   );

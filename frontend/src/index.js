@@ -9,8 +9,6 @@ import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
 
-// import sass from "node-sass";
-
 document.addEventListener("DOMContentLoaded", () => {
   let store;
 

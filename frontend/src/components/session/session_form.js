@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { register, login } from "../../actions/session_actions";
 import { sessionErrors } from "../../reducers/selectors/selectors";
-import { Link } from "react-router-dom";
 
 const SessionForm = ({ match }) => {
   const reg = match.path === "/register";
@@ -70,7 +70,6 @@ const SessionForm = ({ match }) => {
       <button>GOOGLE BUTTON GOES HERE</button>
       <label htmlFor="email">
         <h6>EMAIL</h6>
-
         {emailError && <span className="err-msg">{emailError}</span>}
         <input
           type="text"
