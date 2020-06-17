@@ -5,9 +5,6 @@ import Session from "../session/session";
 import Splash from "../Splash"
 import Footer from "./footer";
 
-import { AuthRoute } from "../../util/route_util";
-import Session from "../session/session";
-import Splash from "../Splash";
 // import HeaderContainer from "../headandfoot/HeaderContainer";
 
 function App() {
