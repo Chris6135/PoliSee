@@ -242,7 +242,7 @@ const Splash = () => {
               find us on 
             </div>
         <a href="https://github.com/Chris6135/PoliSee" className="github-repo-info">
-          <FontAwesomeIcon ClassName="github-icon" icon={["fab", "github"]} size="6x"/>
+          <FontAwesomeIcon className="github-icon" icon={["fab", "github"]} size="6x"/>
 
         </a>
         <div className="open-source-subtitle" >

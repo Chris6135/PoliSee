@@ -9,6 +9,7 @@ const SearchBar = ({ history }) => {
   const [levels, setLevels] = useState([]);
   const [issues, setIssues] = useState([]);
   const [hidden, setHidden] = useState({issues: true, levels: true})
+  const [selected, setSelected] = useState({ issues: [0], levels: [0] })
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,7 +32,6 @@ const SearchBar = ({ history }) => {
     const value = e.target.getAttribute("value");
     if ( type === "levels") {
       if ( value === "all" ) {
-        console.log("setting all - levels")
         setLevels(["all"])
       } else if ( !levels.includes(value) ) {
         let newLevels = levels.includes("all") ? [value] : levels.concat(value)
@@ -41,17 +41,15 @@ const SearchBar = ({ history }) => {
         levels.splice(i,1)
       }
     } else if ( value === "all" ) {
-      console.log("setting all - issues")
       setIssues(["all"])
-      console.log(issues)
+      // setAll({...all, issues: true})
     } else if ( !issues.includes(value) ) {
       let newIssues = issues.includes("all") ? [value] : issues.concat(value)
+      // setAll({...all, issues: false})
       setIssues(newIssues)
-      console.log(issues)
     } else {
       const i = issues.indexOf(value)
       issues.splice(i,1)
-      console.log(issues)
     }
   };
 
@@ -63,11 +61,9 @@ const SearchBar = ({ history }) => {
   ].map( level => {
     return (
       <li key={level.name}
+        className={ levels.includes(level.val) ? "selected" : "" }
         value={ level.val }
-        onClick={ e => {
-          e.target.className = e.target.className === "selected" ? "" : "selected"
-          handleOptions("levels")(e)
-        }}
+        onClick={ e => handleOptions("levels")(e) }
         >
         { level.name }
       </li>
@@ -76,11 +72,8 @@ const SearchBar = ({ history }) => {
   levelOpts.unshift(
     <li key="all"
       value="all"
-      className="all"
-      onClick={ e => {
-        e.target.className = e.target.className.includes("selected") ? "all" : "all selected"
-        handleOptions("levels")(e)
-      } }>
+      className={ levels.includes("all") ? "selected" : "" }
+      onClick={ e => handleOptions("levels")(e) }>
         ALL LEVELS
     </li>
   )
@@ -93,10 +86,8 @@ const SearchBar = ({ history }) => {
     return (
       <li key={issue.name}
         value={ issue.val }
-        onClick={ e => {
-          e.target.className = e.target.className === "selected" ? "" : "selected"
-          handleOptions("issues")(e)
-        }}
+        className={ issues.includes(issue.val) ? "selected" : "" }
+        onClick={ e => handleOptions("issues")(e) }
         >
         { issue.name }
       </li>
@@ -105,11 +96,8 @@ const SearchBar = ({ history }) => {
   issueOpts.unshift(
     <li key="all"
       value="all"
-      className="all"
-      onClick={ e => {
-        e.target.className = e.target.className.includes("selected") ? "all" : "all selected"
-        handleOptions("issues")(e)
-      } }>
+      className={ issues.includes("all") ? "selected" : "" }
+      onClick={ e => handleOptions("issues")(e) }>
         ALL ISSUES
     </li>
   )

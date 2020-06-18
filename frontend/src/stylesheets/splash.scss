@@ -144,7 +144,6 @@
     display:flex;
     justify-content: center;
     width: 1100px;
-    //possibly 88px height and -44px margin-bottom calc
     height: 88px;
     margin-top: 28px;
     margin-bottom: calc(50vh - 44px);
@@ -239,7 +238,6 @@
                 }
               }
             }
-          // }
           button {
             border-left: 1px solid $search-border;
             height: 100%;
