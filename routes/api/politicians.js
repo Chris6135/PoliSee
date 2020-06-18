@@ -20,6 +20,12 @@ router.post('/add', (req, res) => {
     .catch((err) => res.status(404).end())
 })
 
+router.get(`/:id`, (req, res) => {
+  Politician.findById(req.params.id)
+    .then(politician => res.json(politician))
+    .catch((err) => res.status(404).end())
+})
+
 router.patch('/subscribe', async (req, res) => {
   const curPol = await Politician.findById(req.body.politicianId)
   if (curPol) {

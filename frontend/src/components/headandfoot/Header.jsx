@@ -23,7 +23,11 @@ class Header extends React.Component{
         .split(" ")
         .join("%20");
     const search = formatAddress(this.state.searchQuery);
-    this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=all`))
+    if (this.props.user.interests.length !== 0){
+      this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=${this.props.user.interests.join('%20')}`))
+    }else{
+      this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=all`))
+    }
   }
 
   handleChange(e){
