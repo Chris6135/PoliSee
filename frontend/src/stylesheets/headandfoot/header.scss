@@ -2,7 +2,8 @@
   display: flex;
   width: 100vw;
   justify-content: space-evenly;
-  height: 103px; 
+  // height: 103px; 
+  height: 75px;
   // you can adjust the height of this header and everything else should change accordingly
   font-family: $font;
 }
@@ -12,19 +13,26 @@
   justify-content: space-between;
   align-items: center;
   width: 33.33%;
-  border: 1px solid darkgray;
-  background-color: darkgray;
+  min-width: 560px;
+  background-color: $header-background;
   border-bottom-right-radius: 10px;
-
+  clip-path: polygon(
+    0 0,
+    0 100%,
+    calc(100% - 10px) 100%,
+    100% calc(100% - 10px),
+    100% 0
+  );
 }
 
 .header-logo{
-  margin-left: 12%
+  margin-left: 50px
 }
 
 .header-skinny-middle{
-  width: 33.33%;
-  height: 40%;
+  max-width: 33.3vw;
+  flex: 1 0 auto;
+  height: 35px;
   border: 1px solid darkgray;
   background-color: darkgray;
 
@@ -32,6 +40,8 @@
 
 .header-right{
   width: 33.33%;
+  min-width: 560px;
+  // flex: 1 1 auto;
   display: flex;
   justify-content: space-between;
   border: 1px solid darkgray;
@@ -41,18 +51,40 @@
 }
 
 .header-search-bar{
-  width: 63%;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  border: 2px solid white;
-  border-radius: 3px;
-  background-color: whitesmoke;
-  margin-left: 5%;
-  font-variant: small-caps;
+  background: $footer-button-text;
+  width: 368px;
+  height: 45px;
+  border: 3px solid white;
+  border-radius: 5px;
+  color: $form-font-color;
+  @include flex(row, $justify: space-between, $align: center);
+  input {
+    padding-left: 12.5px;
+    font-size: 16px;
+    height: 100%;
+    font-variant: small-caps;
+    font-feature-settings: normal;
+  }
+  .header-search-icon {
+    font-size: 22px;
+    margin-right: 14.5px;
+  }
 
 }
+
+// .header-search-bar{
+//   width: 63%;
+//   height: 48px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+//   border: 2px solid white;
+//   border-radius: 3px;
+//   background-color: whitesmoke;
+//   margin-left: 5%;
+//   font-variant: small-caps;
+
+// }
 
 .header-search-bar input{
   width: 100%;
