@@ -18,7 +18,7 @@ const formatOfficials = (officials, offices, zip) =>
 const formatOffices = (officials, offices) => {
   const updatedOffices = offices.map((o) => ({
     ...o,
-    roles: o.roles || [],
+    roles: o.roles || getRole(o.name),
     levels: o.levels || [],
     officials: o.officialIndices.map((i) => officials[i].id),
     id: o.name,
@@ -59,6 +59,35 @@ const formatLvl = (lvl) => {
       return "local";
     default:
       return lvl;
+  }
+};
+
+const getRole = (title) => {
+  switch (true) {
+    case /[Aa]ttorney/.test(title):
+      return ["judge"];
+    case /[Cc]ourt/.test(title):
+      return ["judge"];
+    case /[Pp]ublic [Dd]efender/.test(title):
+      return ["judge"];
+    case /[Ii]nstruction/.test(title):
+      return ["schoolBoard"];
+    case /[Ss]heriff/.test(title):
+      return ["judge"];
+    case /[Aa]dvocate/.test(title):
+      return ["judge"];
+    case /[Ss]chool/.test(title):
+      return ["schoolBoard"];
+    case /[Mm]arshall/.test(title):
+      return ["judge"];
+    case /[Cc]oroner/.test(title):
+      return ["judge"];
+    case /[Mm]edical [Ee]xaminer/.test(title):
+      return ["judge"];
+    case /[Cc]lerk/.test(title):
+      return ["governmentOfficer"];
+    default:
+      return ["all"];
   }
 };
 
