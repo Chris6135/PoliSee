@@ -61,6 +61,23 @@ class Header extends React.Component{
       }
     }
 
+    let loggedInStuff;
+    if(this.props.user){
+      loggedInStuff = (
+        <div className="header-links">
+          <button onClick={() => this.props.logout()}>LOG OUT</button>
+          <Link to="/edit" className="edit-link">EDIT</Link>
+        </div>
+      )
+    }else{
+      loggedInStuff = (
+        <div className="header-links">
+          <Link to="/login" className="login-link">SIGN IN </Link>
+          <Link to="/register" className="register-link">SIGN UP</Link>
+        </div>
+      )
+    }
+
     return (
       <div className="header">
         <div className="header-left">
@@ -89,7 +106,7 @@ class Header extends React.Component{
               <FontAwesomeIcon icon="search" flip="horizontal"/>
             </button>
           </form>
-          <Link to="/login" className="login-link">SIGN IN </Link>
+          {loggedInStuff}
         </div>
       </div>
     )
