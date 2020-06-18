@@ -10,9 +10,9 @@ import PoliticianShow from "../politician/politician_show";
 import Edit from "../user/Edit";
 import InfoEditContainer from "../user/InfoEditContainer";
 import InterestEditContainer from "../user/InterestEditContainer";
+import HeaderContainer from "../headandfoot/HeaderContainer";
 // import RepEdit from "../user/RepEdit";
 // import ContactEdit from "../user/ContactEdit";
-import HeaderContainer from "../headandfoot/HeaderContainer";
 
 function App() {
   return (
