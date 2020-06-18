@@ -107,28 +107,28 @@ const SearchLanding = ({ location }) => {
   const getOfficials = (id, office) =>
     offices[id].officials.map((o) => {
       if (o === undefined) return null;
-      if (allIssues) {
-        return (
-          <SearchResult
-            key={shortid.generate()}
-            official={officials[o]}
-            office={office}
-          />
-        );
-      }
-      const relevant = chosenIssues.some(
-        (i) =>
-          issueMap[i].some((r) => office.roles.includes(r)) ||
-          issueMap["all"].some((r) => office.roles.includes(r))
-      );
-
-      return relevant ? (
+      // if (allIssues) {
+      return (
         <SearchResult
           key={shortid.generate()}
           official={officials[o]}
           office={office}
         />
-      ) : null;
+      );
+      // }
+      // const relevant = chosenIssues.some(
+      //   (i) =>
+      //     issueMap[i].some((r) => office.roles.includes(r)) ||
+      //     issueMap["all"].some((r) => office.roles.includes(r))
+      // );
+
+      // return relevant ? (
+      //   <SearchResult
+      //     key={shortid.generate()}
+      //     official={officials[o]}
+      //     office={office}
+      //   />
+      // ) : null;
     });
 
   const getOffices = (lvl) => {

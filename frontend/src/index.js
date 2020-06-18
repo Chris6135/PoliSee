@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import jwtDecode from "jwt-decode";
 
 import "./stylesheets/app.scss";
+import "./icons/library";
 
 import SessionAPI from "./util/session_api_util";
 import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
-import axios from 'axios';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -28,5 +28,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   ReactDOM.render(<Root store={store} />, document.getElementById("root"));
-  window.axios = axios;
 });

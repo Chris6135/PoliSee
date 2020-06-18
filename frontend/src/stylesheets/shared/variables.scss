@@ -4,5 +4,24 @@ $font: 'Montserrat', sans-serif;
 
 $background: #f2f1ec;
 $header-background: #a8a8a8;
+$splash-show-bg: #E6E5E1;
 
+$footer-button-text: #eeeeee;
+$footer-button-hover: #c3c3c3;
 
+// moved here/named in context of auth-page
+//     - feel free to rename as long as you do it everywhere! :)
+
+$auth-background-grey: #dcdcd8;
+$red-equiv-to-darker-grey: #dcb2b2ff;
+$blue-equiv-to-darker-grey: #8585a9ba;
+$darker-grey: #b9b9b9;
+$form-bg: #fefefe;
+$form-font-color: #666666;
+$button: #999999;
+
+$labels-font-color: #8b8b8b;
+$switch-text: #787878;
+$subheader-text: #9e9e9e;
+
+//End of auth-page vars

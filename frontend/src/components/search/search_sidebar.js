@@ -26,8 +26,6 @@ const SearchSidebar = ({
           <h1>{`${address.city}, ${address.state} ${address.zip}`}</h1>
           <h2>{countyDiv ? countyDiv.name : ""}</h2>
           <h3>{cd ? cd.name : ""}</h3>
-          <div className="search-sidebar-head-left-county"></div>
-          <div className="search-sidebar-head-left-district"></div>
         </div>
         <div className="search-sidebar-head-right">
           <h6>Order By</h6>
