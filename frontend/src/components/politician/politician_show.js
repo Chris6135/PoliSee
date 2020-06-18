@@ -1,11 +1,27 @@
 import React, { useEffect } from "react";
-import ArticleItem from "./article_item";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   fetchRepresentative,
   toggleRepresentative,
 } from "../../actions/search_actions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ArticleItem from "./article_item";
+
+const issueMap = {
+  justice: ["judge", "highestCourtJudge"],
+  education: ["schoolBoard"],
+  legislation: ["specialPurposeOfficer", "governmentOfficer"],
+  all: [
+    "headOfGovernment",
+    "deputyHeadOfGovernment",
+    "headOfState",
+    "legislatorLowerBody",
+    "legislatorUpperBody",
+    "executiveCouncil",
+    "all",
+  ],
+};
 
 const PoliticianShow = ({
   match: {
@@ -68,6 +84,28 @@ const PoliticianShow = ({
       })
     : null;
 
+  const getAreas = (roles) => {
+    const savant = roles.some((r) => issueMap.all.includes(r));
+    if (savant)
+      return (
+        <div>
+          <div>education</div>
+          <div>justice</div>
+          <div>legislation</div>
+        </div>
+      );
+    const issues = Object.keys(issueMap);
+    return (
+      <div>
+        {issues
+          .filter((i) => roles.some((r) => issueMap[i].includes(r)))
+          .map((a) => (
+            <div>a</div>
+          ))}
+      </div>
+    );
+  };
+
   const articles = [
     1,
     2,
@@ -121,9 +159,7 @@ const PoliticianShow = ({
                     Up for election/ How long they've served/Unopposed?{" "}
                     {/* fill in with info  */}
                   </div>
-                  <div>
-                    Which interests/categories {/* fill in with info */}
-                  </div>
+                  {getAreas(official.roles)}
                 </aside>
               </div>
 
