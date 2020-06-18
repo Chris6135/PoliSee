@@ -5,7 +5,6 @@ class InfoEdit extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this)
-    console.log(this.props)
     this.state = {zip: this.props.user.zip, email:this.props.user.email}
   }
 

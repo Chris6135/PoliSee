@@ -47,7 +47,6 @@ export const logout = () => (dispatch) => {
 export const editUser = (userData) => (dispatch) => {
   UserAPI.editUser(userData)
     .then((res) => {
-      debugger
       dispatch(receiveCurrentUser(getUser(res)))
     })
 }

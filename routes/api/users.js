@@ -113,27 +113,34 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 })
 
 router.patch('/edit', (req, res) => {
-  console.log(req.body)
   if(req.body.email){
-    console.log("got here")
     User.findByIdAndUpdate(
       req.body.id,
       {
         $set: {email: req.body.email, zip: req.body.zip}
       },
-      { new: true }).then((result) => res.json(result))
-      .catch((err) => res.status(404).end())
+      { new: true }).then((result) => {
+        jwt.sign(
+          getPayload(result),
+          secret,
+          { expiresIn: 3600 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token
+            });
+          });
+        })
+        .catch((err) => res.status(404).end())
   } 
   else if(req.body.interests){
     const interests = req.body.interests.split('%20');
-    console.log(interests)
     User.findByIdAndUpdate(
       req.body.id,
       {
         interests: interests
       },
       { new: true }).then((result) => {
-        debugger
         jwt.sign(
           getPayload(result),
           secret,
@@ -149,7 +156,6 @@ router.patch('/edit', (req, res) => {
   }
 
 })
-
 router.patch('/search', async (req, res) => {
   const params = { state: req.body.state, county: req.body.county };
 
