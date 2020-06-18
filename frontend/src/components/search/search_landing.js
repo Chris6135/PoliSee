@@ -143,7 +143,7 @@ const SearchLanding = ({ location, history }) => {
         )
       );
     } else {
-      return <li>Sorry, we couldn't find data for this level!</li>;
+      return <li className="no-data">Sorry, we couldn't find data for this level!</li>;
     }
   };
 

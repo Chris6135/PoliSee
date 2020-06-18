@@ -32,12 +32,12 @@ const SearchSidebar = ({
           <button
             className={
               descending
-                ? "sidebar-order-toggle selected"
-                : "sidebar-order-toggle"
+                ? "sidebar-order-toggle"
+                : "sidebar-order-toggle selected"
             }
             onClick={toggleDesc}
           >
-            Trickle Down
+            LOCAL
           </button>
           <button
             className={
@@ -47,13 +47,21 @@ const SearchSidebar = ({
             }
             onClick={toggleDesc}
           >
-            From the Ground Up
+            FEDERAL
           </button>
         </div>
       </header>
       <div className="search-sidebar-district-info">
         <div className="search-sidebar-leaning"></div>
-        <div className="search-sidebar-election"></div>
+        <div className="search-sidebar-election">
+          <div className="alert">
+            !
+          </div>
+          <div className="elections">
+            <h3>Election day is coming up on</h3>
+            <h2>Tuesday November 3rd, 2020</h2>
+          </div>
+        </div>
       </div>
       <div className="search-sidebar-issues">
         <button

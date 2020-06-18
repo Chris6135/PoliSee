@@ -1,0 +1,190 @@
+
+.search-landing {
+  width: 1475px;
+  @include flex(row, $align: center);
+  .search-sidebar {
+    position: relative;
+    width: 441.5px;
+    left: 7px;
+    &::before {
+      content: "";
+      display: block;
+      height: 27px;
+      width: 14px;
+      background: $pseudos;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    &::after {
+      content: "";
+      display: block;
+      height: 27px;
+      width: 14px;
+      background: $pseudos;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+    background: $sidebar-bg;
+    height: 598px;
+    padding: 15.5px 29.5px 0 14.5px;
+
+    .search-sidebar-head {
+      height: 82.5px;
+      @include flex(row, $justify: space-between);
+      .search-sidebar-head-left {
+        color: $section-headers;
+        font-weight: 400;
+        height: 100%;
+        border-bottom: 3px solid $divider;
+        @include flex(column, $justify: center);
+        h1 {
+          font-size: 20px;
+        }
+        h2, h3 {
+          font-size: 16px;
+        }
+      }
+      .search-sidebar-head-right {
+        width: 65.5px;
+        height: 46.5px;
+        text-transform: uppercase;
+        font-size: 10px;
+        h6 {
+          font-size: 10.5px;
+          letter-spacing: 0.4px;
+          font-weight: 400;
+          text-align: center;
+          margin-bottom: 2px;
+        }
+        button {
+          font-weight: 300;
+          height: 20px;
+          width: 65.5px;
+          background: $order-switch;
+          text-align: center;
+          &:first-of-type {
+            border-radius: 5px 5px 0 0;
+            border-bottom: 0.5px solid $switch-border;
+            padding-top: 4px;
+            &.selected {
+              background: $switch-border;
+              box-shadow: inset 0 -0.5px 0.5px 0.5px rgba($color: $search-border, $alpha: 0.3);
+            }
+            &:not(.selected):hover {
+              background: $auth-background-grey;
+            }
+          }
+          &:last-of-type {
+            border-radius: 0 0 5px 5px;
+            // border-top: 0.7px solid $switch-border-b;
+            padding-bottom: 4px;
+            &.selected {
+              background: $switch-border-b;
+              box-shadow: inset 0 0.5px 0.5px 0.5px rgba($color: $search-border, $alpha: 0.3);
+            }
+            &:not(.selected):hover {
+              background: $auth-background-grey;
+            }
+          }
+        }
+      }
+    }
+
+    .search-sidebar-district-info {
+      margin: 0 10px 36.5px;
+      .search-sidebar-leaning {
+        height: 106px;
+        border-bottom: 1px solid white;
+      }
+      .search-sidebar-election {
+        height: 54px;
+        background: $elections-alert-bg;
+        border-radius: 0 0 15px 15px;
+        position: relative;
+        @include flex(row, center, center);
+        .alert {
+          position: absolute;
+          background: $alert-red;
+          color: $divider;
+          width: 21px;
+          height: 21px;
+          left: 25px;
+          clip-path: polygon(
+            50% 0,
+            100% 100%,
+            0 100%
+          );
+          text-align: center;
+          padding-top: 5px;
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .elections {
+          h3 {
+            font-size: 15px;
+            font-weight: 300;
+          }
+          h2 {
+            font-size: 17px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    .search-sidebar-issues {
+      width: 386.5px;
+      padding: 0 10px 41px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid $divider;
+      @include flex(row, $justify: space-between);
+      button {
+        height: 36px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 12px;
+        padding: 0 23.5px;
+        border-radius: 6px;
+        background: $sidebar-buttons;
+        &.selected {
+          background: $selected-sidebar-buttons;
+        }
+      }
+    }
+    .search-sidebar-levels {
+      width: 220px;
+      margin: 0 auto;
+      @include flex(row);
+      flex-wrap: wrap;
+      button {
+        margin: 6px 0;
+        height: 36px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 12px;
+        padding: 0 25px;
+        border-radius: 6px;
+        background: $sidebar-buttons;
+        &.selected {
+          background: $selected-sidebar-buttons;
+        }
+        &:first-of-type{
+          margin-right: 15px;
+        }
+        &:last-of-type {
+          margin-left: 17px;
+        }
+      }
+    }
+  }
+  .search-index {
+
+    position: relative;
+    left: -7px;
+    width: 1072.5px;
+    height: 544px;
+    padding: 20.5px 5px 20.5px 62px;
+    background: rgba($color: white, $alpha: .72);
+  }
+}
