@@ -1,0 +1,36 @@
+.search-index > ul {
+  height: 503px;
+  overflow: hidden;
+  &:hover {
+    overflow-y: scroll;
+  }
+  > li {
+    h1 {
+    }
+    ul {
+      @include flex(row, flex-start, flex-start);
+      flex-wrap: wrap;
+      .search-result {
+        position: relative;
+        height: 180.5px;
+        width: 166px;
+        overflow: hidden;
+        > * {
+          width: 100%;
+        }
+        header {
+          position: absolute;
+          background: rgba($color: $footer-button-hover, $alpha: 0.78);
+        }
+        img {
+          background: $auth-background-grey;
+          min-height: 100%;
+        }
+        footer {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+    }
+  }
+}

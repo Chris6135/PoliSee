@@ -1,0 +1,19 @@
+
+.search-landing {
+  width: 1500px;
+  @include flex(row);
+  img {
+    width: 50px;
+  }
+  .search-sidebar {
+    width: 441.5px;
+    background: $sidebar-bg;
+    height: 598px;
+  }
+  .search-index {
+    width: 1072.5px;
+    height: 544px;
+    padding: 20.5px 5px 20.5px 62px;
+    background: rgba($color: white, $alpha: .72);
+  }
+}
