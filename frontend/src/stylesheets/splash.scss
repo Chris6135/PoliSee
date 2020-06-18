@@ -1,15 +1,13 @@
 .splash{
     // padding: 30px;
-    background: red;
     // height: 4000px;
-    width: 100vw;
+    width: 100%;
     // z-index:5;
     font-family: $font;;
 }
 .splash-top{
-    padding: 10px;
     width:100%;
-    height: 815px;
+    height: 100vh;
     // height:20%; //may need to change to 20%
     background: #C4C4C0;
     display: flex;
@@ -17,105 +15,118 @@
     align-items: center;
 }
 
-.splash-top > * {
-    // width:50%;
-}
 .splash-header{
     width: 100%;
-    height: 11%; //math said 11%
+    height: 64px;
+    margin-top: 25px;
     display: flex;
     justify-content: space-between;
 }
 .splash-header-left{
     height: 100%;
-    width:27.5%;
-    display: flex;
-    justify-content: space-between;
-    margin-left:20px;
+    @include flex(row, $align: center);
+    margin-left: 34.5px;
+    width: 473px;
 }
 .splash-header-logo{
     height: 100%;
-    width: 75%;
-    background: red;
-
+    width: 347px;
+    background: $switch-text;
 }
 .splash-header-left-dropdown{
-    background: green;
-    width: 20%;
-    height:62%
+    width: 96.5px;
+    border-radius: 5px;
+    height: 50px;
+    margin-left: 29px;
+    color: $go-text;
+    @include flex($align: center, $justify: center);
+    &:hover {
+      background: $go-button;
+      cursor: pointer;
+    }
+    div {
+      border: 3.5px solid $footer-button-text;
+      font-size: 23px;
+      font-weight: 700;
+      height: 38px;
+      width: 38px;
+      border-radius: 50px;
+      text-align: center;
+    }
 }
 .splash-header-right{
-    width:37.7%;
-    // height:55.5%;
     display: flex;
-    margin-right:1%;
+    margin-right: 34.5px;
     align-items: center;
-    
-
+    width: 651px;
 }
 
 .splash-header-search-bar{
-    background: purple;
-    width:56%;
-    height: 60px;
-
-}
-.signin-button{ 
-    position:relative;
-    background: #A6A6A6;
-    width: 17.6%;
-    padding: 8px;
-    height:50px;
-    // top: 15%;
-    margin-left:2.5%;
-    margin-right:1%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+    background: $footer-button-text;
+    width: 368px;
+    height: 50px;
+    border: 3px solid white;
     border-radius: 5px;
+    color: $form-font-color;
+    @include flex(row, $justify: space-between, $align: center);
+    input {
+      padding-left: 12.5px;
+      font-size: 16px;
+      height: 100%;
+      font-variant: small-caps;
+      font-feature-settings: normal;
+    }
+    .header-search-icon {
+      font-size: 22px;
+      margin-right: 14.5px;
+    }
 
 }
-.signin-button > *{ 
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
+.signin-button{
+  &:hover {
+    background: $button;
+    color: $go-text;
+  }
+  margin-left: 15.5px;
+  width: 128px;
+  padding: 11.5px;
+  height: 45px;
+  text-align: center;
+  border-radius: 3px;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
 }
+
 
 .signup-button{
-    position:relative; 
-    background: #818181;
-    padding: 8px;
-    width: 17.6%;
-    height:50px;
-    // top: 15%;
-    margin-left:2.5%;
-    margin-right:1%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-
-}
-
-.signup-button > *{ 
+    &:hover {
+      background: $button;
+      color: $go-text;
+    }
     color: white;
-    font-size: 20px;
-    font-weight: bold;
+    width: 128px;
+    padding: 11.5px;
+    height: 45px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 12.5px;
 }
 
 
 .splash-search-text{
     display:flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 8%; //might look better at 11%
-    width:60%;
-    position:relative;
-    right: 80px;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 25.8vh;
+    width: 1100px;
 }
 
 .splash-search-text-title{
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 500;
     color: white;
 
@@ -123,364 +134,580 @@
 
 .splash-search-text-subtitle{
     text-transform: uppercase;
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 300;
     color: white;
 }
 
 .splash-searchbar{
-    margin:1.5%; //might need to change ot 1.3%
-    background: orange;
+    background: white;
     display:flex;
     justify-content: center;
-    width: 100%;
-    height: 10%;
+    width: 1100px;
+    height: 88px;
+    margin-top: 28px;
+    margin-bottom: calc(50vh - 44px);
+    border: 1px solid $search-border;
+    border-radius: 10px;
+    box-shadow: 0 0 1px 9px rgba($color: $form-font-color, $alpha: 0.6), inset 0 3px 1px -2px rgba($color: $form-font-color, $alpha: 0.3), inset 0 -3px 1px -2px rgba($color: $form-font-color, $alpha: 0.3);
+    color: $search-text;
+    .search-form {
+      height: 100%;
+      width: 100%;
+      .search-wrapper {
+        @include flex(row, $align: center);
+        height: 100%;
+        font-size: 22px;
+        .fa-search {
+          position: relative;
+          left: 25px;
+          width: 26px;
+          transform: rotate(15deg);
+        }
+        .address-input {
+          width: 640px;
+          font-size: 24px;
+          height: 100%;
+          padding-left: 33px;
+        }
+        .options-container {
+          @include flex(row, $align: center);
+          height: 100%;
+          width: 460px;
+          .select {
+            &:hover {
+              cursor: pointer;
+            }
+            box-shadow: inset 4px 0 1px -2px rgba($color: $show-font-color, $alpha: 0.3);
+            width: 180px;
+            height: 100%;
+            border-left: 1px solid $search-border;
+            position: relative;
+            @include flex(column, center, center);
+              > span {
+                @include flex(column, $align: center );
+                text-align: center;
+                font-size: 22px;
+                line-height: 100%;
+                font-weight: 400;
+                padding-bottom: 12px;
+                .triangle {
+                  position: absolute;
+                  bottom: 13.5px;
+                  margin-top: 5px;
+                  width: 18px;
+                  height: 11px;
+                  clip-path: polygon(
+                    0 0,
+                    100% 0,
+                    50% 100%
+                  );
+                  background: $search-text;
+                }
+              }
+              ul {
+                &.hidden {
+                  display: none;
+                }
+                z-index: 1;
+                position: absolute;
+                font-size: 24px;
+                padding: 20px 0;
+                border-radius: 4px;
+                top: 80px;
+                left: -5px;
+                width: 200px;
+                background: $header-background;
+                border-top: 1px solid $button;
+                box-shadow: 0 2px 4px rgba($color: $search-border, $alpha: 0.5);
+                li {
+                  padding: 5px 20px;
+                  background: $form-bg;
+                  &:hover {
+                    background: $darker-grey;
+                    color: $background;
+                    cursor: pointer;
+                  }
+                  &.selected {
+                    background: $blue-equiv-to-darker-grey;
+                    color: $background;
+                    &:hover {
+                      background: $red-equiv-to-darker-grey;
+                    }
+                  }
+                }
+              }
+            }
+          button {
+            border-left: 1px solid $search-border;
+            height: 100%;
+            width: 100px;
+            text-align: center;
+            background: $go-button;
+            border-radius: 0 9px 9px 0;
+            font-weight: 600;
+            color: $go-text;
+            box-shadow: inset 4px 0 1px -2px rgba($color: $show-font-color, $alpha: 0.3);
+            &:hover {
+              background: mix($auth-background-grey, $go-button, $weight: 25%);
+            }
+          }
+        }
+      }
+    }
+}
 
-}
-.splash-searchbar-searchbar{
-    padding: 30px;
-    background: purple;
-}
-.splash-searchbar-gov-lvl{
-    padding: 30px;
-    background: red;
-}
-.splash-searchbar-interests{
-    padding: 30px;
-    background: blue;
-}
-.splash-searchbar-search-btn{
-    padding: 30px;
-    background: yellow;
-}
-.splash-body{
-    // height: 815px;
-    // display: flex;
-
-    
-    background: purple;
-}
 .splash-body-one{
+    color: $body-one-text;
     height: 815px;
     display: flex;
     justify-content: center;
-    background: $background;
     align-items: center;
 }
+
+$smaller-box-height: 305px;
+$smaller-box-width: 256.5px;
+
 .splash-body-one-one{
-    height:375px;
-    width: 350px;
-    background: #DCDCDC;
+    height: $smaller-box-height;
+    width: $smaller-box-width;
+    background: $auth-background-grey;
+    padding-right: 51.5px;
+    border-radius: 3px 0 0 3px;
+    position: relative;
+    top: -28px;
 }
  //---------------------------------------------------
 .splash-body-one-one-title-container{
-    flex-direction: column;
-    align-items: end;
-    margin:40px;
-    margin-bottom: 0px;
-    text-align: end;
-
+  margin-top: 32.5px;
+  font-size: 26px;
+  text-transform: uppercase;
+  text-align: end;
+  letter-spacing: -.65px;
 }
 
 .splash-body-one-one-title-bold{
-    font-size: 34px;
-    text-transform: uppercase;
-    font-weight: 500;
-    
-
+    font-weight: 600;
 }
 
 .splash-body-one-one-title-thin{
-    font-size: 34px;
-    text-transform: uppercase;
-    font-weight: 300;
-
+    font-weight: 400;
 }
 
 
-.splash-body-one-one-body-container{
-
+.splash-body-one-one-body-container div{
     text-align: end;
-
+    font-weight: 400;
+    margin: 14.5px 0 0 48px;
+    font-size: 15.5px;
 }
 
-.splash-body-one-one-body-container > *{
- font-size: 20px;
- margin:20px
-
-}
 // ------------------------------------
 .splash-body-one-two{
-    position: relative;
-    top:40px;
-    height:580px;
-    width: 550px;
-    background: #EBEBEB;
-    margin: 40px;
+    height: 434.5px;
+    width: 471px;
+    background: $body-one-center;
+    border-radius: 3px;
+    margin: 0 25px;
+    padding-bottom: 41.5px;
 }
 
 .splash-body-one-two-title-container{
+    margin-top: 44.5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin:40px
-
+    text-transform: uppercase;
 }
 
 .splash-body-one-two-title-bold{
-    font-size: 48px;
-    text-transform: uppercase;
+    font-size: 38.5px;
     font-weight: 500;
 
 }
 
 .splash-body-one-two-title-thin{
-    font-size: 40px;
-    text-transform: uppercase;
+    font-size: 29px;
     font-weight: 300;
-
 }
 
 
 .splash-body-one-two-body-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin:40px
+    margin: 25px 64px 0;
+    font-size: 21px;
+    text-align: justify;
+    text-justify: newspaper;
+    div:last-of-type {
+        margin-top: 14.5px;
+        line-height: 24px;
+        width: 296px;
+        span {
+            font-weight: 500;
+        }
+    }
 }
 
-.splash-body-one-two-body-container > *{
- font-size: 24px;
- margin:20px
-
-}
-
+//---------------------------------------------------
 .splash-body-one-three{
-    height:375px;
-    width: 350px;
-    background: #DCDCDC;
+  height: $smaller-box-height;
+  width: $smaller-box-width;
+  background: $auth-background-grey;
+  padding-left: 51.5px;
+  border-radius: 0 3px 3px 0;
+  position: relative;
+  top: -28px;
 }
 
 .splash-body-one-three-title-container{
-    flex-direction: column;
-    align-items: end;
-    margin:40px;
-    margin-bottom: 0px;
-    text-align: start;
-
+  margin-top: 23px;
+  text-transform: uppercase;
+  text-align: left;
+  letter-spacing: -.65px;
+  font-weight: 500;
 }
 
 .splash-body-one-three-title-bold{
-    font-size: 34px;
-    text-transform: uppercase;
-    font-weight: 500;
-    
-
+  font-size: 25.5px;
 }
 
 .splash-body-one-three-title-thin{
-    font-size: 34px;
-    text-transform: uppercase;
-    font-weight: 400;
-
+  font-size: 24px;
 }
 
 
 .splash-body-one-three-body-container{
-    text-align: start;
-
+  text-align: left;
+  font-weight: 400;
+  margin: 13.5px 48px 0 0;
+  font-size: 15.5px;
+  div:last-of-type {
+    margin-top: 4px;
+  }
 }
 
-.splash-body-one-three-body-container > *{
- font-size: 20px;
- margin:20px
 
-}
+// .splash-body-one-three{
+//     height: $smaller-box-height;
+//     width: $smaller-box-width;
+//     background: $auth-background-grey;
+// }
+
+// .splash-body-one-three-title-container{
+//     flex-direction: column;
+//     align-items: end;
+//     margin:40px;
+//     margin-bottom: 0px;
+//     text-align: start;
+
+// }
+
+// .splash-body-one-three-title-bold{
+//     font-size: 34px;
+//     text-transform: uppercase;
+//     font-weight: 500;
+    
+
+// }
+
+// .splash-body-one-three-title-thin{
+//     font-size: 34px;
+//     text-transform: uppercase;
+//     font-weight: 400;
+
+// }
+
+
+// .splash-body-one-three-body-container{
+//     text-align: start;
+
+// }
+
+// .splash-body-one-three-body-container > *{
+//  font-size: 20px;
+//  margin:20px
+
+// }
+
+//---------------------------------------------------
 
 .splash-body-two{
-    height: 750px;
-    display: flex;
-    background: blue;
+  height: 815px;
+  width: 100%;
+  background: $splash-show-bg;
+  
 }
+
+.splash-body-showpage-container {
+width: 1171px;
+height: 100%;
+margin: 0 auto;
+@include flex(row, $align: center)
+}
+
 .splash-body-politician-show{
-    width:50%;
-    height:100%;
-    background: #E6E5E1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 704px;
 }
 
 .splash-body-politican-show-upper-container{
-    display: flex; 
-   
-
-
-
+  display: flex; 
 }
 .splash-body-politician-show-upper-photo{
-    width: 300px;
-    height: 250px;
-    background: blue;
-    margin: 30px;
-
+  width: 331.5px;
+  height: 258.5px;
+  background: rgb(58, 58, 109);
 }
 
-
-.splash-body-politician-show-upper-text-box{
-    width: 275px;
-    height: 60px;
-    background: red;
+.splash-body-politician-show-upper-text-container {
+@include flex(column, $justify: center);
+margin-left: 37px;
 }
 
 .splash-body-politician-show-upper-text-box{
-    width: 350px;
-    height: 60px;
-    background: red;
-    margin: 30px;
-    margin-left: 0px;
-    
-
-
-
-
+  width: 336px;
+  height: 61px;
+  margin-bottom: 34.5px;
+  background: rgb(165, 67, 67);
+  &:last-of-type {
+    margin-bottom: unset;
+  }
 }
+
 
 .splash-body-politican-show-middle-container{
-
-    width: 685px;
-    height: 60px;
-    margin-bottom:20px;
-    background: red;
+  margin-top: 32px;
+  width: 100%;
+  height: 61px;
+  background: rgb(165, 67, 67);
 
 }
 
 .splash-body-politican-show-lower-container{
-    margin: 10px;
-    display:flex;
-
+  margin-top: 34.5px;
+  @include flex(row, $justify: space-between);
+  width: 100%;
+  height: 61px;
 }
 
 .splash-body-politican-show-middle-container-left{
-
-    width: 200px;
-    height: 60px;
-    background: red;
-    margin-right:30px
+  margin-right: 34.5px;
+  width: 220px;
+  height: 100%;
+  background: rgb(165, 67, 67);
 
 }
 
 .splash-body-politican-show-middle-container-right{
-    
-
-    width: 450px;
-    height: 60px;
-    background: red;
+  height: 100%;
+  width: 450px;
+  background: rgb(165, 67, 67);
 }
 
 
 
 .splash-body-politician-show-explanation{ 
-    width:50%;
-    height:100%;
-    background: $splash-show-bg;
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 352px;
+  height: 325px;
+  margin-left: 85px;
+  position: relative;
+  top: -24px;
+  color: $body-one-text;
 }
 
 
 
 .splash-body-politician-show-description-title{
-    font-size: 40px;
-    font-weight:450;
-    margin: 20px;
-
+  font-size: 34px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 38.5px;
 }
 .splash-body-politician-show-description-body{
-    font-size: 28px;
-    margin: 30px;
-
+  font-size: 19px;
+  width: 100%;
+  text-align: justify;
+  line-height: 125%;
+  font-weight: 400;
+  &:last-of-type {
+    margin-top: 45.5px;
+  }
 }
 
 
-.splash-body-three{
-    padding: 30px;
+// .splash-body-two{
+//     height: 815px;
+//     width: 100%;
+//     background: $splash-show-bg;
+    
+// }
+
+// .splash-body-showpage-container {
+//   width: 88%;
+//   height: 100%;
+//   margin: 0 auto;
+//   @include flex(row, $align: center)
+// }
+
+// .splash-body-politician-show{
+//     width: 881px;
+// }
+
+// .splash-body-politican-show-upper-container{
+//     display: flex; 
+// }
+// .splash-body-politician-show-upper-photo{
+//     width: 414.5px;
+//     height: 323px;
+//     background: rgb(58, 58, 109);
+// }
+
+// .splash-body-politician-show-upper-text-container {
+//   @include flex(column, $justify: center);
+//   margin-left: 46.5px;
+// }
+
+// .splash-body-politician-show-upper-text-box{
+//     width: 420px;
+//     height: 76.5px;
+//     margin-bottom: 43.5px;
+//     background: rgb(165, 67, 67);
+//     &:last-of-type {
+//       margin-bottom: unset;
+//     }
+// }
+
+
+// .splash-body-politican-show-middle-container{
+//     margin-top: 40px;
+//     width: 100%;
+//     height: 76.5px;
+//     background: rgb(165, 67, 67);
+
+// }
+
+// .splash-body-politican-show-lower-container{
+//     margin-top: 43.5px;
+//     @include flex(row, $justify: space-between);
+//     width: 100%;
+//     height: 76.5px;
+// }
+
+// .splash-body-politican-show-middle-container-left{
+//     margin-right: 43.5px;
+//     width: 275px;
+//     height: 100%;
+//     background: rgb(165, 67, 67);
+
+// }
+
+// .splash-body-politican-show-middle-container-right{
+//     height: 100%;
+//     width: 562.5px;
+//     background: rgb(165, 67, 67);
+// }
+
+
+
+// .splash-body-politician-show-explanation{ 
+//     width: 440px;
+//     height:406.5px;
+//     margin-left: 106.5px;
+//     position: relative;
+//     top: -30px;
+//     color: $body-one-text;
+// }
+
+
+
+// .splash-body-politician-show-description-title{
+//     font-size: 34px;
+//     font-weight: 500;
+//     text-transform: uppercase;
+//     text-align: center;
+//     margin-bottom: 50.5px;
+// }
+// .splash-body-politician-show-description-body{
+//     font-size: 22px;
+//     width: 100%;
+//     text-align: justify;
+//     line-height: 125%;
+//     font-weight: 400;
+//     &:last-of-type {
+//       margin-top: 73.5px;
+//     }
+// }
+
+.source-info-container {
+  margin: 0 auto;
+  height: 816px;
+  border-bottom: solid 1px $header-background;
+  @include flex(column, center, center);
+  width: 1300px;
 }
 
 .splash-source-information{
-    // height: 750px;
+    height: 669px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #F2F1EC;
-    border-bottom: solid 1px red;
+    justify-content: center;
 }
 .open-source-header{
-    font-size: 52px;
+    font-size: 48px;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-top:60px;
 }
 
 .open-source-subtitle{
-    font-size: 42px;
+    font-size: 36px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 300;
-
-    
 }
+
 .github-repo-info{
-    height: 300px;
-    width:300px;
+    height: 265px;
+    margin: auto 0;
+    width: 265px;
     background: #BEBDBB;
+    
     border-radius: 300px;
     display:flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 .github-repo-info > *{
-    font-size: 290px;
+    font-size: 255px;
     color:#F2F1EC;
 }
 
-.github-icon{
-    font-size: 300px;
-}
-
 .api-boxes{
-    display: flex;
-    margin:40px;
- 
+    margin-top: 60px;
+    display: flex; 
 }
 .api-box{
-    padding-top:20px;
-    padding-bottom:20px;
-    padding-left: 50px;
-    padding-right:50px;
+    padding: 19px 64px;
+    height: 72.5px;
     text-transform: uppercase;
-    font-size: 30px;
+    font-size: 26px;
     background: #E7E6E1;
     letter-spacing: 2px;
-    margin-left: 10px;
-    margin-right:10px;
-
+    &:not(:last-of-type) {
+      margin-right: 27px;
+    }
 }
 .splash-body-bottom{ 
-    padding: 30px;
-    background: blue;
+    width: 1300px;
+    padding: 73px 0;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 .logo{ padding: 100px;
-    background: yellow;
+    background: $search-text;
     margin-right:160px}
 
 
@@ -488,10 +715,6 @@
     padding: 200px;
     padding-left:  120px;
     padding-right: 120px;
-    margin: 40px;
-
-
-    background: green;
-    border: solid 3px orange
+    background: $footer-button-hover;
 }
 
