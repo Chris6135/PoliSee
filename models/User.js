@@ -10,18 +10,9 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  zip: {
-    type: Number,
+  address: {
+    type: String,
     required: true,
-  },
-  district: {
-    type: String,
-  },
-  county: {
-    type: String,
-  },
-  state: {
-    type: String,
   },
   date: {
     type: Date,
