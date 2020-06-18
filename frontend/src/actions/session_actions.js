@@ -21,7 +21,7 @@ const logoutUser = () => ({
   type: LOG_OUT_USER,
 });
 
-const getUser = (res) => {
+export const getUser = (res) => {
   const { token } = res.data;
   localStorage.setItem("jwt", token);
   SessionAPI.setAuthToken(token);
@@ -45,8 +45,7 @@ export const logout = () => (dispatch) => {
 };
 
 export const editUser = (userData) => (dispatch) => {
-  UserAPI.editUser(userData)
-    .then((res) => {
-      dispatch(receiveCurrentUser(getUser(res)))
-    })
-}
+  UserAPI.editUser(userData).then((res) => {
+    dispatch(receiveCurrentUser(getUser(res)));
+  });
+};

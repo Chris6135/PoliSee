@@ -1,7 +1,7 @@
 
 const Validator = require('validator');
 const validText = require('./valid-text');
-const validZip = require('./valid-zip');
+const validAddress = require('./valid-address');
 
 module.exports = function validateRegisterInput(data) {
   let errors = {};
@@ -9,7 +9,7 @@ module.exports = function validateRegisterInput(data) {
   data.email = validText(data.email) ? data.email : '';
   data.password = validText(data.password) ? data.password : '';
   data.password2 = validText(data.password2) ? data.password2 : '';
-  data.zip = validZip(data.zip) ? data.zip : '';
+  data.adddress = validAddress(data.address) ? data.address : '';
 
 
   if (Validator.isEmpty(data.email)) {
@@ -36,8 +36,8 @@ module.exports = function validateRegisterInput(data) {
     errors.password2 = 'Passwords must match';
   }
 
-  if (Validator.isEmpty(data.zip)){
-    errors.zip = 'Invalid Zip code';
+  if (Validator.isEmpty(data.address)){
+    errors.address = 'Address cannot be empty';
   }
 
   return {

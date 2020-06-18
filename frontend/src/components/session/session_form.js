@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { register, login } from "../../actions/session_actions";
 import { sessionErrors } from "../../reducers/selectors/selectors";
 
-const SessionForm = ({ match }) => {
+const SessionForm = ({ match, history }) => {
   const reg = match.path === "/register";
 
   const initialUser = reg
-    ? { email: "", password: "", password2: "", zip: "" }
+    ? { email: "", password: "", password2: "", address: "" }
     : { email: "", password: "" };
 
   const [user, setUser] = useState(initialUser);
@@ -45,10 +45,14 @@ const SessionForm = ({ match }) => {
   const validateEmail = (email) =>
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
+  const formatAddress = (string) =>
+    string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formIsValid()) {
-      return reg ? dispatch(register(user)) : dispatch(login(user));
+      return (reg ? dispatch(register(user)) : dispatch(login(user)))
+        .then(action => (history.push(`/search?address=${formatAddress(action.user.address)}&levels=all&issues=all`)))
     }
   };
 
@@ -61,7 +65,7 @@ const SessionForm = ({ match }) => {
   const password2Error =
     localErrors.find((e) => e.match(/password confirmation/)) ||
     serverErrors.password2;
-  const zipError = localErrors.find((e) => e.match(/zip/)) || serverErrors.zip;
+  const addressError = localErrors.find((e) => e.match(/address/)) || serverErrors.address;
 
   return (
     <form className={`session-form` + ( reg ? " reg" : "" ) } onSubmit={handleSubmit}>
@@ -103,14 +107,14 @@ const SessionForm = ({ match }) => {
             />
           </label>
           <div className="reg-submit-group">
-            <label htmlFor="zip">
-              <h6>ZIP CODE</h6>
-              {zipError && <span className="err-msg">{zipError}</span>}
+            <label htmlFor="address">
+              <h6>ADDRESS</h6>
+              {addressError && <span className="err-msg">{addressError}</span>}
               <input
                 type="text"
-                value={user.zip}
-                onChange={handleChange("zip")}
-                id="zip"
+                value={user.address}
+                onChange={handleChange("address")}
+                id="address"
               />
             </label>
             <button type="submit" disabled={ localErrors.length }>SIGN UP</button>
