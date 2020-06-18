@@ -9,7 +9,7 @@ const officialsReducer = (state = {}, action) => {
     case RECEIVE_REPS:
       return action.officials;
     case RECEIVE_REP:
-      newState[action.official.id] = action.official;
+      newState[action.official._id] = action.official;
       delete newState[
         `${formatString(action.official.name)}_${formatString(
           action.official.office

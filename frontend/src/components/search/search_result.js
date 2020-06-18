@@ -9,8 +9,8 @@ const SearchResult = ({ official, history }) => {
   const handleClick = () => {
     const payload = Object.assign({}, official);
     delete payload.id;
-    dispatch(saveRepresentative(payload)).then((pol) =>
-      history.push(`/${pol.id}`)
+    dispatch(saveRepresentative(payload)).then((action) =>
+      history.push(`/officials/${action.official._id}`)
     );
   };
 

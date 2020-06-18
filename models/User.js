@@ -31,6 +31,22 @@ const UserSchema = new Schema({
     type: Array,
     default: []
   },
+  savedPoliticians: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: 'Politican'
+    }
+  ],
+  contactPoliticians: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Politician'
+    }
+  ],
+  outgoingEmails: {
+    type: Array,
+    default: []
+  }
 })
 
 module.exports = User = mongoose.model('User', UserSchema);

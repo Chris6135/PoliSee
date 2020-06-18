@@ -13,10 +13,10 @@ const officesReducer = (state = {}, action) => {
         newState[action.official.office].officials.indexOf(
           `${formatString(action.official.name)}_${formatString(
             action.official.office
-          ).slice(0, 5)}`,
-          1,
-          action.official.id
-        )
+          ).slice(0, 5)}`
+        ),
+        1,
+        action.official._id
       );
       return newState;
     default:
