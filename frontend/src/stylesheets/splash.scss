@@ -2,7 +2,7 @@
     // padding: 30px;
     background: red;
     // height: 4000px;
-    width: 100vw;
+    width: 100%;
     // z-index:5;
     font-family: $font;;
 }
@@ -133,37 +133,58 @@
     display:flex;
     justify-content: center;
     width: 1100px;
-    height: 97.5px;
+    //possibly 88px height and -44px margin-bottom calc
+    height: 88px;
     margin-top: auto;
-    margin-bottom: calc(50vh - 48.75px);
+    margin-bottom: calc(50vh - 44px);
     border: 1px solid $search-border;
     border-radius: 10px;
-    box-shadow: 0 0 1px 9px rgba($color: $form-font-color, $alpha: 0.6);
+    box-shadow: 0 0 1px 9px rgba($color: $form-font-color, $alpha: 0.6), inset 0 4px 1px -2px rgba($color: $form-font-color, $alpha: 0.3), inset 0 -4px 1px -2px rgba($color: $form-font-color, $alpha: 0.3);
+    color: $search-text;
     .search-form {
       height: 100%;
       width: 100%;
       .search-wrapper {
         @include flex(row, $align: center);
         height: 100%;
+        font-size: 22px;
+        .fa-search {
+          position: relative;
+          left: 25px;
+          width: 26px;
+          transform: rotate(15deg);
+        }
         .address-input {
           width: 640px;
+          font-size: 24px;
+          height: 100%;
+          padding-left: 33px;
         }
         .options-container {
           @include flex(row, $align: center);
           height: 100%;
+          width: 460px;
           .select {
+            &:hover {
+              cursor: pointer;
+            }
+            box-shadow: inset 4px 0 1px -2px rgba($color: $show-font-color, $alpha: 0.3);
             width: 180px;
             height: 100%;
             border-left: 1px solid $search-border;
-            border-right: 1px solid $search-border;
             position: relative;
-            
-            // &.levels{
+            @include flex(column, center, center);
               > span {
+                @include flex(column, $align: center );
+                text-align: center;
                 font-size: 22px;
-                line-height: 85%;
+                line-height: 100%;
                 font-weight: 400;
+                padding-bottom: 12px;
                 .triangle {
+                  position: absolute;
+                  bottom: 13.5px;
+                  margin-top: 5px;
                   width: 18px;
                   height: 11px;
                   clip-path: polygon(
@@ -171,7 +192,7 @@
                     100% 0,
                     50% 100%
                   );
-                  background: red;
+                  background: $search-text;
                 }
               }
               ul {
@@ -186,9 +207,12 @@
                 top: 80px;
                 left: -5px;
                 width: 200px;
-                background: grey;
+                background: $header-background;
+                border-top: 1px solid $button;
+                box-shadow: 0 2px 4px rgba($color: $search-border, $alpha: 0.5);
                 li {
-                  padding: 0 20px;
+                  padding: 5px 20px;
+                  background: $form-bg;
                   &:hover {
                     background: aqua;
                     cursor: pointer;
@@ -198,7 +222,18 @@
             }
           // }
           button {
-            
+            border-left: 1px solid $search-border;
+            height: 100%;
+            width: 100px;
+            text-align: center;
+            background: $go-button;
+            border-radius: 0 9px 9px 0;
+            font-weight: 600;
+            color: $go-text;
+            box-shadow: inset 4px 0 1px -2px rgba($color: $show-font-color, $alpha: 0.3);
+            &:hover {
+              background: mix($auth-background-grey, $go-button, $weight: 25%);
+            }
           }
         }
       }

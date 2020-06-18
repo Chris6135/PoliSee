@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { fetchRepresentatives } from "../../actions/search_actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SearchBar = ({ history }) => {
   const [address, setAddress] = useState("");
@@ -116,6 +117,9 @@ const SearchBar = ({ history }) => {
   return (
     <form className="search-form" onSubmit={handleSubmit}>
       <div className="search-wrapper">
+        <div className="search-icon">
+          <FontAwesomeIcon icon="search" />
+        </div>
         <input
           type="text"
           className="address-input"
