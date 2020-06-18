@@ -49,7 +49,7 @@ const issueMap = {
   ],
 };
 
-const SearchLanding = ({ location }) => {
+const SearchLanding = ({ location, history }) => {
   const dispatch = useDispatch();
   const {
     address,
@@ -105,29 +105,30 @@ const SearchLanding = ({ location }) => {
   const chosenIssues = Object.keys(issues).filter((k) => issues[k]);
   const allIssues = chosenIssues.length === Object.keys(issues);
 
-  const getOfficials = (id, office) =>
+  const getOfficials = (id) =>
     offices[id].officials.map((o) => {
       if (o === undefined) return null;
+      const official = officials[o];
       if (allIssues) {
         return (
           <SearchResult
             key={shortid.generate()}
-            official={officials[o]}
-            office={office}
+            official={official}
+            history={history}
           />
         );
       }
       const relevant = chosenIssues.some(
         (i) =>
-          issueMap[i].some((r) => office.roles.includes(r)) ||
-          issueMap["all"].some((r) => office.roles.includes(r))
+          issueMap[i].some((r) => official.roles.includes(r)) ||
+          issueMap["all"].some((r) => official.roles.includes(r))
       );
 
       return relevant ? (
         <SearchResult
           key={shortid.generate()}
-          official={officials[o]}
-          office={office}
+          official={official}
+          history={history}
         />
       ) : null;
     });
@@ -137,7 +138,7 @@ const SearchLanding = ({ location }) => {
       return levelsObj[lvl].map((oId) =>
         oId === undefined ? null : (
           <li key={shortid.generate()}>
-            <ul>{getOfficials(oId, offices[oId])}</ul>
+            <ul>{getOfficials(oId)}</ul>
           </li>
         )
       );

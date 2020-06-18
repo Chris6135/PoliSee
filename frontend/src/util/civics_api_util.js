@@ -3,26 +3,28 @@ import axios from "axios";
 const key = process.env.REACT_APP_GCIV_API_KEY;
 
 const formatString = (string) =>
-  string.trim().replace(/,/g, "").replace(/\s/g, "%20");
+  string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
 
-const formatOfficials = (officials, offices, zip) =>
+const formatOfficials = (officials, offices) =>
   officials.map((o, i) => {
     const office = offices.find((off) => off.officialIndices.includes(i));
     const newO = {
       ...o,
-      id: `${zip}_${formatString(o.name)}_${formatString(office.name)}`,
+      id: `${formatString(o.name)}_${formatString(office.name).slice(0, 5)}`,
       address: o.address ? o.address.pop() : {},
       url: o.urls ? o.urls.pop() : null,
       phone: o.phones ? o.phones.pop() : null,
       email: o.emails ? o.emails.pop() : null,
+      socialMedia: o.channels || null,
       office: office.name,
       divisionId: office.divisionId,
-      levels: office.levels,
-      roles: office.roles,
+      levels: office.levels || [],
+      roles: office.roles || getRole(office.name),
     };
     delete newO.urls;
     delete newO.phones;
     delete newO.emails;
+    delete newO.channels;
     return newO;
   });
 
@@ -128,11 +130,7 @@ const CivicsAPI = {
       )}`
     ),
   formatResponse: (res) => {
-    const officials = formatOfficials(
-      res.officials,
-      res.offices,
-      res.normalizedInput.zip
-    );
+    const officials = formatOfficials(res.officials, res.offices);
     const offices = formatOffices(officials, res.offices);
     const divisions = formatDivisions(offices, res.divisions);
     const options = getOptions(offices);
@@ -147,6 +145,9 @@ const CivicsAPI = {
     offices.forEach((o) => (formatted.offices[o.id] = o));
     return formatted;
   },
+  saveRepresentative: (official) =>
+    axios.post("/api/politicians/add", official),
+  fetchRepresentative: (id) => axios.get(`/api/politicians/${id}`),
 };
 
 export default CivicsAPI;
