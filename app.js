@@ -9,6 +9,7 @@ const passport = require('passport');
 
 const users = require("./routes/api/users");
 const counties = require("./routes/api/counties");
+const politicians = require("./routes/api/politicians");
 
 
 const db = process.env.MONGO_URI;
@@ -36,6 +37,7 @@ app.use(morgan("dev"));
 
 app.use("/api/users", users);
 app.use("/api/counties", counties);
+app.use("/api/politicians", politicians);
 
 app.use(passport.initialize());
 require('./config/passport')(passport);

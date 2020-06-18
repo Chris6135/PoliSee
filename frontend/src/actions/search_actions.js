@@ -1,11 +1,17 @@
 import CivicsAPI from "../util/civics_api_util";
 
 export const RECEIVE_REPS = "RECEIVE_REPS";
+export const RECEIVE_REP = "RECEIVE_REP";
 export const RECEIVE_CIVICS_API_ERRORS = "RECEIVE_CIVICS_API_ERRORS";
 
 const receiveReps = (results) => ({
   type: RECEIVE_REPS,
   ...results,
+});
+
+const receiveRep = (official) => ({
+  type: RECEIVE_REP,
+  official,
 });
 
 export const receiveCivicsApiError = (error) => ({
@@ -19,4 +25,14 @@ export const fetchRepresentatives = (address) => (dispatch) =>
       const data = CivicsAPI.formatResponse(res.data);
       return dispatch(receiveReps(data));
     })
+    .catch((e) => dispatch(receiveCivicsApiError(e.response.data)));
+
+export const saveRepresentative = (official) => (dispatch) =>
+  CivicsAPI.saveRepresentative(official)
+    .then((res) => dispatch(receiveRep(res.data)))
+    .catch((e) => dispatch(receiveCivicsApiError(e.response.data)));
+
+export const fetchRepresentative = (id) => (dispatch) =>
+  CivicsAPI.fetchRepresentative(id)
+    .then((res) => dispatch(receiveRep(res.data)))
     .catch((e) => dispatch(receiveCivicsApiError(e.response.data)));
