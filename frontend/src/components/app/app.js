@@ -16,7 +16,7 @@ import HeaderContainer from "../headandfoot/HeaderContainer";
 function App() {
   return (
     <div className="app">
-      <HeaderContainer />
+      {/* <Route path="/" component={ HeaderContainer } /> */}
       <Route exact path={["/"]} component={Splash} />
       <ProtectedRoute exact path = "/edit" component={Edit} />
       <ProtectedRoute path = "/edit/info" component={InfoEditContainer}/>

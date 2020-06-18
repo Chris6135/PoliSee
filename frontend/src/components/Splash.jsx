@@ -1,9 +1,24 @@
-import React from "react"
-import {Link} from "react-router-dom"
+import React, { useState } from "react"
+import {Link, useHistory} from "react-router-dom"
 import SearchBar from "./search/search_bar"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { useDispatch } from "react-redux"
+import { fetchRepresentatives } from "../actions/search_actions"
 
-const Splash = () => (
+const Splash = () => {
+  const [headSearchStr, setHeadSearchStr] = useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const formatAddress = string =>
+      string
+        .trim()
+        .split("")
+        .filter((c) => c !== "," || c !== ".")
+        .join("")
+        .split(" ")
+        .join("%20");
+
+  return (
   <div className="splash">
     <section className="splash-top">
       <section className="splash-header">
@@ -13,14 +28,30 @@ const Splash = () => (
 
           </div>
           <div className="splash-header-left-dropdown">
-
+            <div>
+              ?
+            </div>
           </div>
         </div>
 
         <div className="splash-header-right">
-          <div className="splash-header-search-bar">
-
-          </div>
+          <form className="splash-header-search-bar"
+            onSubmit={ e => {
+              e.preventDefault();
+              const search = formatAddress(headSearchStr);
+              dispatch(fetchRepresentatives(search))
+                .then(history.push(`/search?address=${search}&levels=all&issues=all`))
+          } }>
+            <input
+              type="text"
+              value={ headSearchStr }
+              onChange={ e => setHeadSearchStr(e.target.value) }
+              placeholder="Find Your Representatives"
+            />
+            <button className="header-search-icon">
+              <FontAwesomeIcon icon="search" flip="horizontal"/>
+            </button>
+          </form>
           <Link to="/login" className="signin-button">
               <div>Sign In</div>
           </Link>
@@ -105,11 +136,11 @@ const Splash = () => (
 
           <div className="splash-body-one-two-body-container">
                 <div className="splash-body-one-two-body">
-                  PoliSee makes it easy to see representatives for your area that can affect your issues
+                  PoliSee makes it easy to see representatives for your area that can affect your issues!
 
                 </div>
                 <div className="splash-body-one-two-body">
-                  We can tell you who is in charge of making the changes that matter most to you.
+                  We can tell you who is in charge of making the changes that matter most <span>to you.</span>
 
                 </div>
 
@@ -119,8 +150,14 @@ const Splash = () => (
         <div className="splash-body-one-three">
 
         <div className="splash-body-one-three-title-container">
+                  <div className="splash-body-one-three-title-bold">
+                    Keep tabs 
+                  </div>
                   <div className="splash-body-one-three-title-thin">
-                    Keep tabs on your offcials
+                    on your
+                  </div>
+                  <div className="splash-body-one-three-title-bold">
+                    OFFICIALS
                   </div>
               </div>
 
@@ -140,6 +177,7 @@ const Splash = () => (
       </section>
 
       <section className="splash-body-two">
+        <div className="splash-body-showpage-container">
         <div className="splash-body-politician-show">
 
           <div className="splash-body-politican-show-upper-container">
@@ -181,18 +219,20 @@ const Splash = () => (
         <div className="splash-body-politician-show-explanation">
 
             <div className="splash-body-politician-show-description-title">
-                    Profiles Worth Reading 
+                    Profiles
+                    <br/>Worth Reading 
                   </div>
                   <div className="splash-body-politician-show-description-body">
-                    Check to see how long they've been in office, when they're up for re-election, voting history, adn recent news.
+                    Check each politician's page to see how long they've been in office, when they're up for re-election, voting history, and recent news.
                   </div>
                   <div className="splash-body-politician-show-description-body">
-                    save and watch your representatives to stay up to date on how they treat your issues. 
+                    Save and watch your representatives to stay up to date on how they treat your issues. 
                   </div>
 
             </div>
+        </div>
       </section>
-
+      <div className="source-info-container">
       <section className="splash-source-information">
         <div className="open-source-header"> 
             This project is open source
@@ -224,7 +264,7 @@ const Splash = () => (
           </a>
         </div>
       </section>
-
+      </div>
       <section className="splash-body-bottom">
        
         <div className="logo">
@@ -239,8 +279,9 @@ const Splash = () => (
 
         </div>
       </section>
+      
     </section>
   </div>
-)
+)}
 
 export default Splash;
