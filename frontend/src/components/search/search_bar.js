@@ -3,12 +3,12 @@ import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
+
 const SearchBar = ({ history }) => {
   const [address, setAddress] = useState("");
   const [levels, setLevels] = useState([]);
   const [issues, setIssues] = useState([]);
   const [hidden, setHidden] = useState({ issues: true, levels: true });
-  const [selected, setSelected] = useState({ issues: [0], levels: [0] });
   const [error, setError] = useState(false);
 
   const formatAddress = (string) =>

@@ -5,12 +5,12 @@ class InfoEdit extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = {zip: this.props.user.zip, email:this.props.user.email}
+    this.state = {address: this.props.user.address, email:this.props.user.email}
   }
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.editUser({id: this.props.user.id, zip:this.state.zip, email: this.state.email})
+    this.props.editUser({id: this.props.user.id, address:this.state.address, email: this.state.email})
   }
 
   handleChange(type){
@@ -26,12 +26,12 @@ class InfoEdit extends React.Component {
           <div className="info-edit-form">
             <form onSubmit={this.handleSubmit}>
               <h1>Change your information</h1>
-              <label for ="zip">zip code</label>
+              <label for ="address">address</label>
                 <input
-                  type="number"
-                  name="zip"
-                  value={this.state.zip}
-                  onChange={this.handleChange('zip')}
+                  type="text"
+                  name="address"
+                  value={this.state.address}
+                  onChange={this.handleChange('address')}
                 />
               
               <label for="email">e-mail address</label>
