@@ -11,7 +11,7 @@ const getPayload = (user) => {
   return {
     id: user.id, 
     email: user.email, 
-    zip: user.zip, 
+    address: user.address, 
     interests: user.interests, 
     savedPoliticians: user.savedPoliticians,
     contactPoliticians: user.contactPoliticians
@@ -41,7 +41,7 @@ router.post('/register', (req, res) => {
         const newUser = new User({
           email: req.body.email,
           password: req.body.password,
-          zip: req.body.zip,
+          address: req.body.address,
         })
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -112,7 +112,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
   res.json({
     id: req.user.id,
     email: req.user.email,
-    zip: req.user.zip,
+    address: req.user.address,
     interests: req.user.interests,
     savedPoliticians: req.user.savedPoliticians,
     contactPoliticians: req.user.contactPoliticians
@@ -124,7 +124,7 @@ router.patch('/edit', (req, res) => {
     User.findByIdAndUpdate(
       req.body.id,
       {
-        $set: {email: req.body.email, zip: req.body.zip}
+        $set: {email: req.body.email, address: req.body.address}
       },
       { new: true }).then((result) => {
         jwt.sign(
