@@ -1,16 +1,38 @@
 
 .search-landing {
-  width: 1500px;
-  @include flex(row);
-  img {
-    width: 50px;
-  }
+  width: 1475px;
+  @include flex(row, $align: center);
   .search-sidebar {
+    position: relative;
     width: 441.5px;
+    left: 7px;
+    &::before {
+      content: "";
+      display: block;
+      height: 27px;
+      width: 14px;
+      background: $pseudos;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    &::after {
+      content: "";
+      display: block;
+      height: 27px;
+      width: 14px;
+      background: $pseudos;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
     background: $sidebar-bg;
     height: 598px;
   }
   .search-index {
+
+    position: relative;
+    left: -7px;
     width: 1072.5px;
     height: 544px;
     padding: 20.5px 5px 20.5px 62px;

@@ -23,7 +23,7 @@ const SearchResult = ({ official, history }) => {
       <img src={official.photoUrl} alt="" />
       <footer>
         <h2>{official.phone || ""}</h2>
-        <h3>{`Contact ${official.name}`}</h3>
+        {/* <h3>{`Contact ${official.name}`}</h3> */}
       </footer>
     </div>
   );
