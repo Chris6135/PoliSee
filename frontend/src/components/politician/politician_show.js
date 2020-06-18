@@ -68,6 +68,24 @@ const PoliticianShow = ({
       })
     : null;
 
+  const articles = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+  ].map((i) => <ArticleItem key={i} num={i} />);
+
   return (
     <>
       {official && (
@@ -137,9 +155,9 @@ const PoliticianShow = ({
             </div>
           </section>
 
-          {/* <section className="news">
+          <section className="news">
             <ul>{articles}</ul>
-          </section> */}
+          </section>
         </div>
       )}
     </>
