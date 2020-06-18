@@ -27,9 +27,10 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  interests: [{
-    type: String,
-  }],
+  interests: {
+    type: Array,
+    default: []
+  },
 })
 
 module.exports = User = mongoose.model('User', UserSchema);

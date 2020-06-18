@@ -8,11 +8,22 @@ const formatString = (string) =>
 const formatOfficials = (officials, offices, zip) =>
   officials.map((o, i) => {
     const office = offices.find((off) => off.officialIndices.includes(i));
-    return {
+    const newO = {
       ...o,
       id: `${zip}_${formatString(o.name)}_${formatString(office.name)}`,
+      address: o.address ? o.address.pop() : {},
+      url: o.urls ? o.urls.pop() : null,
+      phone: o.phones ? o.phones.pop() : null,
+      email: o.emails ? o.emails.pop() : null,
       office: office.name,
+      divisionId: office.divisionId,
+      levels: office.levels,
+      roles: office.roles,
     };
+    delete newO.urls;
+    delete newO.phones;
+    delete newO.emails;
+    return newO;
   });
 
 const formatOffices = (officials, offices) => {

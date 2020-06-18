@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./search/search_bar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cronTest } from "../util/cron_util";
 
 const Splash = () => (
   <div className="splash">
@@ -148,11 +149,7 @@ const Splash = () => (
           href="https://github.com/Chris6135/PoliSee"
           className="github-repo-info"
         >
-          <FontAwesomeIcon
-            className="github-icon"
-            icon={["fab", "github"]}
-            size="6x"
-          />
+          <FontAwesomeIcon icon={["fab", "github"]} size="6x" />
         </a>
         <div className="open-source-subtitle">Data sourced from</div>
         <div className="api-boxes">

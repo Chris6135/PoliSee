@@ -1,39 +1,37 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-class Header extends React.Component{
-  constructor(props){
+class Header extends React.Component {
+  constructor(props) {
     super(props);
-    this.state = {searchQuery: ""};
+    this.state = { searchQuery: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
     const formatAddress = (string) =>
-      string
-        .trim()
-        .split("")
-        .filter((c) => c !== "," || c !== ".")
-        .join("")
-        .split(" ")
-        .join("%20");
+      string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
     const search = formatAddress(this.state.searchQuery);
-    this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=all`))
+    this.props
+      .fetchRepresentatives(search)
+      .then(
+        this.props.history.push(
+          `/search?address=${search}&levels=all&issues=all`
+        )
+      );
   }
 
-  handleChange(e){
+  handleChange(e) {
     e.preventDefault();
-    this.setState({searchQuery: e.currentTarget.value})
+    this.setState({ searchQuery: e.currentTarget.value });
   }
 
-  render(){
+  render() {
     const dropdown = (path) => {
-      switch(path){
+      switch (path) {
         case "/login": //when we figure out cases and content we can expand this
           return (
             <div className="header-drop-content">
@@ -41,7 +39,7 @@ class Header extends React.Component{
               <p>Funky Kong</p>
               <p>Funky Kong</p>
             </div>
-          )
+          );
         case "/":
           return (
             <div className="header-drop-content">
@@ -49,7 +47,7 @@ class Header extends React.Component{
               <p>Funky Kong</p>
               <p>Funky Kong</p>
             </div>
-          )
+          );
         default:
           return (
             <div className="header-drop-content">
@@ -57,16 +55,37 @@ class Header extends React.Component{
               <p>Funky Kong</p>
               <p>Funky Kong</p>
             </div>
-          )
+          );
       }
+    };
+
+    let loggedInStuff;
+    if (this.props.user) {
+      loggedInStuff = (
+        <div className="header-links">
+          <button onClick={() => this.props.logout()}>LOG OUT</button>
+          <Link to="/edit" className="edit-link">
+            EDIT
+          </Link>
+        </div>
+      );
+    } else {
+      loggedInStuff = (
+        <div className="header-links">
+          <Link to="/login" className="login-link">
+            SIGN IN{" "}
+          </Link>
+          <Link to="/register" className="register-link">
+            SIGN UP
+          </Link>
+        </div>
+      );
     }
 
     return (
       <div className="header">
         <div className="header-left">
-          <div className="header-logo">
-            Logo
-          </div>
+          <div className="header-logo">Logo</div>
           <div className="information-dropdown">
             <div className="header-drop-btn">
               <span>?</span>
@@ -74,9 +93,7 @@ class Header extends React.Component{
             {dropdown(this.props.history.location.pathname)}
           </div>
         </div>
-        <div className="header-skinny-middle">
-
-        </div>
+        <div className="header-skinny-middle"></div>
         <div className="header-right">
           <form className="header-search-bar" onSubmit={this.handleSubmit}>
             <input
@@ -86,16 +103,14 @@ class Header extends React.Component{
               placeholder="Find Your Representatives"
             />
             <button className="header-search-icon" onClick={this.handleSubmit}>
-              <FontAwesomeIcon icon="search" flip="horizontal"/>
+              <FontAwesomeIcon icon="search" flip="horizontal" />
             </button>
           </form>
-          <Link to="/login" className="login-link">SIGN IN </Link>
+          {loggedInStuff}
         </div>
       </div>
-    )
+    );
   }
-
-
 }
 
 export default Header;

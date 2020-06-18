@@ -1,0 +1,83 @@
+.info-edit {
+  color: $form-font-color;
+  font-family: $font;
+  background: $auth-background-grey;
+  width: 100vw;
+  height: 66.2vh;
+  @include flex(row, center, center);
+  .info-edit-backdrop {
+    width: 669px;
+    height: 491px;
+    background: $darker-grey;
+    font-weight: 500;
+    .info-edit-form {
+      border-radius: 4px;
+      background: $form-bg;
+      width: 493px;
+      height: 527px;
+      position: relative;
+      left: 88px;
+      top: -18px;
+      form{
+        @include flex(column, center, center);
+      }
+        h1{
+          text-align: center;
+          line-height: 50px;
+          font-size: 30px;
+          font-variant: small-caps;
+          margin-bottom: 80px;
+        }
+        label {
+          position: relative;
+          font-variant: small-caps;
+        }
+        .err-msg {
+          position: absolute;
+          right: 4px;
+          top: 13px;
+          font-size: 11px;
+          color: rgb(156, 44, 44);
+          font-weight: 500;
+        }
+
+        input {
+          padding: 10px;
+          height: 38px;
+          border: 2.5px solid #9a9a9a;
+          width: 420px;
+          font-size: 14px;
+          border-radius: 10px;
+        }
+        button {
+          @include flex(row, center, center);
+          line-height: 48.5px;
+          width: 200px;
+          margin: 20px;
+          height: 48.5px;
+          background: $button;
+          border-radius: 7px;
+        }
+        button:hover{
+          background: lightgray;
+        }
+        
+        .info-links{
+          @include flex(row, center, center)
+        }
+      a {
+          @include flex(row, center, center);
+          line-height: 48.5px;
+          width: 200px;
+          margin: 20px;
+          height: 48.5px;
+          background: $button;
+          border-radius: 7px;
+
+      }
+      a:hover{
+        background: lightgray;
+      }
+    }
+  }
+}

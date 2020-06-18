@@ -9,9 +9,14 @@ import SessionAPI from "./util/session_api_util";
 import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
+import axios from "axios";
+import cron from "node-cron";
+// import {cronBuilder} from "./util/cron_util"
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
+  // window.cronTest = cronTest
+  // window.cronBuilder = cronBuilder
 
   if (localStorage.jwt) {
     SessionAPI.setAuthToken(localStorage.jwt);

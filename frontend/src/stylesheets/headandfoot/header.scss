@@ -2,7 +2,7 @@
   display: flex;
   width: 100vw;
   justify-content: space-evenly;
-  height: 80px; 
+  height: 103px; 
   // you can adjust the height of this header and everything else should change accordingly
   font-family: $font;
 }
@@ -42,7 +42,7 @@
 
 .header-search-bar{
   width: 63%;
-  height: 60%;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -61,22 +61,6 @@
   font-size: 17px;
 }
 
-.header-right a{
-  width: 27%;
-  height: 60%;
-  border: 1px solid lightgray;
-  background-color: lightgray;
-  font-weight: 500;
-  border-radius: 3px;
-  font-size: 18px;
-  margin-right: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2.5% 0%;
-  color: white;
-}
-
 .header-search-icon{
   margin-right: 6%;
   color: $form-font-color;
@@ -89,7 +73,7 @@
   justify-content: space-around;
   margin-right: 7%;
   width: 20%;
-  height: 60%;
+  height: 48px;
   border: 1px solid lightgray;
   background-color: lightgray;
   border-radius: 3px;
@@ -149,5 +133,49 @@
 .information-dropdown:hover .header-drop-content {
   display: flex;
   flex-direction: column;
+}
+
+.header-right a{
+
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  font-weight: 500;
+  border-radius: 3px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5% 0%;
+  color: white;
+}
+
+
+.header-links{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 27%;
+  height: 80px;
+  margin-right: 2%;
+
+}
+
+.header-links button{
+  height: 30px;
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  font-weight: 500;
+  border-radius: 3px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5% 0%;
+  color: white;
+}
+
+.header-links link{
+  height: 30px;
+  width: 80px;
 }
 
