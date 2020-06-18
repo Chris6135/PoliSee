@@ -4,13 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchRepresentatives } from "../../actions/search_actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PoliticianShow = (props) => {
+const PoliticianShow = ({ match: { params: { id } } }) => {
   const dispatch = useDispatch();
   
-  console.log(props);
+  const split = id.split("_")
+  const zip = split[0]
+  const name = split[1];
+  const officeIdentifier = split[2];
+
   const articles = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map( i => <ArticleItem key={i} num={i}/> )
   //Obviously change that to be real articles
-  const name = "Kirsten E. Gillibrand"
 
   const selected = useSelector( ({ entities: { address, offices, officials } }) => {
     const official = Object.values(officials).filter( person => person.name === name )[0]
@@ -21,18 +24,20 @@ const PoliticianShow = (props) => {
       office,
     }
   })
+
   if ( !selected.official ) {
-    dispatch(fetchRepresentatives("10031"))
+    dispatch(fetchRepresentatives(zip))
   }
-  console.log(selected.official)
-  console.log(selected)
+
   const { official, office } = selected;
 
   const formatAddress = ({ line1, city, state, zip }) => (
     `${line1}, ${city}, ${state} ${zip}`
   )
 
+  //formatting constants start here
   const email = selected.official && official.emails ? <a href={`mailto:${official.emails[0]}`}> email </a> : null
+
   const channels = selected.official ? official.channels.map( ( channel, i) => {
     switch (channel.type) {
       case "Facebook":
@@ -58,6 +63,10 @@ const PoliticianShow = (props) => {
     }
   }) : null
 
+  const phones = selected.official ? official.phones.map ( (phone, i) => (
+    <a href={ `tel:${phone}` } key={ i } >{phone}</a>
+  ) ) : null
+
   const websites = selected.official ? official.urls.map( ( url, i) => (
     <a href={ url } key={ i }> Official Website </a>
   )) : null;
@@ -70,20 +79,23 @@ const PoliticianShow = (props) => {
         
         <div className="flag">
           <div className="flag-top">
-              {/* <img src={""} alt={"Politician Name"}/> fill in with info */}
               <figure className="image">
-                <div className="alert">
-                  !
-                </div>
+               <div className="image-container">
                 <img src={ official.photoUrl } alt={ official.name } />
+                </div>
+                <div className="alert"> { /* Only show alert if politician is up for re-election */ }
+                  <span>
+                    !
+                  </span>
+                </div>
               </figure>
               <aside>
                 <div>
-                  <span>
+                  <span className="name">
                     { official ? official.name : "" }
-                  </span><br/>
+                  </span>
                   <span>
-                    { office ? office.name : "" } ( {official.party} )
+                    { office ? office.name : "" } <span className={ official.party.slice(0,1).toLowerCase() }>( {official.party} )</span>
                   </span>
                 </div>
                 <div>
@@ -96,11 +108,11 @@ const PoliticianShow = (props) => {
           </div>
 
           <aside className="contact">
-            <div>
             <span>
-              { official.phones }
+              { phones }
               { email }
             </span>
+            <div>
 
             { channels }
             </div>
