@@ -1,0 +1,170 @@
+$border: #c5c5c3;
+$stripe-width: 63.5px;
+$flag-margin: 49.5px;
+$image-dimensions: 312px;
+
+$image-border: $border;
+// Need to refactor colors: noticed mistakes when pulling them
+.politician-show {
+  color: $show-font-color;
+  .main-info {
+    padding: 60px 0;
+    border-bottom: 2.5px solid $border;
+    margin-bottom: 60px;
+    max-width: 1300px;
+    height: 644px;
+    @include flex(row, $justify: space-between);
+    .flag {
+      width: 59vw;
+      .flag-top {
+        @include flex(row, $align: center);
+        .image {
+          
+          flex: 0 0 auto;
+          height: $image-dimensions;
+          width: $image-dimensions;
+          background: $image-border;
+          position: relative;
+          .image-container {
+            height: 100%;
+            overflow: hidden;
+            clip-path: polygon(
+              0% 2.5%,
+              2.5% 0%,
+              97.5% 0%,  
+              100% 2.5%, 
+              100% 97.5%,
+              97.5% 100%,
+              2.5% 100%, 
+              0 97.5%
+            );
+            &::after {
+              content: "";
+              height: $image-dimensions - 20px;
+              width: $image-dimensions - 20px;
+              position: absolute;
+              top: 0;
+              left: 0;
+              background: $border;
+              opacity: 0.1;
+            }
+          }
+          border: 10px solid $image-border;  /*can change here if watched! */
+          img {
+            opacity: 1;
+          }
+          .alert {
+            position: absolute;
+            right: -1px;
+            top: -1px;
+            height: 60px;
+            width: 60px;
+            text-align: right;
+            padding: 3px 15px 0 0;
+            background: rgba($color: $red-equiv-to-darker-grey, $alpha: 1);
+            color: $background;
+            font-size: 24px;
+            font-weight: 700;
+            clip-path: polygon(
+              0 0,
+              100% 0,
+              100% 100%
+            );
+          }
+        }
+        aside {
+          @include flex(column, $justify: center);
+          flex: 1 1 auto;
+          padding-left: $stripe-width - 10px;
+          div {
+            width: 100%;
+            height: $stripe-width;
+            background: rgba($color: $border, $alpha: 0.4);
+            margin-bottom: $flag-margin;
+            padding: 0 20px;
+            font-size: 15px;
+            @include flex(column, $justify: center);
+            > span {
+              display: block;
+              line-height: 22px;
+              &.name {
+                margin-top: 2px;
+                font-weight: 700;
+                font-size: 23px;
+              }
+              &:not(.name) {
+                font-size: 14px;
+                font-weight: 500;
+                color: mix($form-font-color, $show-font-color, $weight: 50%);
+                span {
+                  &.d {
+                    color: #395891;
+                  }
+                  &.r {
+                    color: #913a3a;
+                  }
+                }
+              }
+            }
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      > aside {
+        background: rgba($color: $border, $alpha: 0.3);
+        height: $stripe-width;
+        padding: 0 6% 0 20px;
+        &:first-of-type {
+          height: $stripe-width - 10px;
+          $lower-margin: $flag-margin - 11.25px;
+          margin: $lower-margin 0 $flag-margin;
+        }
+        @include flex(row, $align: center, $justify: space-between);
+        > span {
+          font-weight: 600;
+          font-size: 22px;
+          a {
+            margin-right: 5px; 
+            &:hover {
+              text-shadow: 0 0 1px $show-font-color;
+            }
+          }
+        }
+        div {
+          // margin-right: 5%;
+          svg {
+            height: 35px;
+            width: 35px;
+            margin-left: 10px;
+            &.fa-youtube {
+              margin-left: 5px;
+              width: 50px;
+            }
+            &:last-of-type {
+              margin-right: 15px;
+            }
+            &:hover {
+              color: $form-font-color;
+            }
+          }
+        }
+        p a {
+          font-weight: 600;
+          margin-right: 20px;
+          &:hover {
+            text-shadow: 0 0 0.5px $show-font-color;
+          }
+        }
+      }
+    }
+    .propublica {
+      margin-left: 100px;
+      width: 329.5px;
+      height: 100%;
+      background: $border;
+      padding: 20px;
+    }
+  }
+}

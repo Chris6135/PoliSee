@@ -4,17 +4,18 @@ import {AuthRoute } from "../../util/route_util";
 import Session from "../session/session";
 import Splash from "../Splash"
 import Footer from "./footer";
+import PoliticianShow from "../politician/politician_show"
 
 // import HeaderContainer from "../headandfoot/HeaderContainer";
 
 function App() {
   return (
     <div className="app">
+      {/* <Route path="/" component={HeaderContainer} /> */}
       <Route exact path={["/"]} component={Splash} />
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
 
-      {/* <Route path="/" component={HeaderContainer} /> */}
-
+      <Route path="/politician/:id" component={ PoliticianShow } />
       <Footer />
     </div>
   );
