@@ -1,35 +1,20 @@
 import React from "react";
+import shortid from "shortid";
 
-const SearchIndex = ({ levelsObj, levels, getOffices }) => {
-  const { federal, state, county, local } = levels;
+const SearchIndex = ({ levelsObj, levels, getOffices, descending }) => {
+  const desc = Object.keys(levels).filter((k) => levels[k]);
+  const ordered = descending ? desc : desc.reverse();
+
   return (
     <div className="search-index">
       {Boolean(Object.keys(levelsObj).length) && (
         <ul>
-          {federal && (
-            <li>
-              <h1>FEDERAL</h1>
-              <ul>{getOffices("federal")}</ul>
+          {ordered.map((level) => (
+            <li key={shortid.generate()}>
+              <h1>{level.toUpperCase()}</h1>
+              <ul>{getOffices(level)}</ul>
             </li>
-          )}
-          {state && (
-            <li>
-              <h1>STATE</h1>
-              <ul>{getOffices("state")}</ul>
-            </li>
-          )}
-          {county && (
-            <li>
-              <h1>COUNTY</h1>
-              <ul>{getOffices("county")}</ul>
-            </li>
-          )}
-          {local && (
-            <li>
-              <h1>LOCAL</h1>
-              <ul>{getOffices("local")}</ul>
-            </li>
-          )}
+          ))}
         </ul>
       )}
     </div>

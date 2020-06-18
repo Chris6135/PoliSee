@@ -3,7 +3,9 @@ import React from "react";
 const SearchSidebar = ({
   levels,
   issues,
-  handleToggle,
+  toggleOption,
+  toggleDesc,
+  descending,
   address,
   divisions,
 }) => {
@@ -28,7 +30,27 @@ const SearchSidebar = ({
           <div className="search-sidebar-head-left-district"></div>
         </div>
         <div className="search-sidebar-head-right">
-          <div className="order-by"></div>
+          <h6>Order By</h6>
+          <button
+            className={
+              descending
+                ? "sidebar-order-toggle selected"
+                : "sidebar-order-toggle"
+            }
+            onClick={toggleDesc}
+          >
+            Trickle Down
+          </button>
+          <button
+            className={
+              descending
+                ? "sidebar-order-toggle selected"
+                : "sidebar-order-toggle"
+            }
+            onClick={toggleDesc}
+          >
+            From the Ground Up
+          </button>
         </div>
       </header>
       <div className="search-sidebar-district-info">
@@ -40,7 +62,7 @@ const SearchSidebar = ({
           className={
             justice ? "sidebar-issues-btn selected" : "sidebar-issues-btn"
           }
-          onClick={handleToggle("issues", "justice")}
+          onClick={toggleOption("issues", "justice")}
         >
           Justice
         </button>
@@ -48,7 +70,7 @@ const SearchSidebar = ({
           className={
             education ? "sidebar-issues-btn selected" : "sidebar-issues-btn"
           }
-          onClick={handleToggle("issues", "education")}
+          onClick={toggleOption("issues", "education")}
         >
           Education
         </button>
@@ -56,7 +78,7 @@ const SearchSidebar = ({
           className={
             legislation ? "sidebar-issues-btn selected" : "sidebar-issues-btn"
           }
-          onClick={handleToggle("issues", "legislation")}
+          onClick={toggleOption("issues", "legislation")}
         >
           Legislation
         </button>
@@ -66,7 +88,7 @@ const SearchSidebar = ({
           className={
             federal ? "sidebar-levels-btn selected" : "sidebar-levels-btn"
           }
-          onClick={handleToggle("levels", "federal")}
+          onClick={toggleOption("levels", "federal")}
         >
           Federal
         </button>
@@ -74,7 +96,7 @@ const SearchSidebar = ({
           className={
             state ? "sidebar-levels-btn selected" : "sidebar-levels-btn"
           }
-          onClick={handleToggle("levels", "state")}
+          onClick={toggleOption("levels", "state")}
         >
           State
         </button>
@@ -82,7 +104,7 @@ const SearchSidebar = ({
           className={
             county ? "sidebar-levels-btn selected" : "sidebar-levels-btn"
           }
-          onClick={handleToggle("levels", "county")}
+          onClick={toggleOption("levels", "county")}
         >
           County
         </button>
@@ -90,7 +112,7 @@ const SearchSidebar = ({
           className={
             local ? "sidebar-levels-btn selected" : "sidebar-levels-btn"
           }
-          onClick={handleToggle("levels", "local")}
+          onClick={toggleOption("levels", "local")}
         >
           Local
         </button>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import shortid from "shortid";
 import { useDispatch, useSelector } from "react-redux";
+import shortid from "shortid";
 
 import { searchResults } from "../../reducers/selectors/selectors";
 import { fetchRepresentatives } from "../../actions/search_actions";
@@ -8,50 +8,48 @@ import SearchResult from "./search_result";
 import SearchIndex from "./search_index";
 import SearchSidebar from "./search_sidebar";
 
+const initialLevels = {
+  federal: true,
+  state: true,
+  county: true,
+  local: true,
+};
+
+const falseLevels = {
+  federal: false,
+  state: false,
+  county: false,
+  local: false,
+};
+
+const initialIssues = {
+  justice: true,
+  education: true,
+  legislation: true,
+};
+
+const falseIssues = {
+  justice: false,
+  education: false,
+  legislation: false,
+};
+
+const issueMap = {
+  justice: ["judge", "highestCourtJudge"],
+  education: ["schoolBoard"],
+  legislation: ["specialPurposeOfficer", "governmentOfficer"],
+  all: [
+    "headOfGovernment",
+    "deputyHeadOfGovernment",
+    "headOfState",
+    "legislatorLowerBody",
+    "legislatorUpperBody",
+    "executiveCouncil",
+  ],
+};
+
 const SearchLanding = ({ location }) => {
   const dispatch = useDispatch();
-  const initialLevels = {
-    federal: true,
-    state: true,
-    county: true,
-    local: true,
-  };
-
-  const falseLevels = {
-    federal: false,
-    state: false,
-    county: false,
-    local: false,
-  };
-
-  const initialIssues = {
-    justice: true,
-    education: true,
-    legislation: true,
-  };
-
-  const falseIssues = {
-    justice: false,
-    education: false,
-    legislation: false,
-  };
-
-  const issueMap = {
-    justice: ["judge", "highestCourtJudge"],
-    education: ["schoolBoard"],
-    legislation: ["specialPurposeOfficer", "governmentOfficer"],
-    all: [
-      "headOfGovernment",
-      "deputyHeadOfGovernment",
-      "headOfState",
-      "legislatorLowerBody",
-      "legislatorUpperBody",
-      "executiveCouncil",
-    ],
-  };
-
-  const [levels, setLevels] = useState(initialLevels);
-  const [issues, setIssues] = useState(initialIssues);
   const {
     address,
     officials,
@@ -60,28 +58,30 @@ const SearchLanding = ({ location }) => {
     levelsObj,
   } = useSelector((state) => searchResults(state));
 
-  const setState = () => {
-    const lvls = location.search.match(/&levels=(.+)&/)[1].split("%20");
-    const iss = location.search.match(/&issues=(.+)$/)[1].split("%20");
+  const [levels, setLevels] = useState(initialLevels);
+  const [issues, setIssues] = useState(initialIssues);
+  const [desc, setDesc] = useState(true);
 
-    let newLvls = Object.assign({}, falseLevels);
-    let newIss = Object.assign({}, falseIssues);
-    lvls.forEach((l) => {
-      if (l === "all") {
-        newLvls = Object.assign({}, initialLevels);
+  const setSlice = (type) => {
+    const lvls = type === "levels";
+    const options = lvls
+      ? location.search.match(/&levels=(.+)&/)[1].split("%20")
+      : location.search.match(/&issues=(.+)$/)[1].split("%20");
+
+    let newState = Object.assign({}, lvls ? falseLevels : falseIssues);
+    options.forEach((o) => {
+      if (o === "all") {
+        newState = Object.assign({}, lvls ? initialLevels : initialIssues);
       } else {
-        newLvls[l] = true;
+        newState[o] = true;
       }
     });
-    iss.forEach((i) => {
-      if (i === "all") {
-        newIss = Object.assign({}, initialIssues);
-      } else {
-        newIss[i] = true;
-      }
-    });
-    setLevels(newLvls);
-    setIssues(newIss);
+    lvls ? setLevels(newState) : setIssues(newState);
+  };
+
+  const setState = () => {
+    setSlice("levels");
+    setSlice("issues");
   };
 
   useEffect(() => {
@@ -89,11 +89,7 @@ const SearchLanding = ({ location }) => {
     dispatch(fetchRepresentatives(address)).then(setState());
   }, []);
 
-  // useEffect(() => {
-  //   setState();
-  // }, [location.search]);
-
-  const handleToggle = (type, name) => () => {
+  const toggleOption = (type, name) => () => {
     if (type === "levels") {
       const bool = levels[name];
       setLevels({ ...levels, [name]: !bool });
@@ -102,6 +98,8 @@ const SearchLanding = ({ location }) => {
       setIssues({ ...issues, [name]: !bool });
     }
   };
+
+  const toggleDesc = () => setDesc(!desc);
 
   const chosenIssues = Object.keys(issues).filter((k) => issues[k]);
   const allIssues = chosenIssues.length === Object.keys(issues);
@@ -152,14 +150,17 @@ const SearchLanding = ({ location }) => {
       <SearchSidebar
         levels={levels}
         issues={issues}
-        handleToggle={handleToggle}
+        toggleOption={toggleOption}
+        toggleDesc={toggleDesc}
         address={address}
         divisions={divisions}
+        descending={desc}
       />
       <SearchIndex
         levels={levels}
         getOffices={getOffices}
         levelsObj={levelsObj}
+        descending={desc}
       />
     </div>
   );

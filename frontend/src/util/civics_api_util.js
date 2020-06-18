@@ -3,14 +3,14 @@ import axios from "axios";
 const key = process.env.REACT_APP_GCIV_API_KEY;
 
 const formatString = (string) =>
-  string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
+  string.trim().replace(/,/g, "").replace(/\s/g, "%20");
 
 const formatOfficials = (officials, offices, zip) =>
   officials.map((o, i) => {
     const office = offices.find((off) => off.officialIndices.includes(i));
     return {
       ...o,
-      id: `${zip}${formatString(o.name)}${formatString(office.name)}`,
+      id: `${zip}_${formatString(o.name)}_${formatString(office.name)}`,
       office: office.name,
     };
   });
