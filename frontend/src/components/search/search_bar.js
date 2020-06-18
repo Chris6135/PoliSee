@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import { fetchRepresentatives } from "../../actions/search_actions";
 
@@ -71,4 +72,4 @@ const SearchBar = ({ history }) => {
   );
 };
 
-export default SearchBar;
+export default withRouter(SearchBar);
