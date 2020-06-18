@@ -14,15 +14,6 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  district: {
-    type: String,
-  },
-  county: {
-    type: String,
-  },
-  state: {
-    type: String,
-  },
   date: {
     type: Date,
     default: Date.now
