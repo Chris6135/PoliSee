@@ -1,4 +1,8 @@
-const { RECEIVE_REPS, RECEIVE_REP } = require("../../actions/search_actions");
+import {
+  RECEIVE_REPS,
+  RECEIVE_REP,
+  RECEIVE_SUB,
+} from "../../actions/search_actions";
 
 const formatString = (string) =>
   string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
@@ -15,6 +19,9 @@ const officialsReducer = (state = {}, action) => {
           action.official.office
         ).slice(0, 5)}`
       ];
+      return newState;
+    case RECEIVE_SUB:
+      newState[action.official._id] = action.official;
       return newState;
     default:
       return state;
