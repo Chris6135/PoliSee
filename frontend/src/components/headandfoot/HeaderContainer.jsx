@@ -1,13 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchRepresentatives} from '../../actions/search_actions';
+import {logout} from '../../actions/session_actions';
 import Header from './Header';
 
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchRepresentatives: (address) => dispatch(fetchRepresentatives(address))
+const mapStateToProps = (state) => {
+  return{
+    user: state.session.user
   }
 }
 
-export default connect(null, mapDispatchToProps)(Header)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchRepresentatives: (address) => dispatch(fetchRepresentatives(address)),
+    logout: () => dispatch(logout())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

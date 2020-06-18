@@ -4,8 +4,10 @@ import SearchBar from "./search/search_bar"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { useDispatch } from "react-redux"
 import { fetchRepresentatives } from "../actions/search_actions"
+import {cronTest} from "../util/cron_util"
 
 const Splash = () => {
+  
   const [headSearchStr, setHeadSearchStr] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -242,7 +244,7 @@ const Splash = () => {
               find us on 
             </div>
         <a href="https://github.com/Chris6135/PoliSee" className="github-repo-info">
-          <FontAwesomeIcon className="github-icon" icon={["fab", "github"]} size="6x"/>
+          <FontAwesomeIcon icon={["fab", "github"]} size="6x"/>
 
         </a>
         <div className="open-source-subtitle" >

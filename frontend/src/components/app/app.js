@@ -1,5 +1,5 @@
 import React from "react";
-import {Route} from "react-router-dom";
+import {Route,Switch} from "react-router-dom";
 import {AuthRoute, ProtectedRoute } from "../../util/route_util";
 import Session from "../session/session";
 import Splash from "../Splash";
@@ -11,13 +11,15 @@ import InterestEditContainer from "../user/InterestEditContainer";
 import HeaderContainer from "../headandfoot/HeaderContainer";
 // import RepEdit from "../user/RepEdit";
 // import ContactEdit from "../user/ContactEdit";
-// import HeaderContainer from "../headandfoot/HeaderContainer";
 
 function App() {
   return (
     <div className="app">
-      {/* <Route path="/" component={ HeaderContainer } /> */}
-      <Route exact path={["/"]} component={Splash} />
+
+      <Switch> 
+        <Route exact path={["/"]} component={Splash} />
+       < Route component={HeaderContainer}/>
+      </Switch>
       <ProtectedRoute exact path = "/edit" component={Edit} />
       <ProtectedRoute path = "/edit/info" component={InfoEditContainer}/>
       <ProtectedRoute path="/edit/interests" component={InterestEditContainer} />
