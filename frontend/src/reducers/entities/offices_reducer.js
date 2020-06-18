@@ -9,15 +9,17 @@ const officesReducer = (state = {}, action) => {
     case RECEIVE_REPS:
       return action.offices;
     case RECEIVE_REP:
-      newState[action.official.office].officials.splice(
-        newState[action.official.office].officials.indexOf(
-          `${formatString(action.official.name)}_${formatString(
-            action.official.office
-          ).slice(0, 5)}`
-        ),
-        1,
-        action.official._id
-      );
+      if (newState[action.official.office]) {
+        newState[action.official.office].officials.splice(
+          newState[action.official.office].officials.indexOf(
+            `${formatString(action.official.name)}_${formatString(
+              action.official.office
+            ).slice(0, 5)}`
+          ),
+          1,
+          action.official._id
+        );
+      }
       return newState;
     default:
       return state;

@@ -148,6 +148,8 @@ const CivicsAPI = {
   saveRepresentative: (official) =>
     axios.post("/api/politicians/add", official),
   fetchRepresentative: (id) => axios.get(`/api/politicians/${id}`),
+  toggleSubscribe: (id, type) =>
+    axios.patch(`/api/politicians/${id}/subscribe`, type),
 };
 
 export default CivicsAPI;
