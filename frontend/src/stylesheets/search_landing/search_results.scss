@@ -13,6 +13,7 @@
       color: $section-headers;
     }
     ul {
+      min-height: 10px;
       @include flex(row, flex-start, flex-start);
       flex-wrap: wrap;
       .search-result {
