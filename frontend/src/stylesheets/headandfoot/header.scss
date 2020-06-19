@@ -1,6 +1,6 @@
 .header{
   display: flex;
-  width: 100vw;
+  width: 100%;
   justify-content: space-evenly;
   height: 70px;
   font-family: $font;
@@ -21,7 +21,7 @@
 }
 
 .header-skinny-middle{
-  max-width: 33.34%;
+  max-width: 33.33%;
   flex: 1 0 auto;
   height: 35px;
   background: $header-background;
