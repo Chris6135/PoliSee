@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-
 const SearchBar = ({ history }) => {
   const [address, setAddress] = useState("");
   const [levels, setLevels] = useState([]);
@@ -55,29 +53,22 @@ const SearchBar = ({ history }) => {
     }
   };
 
-  const levelOpts = [
-    { name: "FEDERAL", val: "country" },
-    { name: "STATE", val: "administrativeArea1" },
-    { name: "COUNTY", val: "administrativeArea2" },
-    { name: "LOCAL", val: "locality subLocality1 subLocality2" },
-  ].map((level) => {
-    return (
-      <li
-        key={level.name}
-        className={levels.includes(level.val) ? "selected" : ""}
-        value={level.val}
-        onClick={(e) => handleOptions("levels")(e)}
-      >
-        {level.name}
-      </li>
-    );
-  });
+  const levelOpts = ["FEDERAL", "STATE", "COUNTY", "LOCAL"].map((level) => (
+    <li
+      key={level}
+      className={levels.includes(level.toLowerCase()) ? "selected" : ""}
+      value={level.toLowerCase()}
+      onClick={handleOptions("levels")}
+    >
+      {level}
+    </li>
+  ));
   levelOpts.unshift(
     <li
       key="all"
       value="all"
       className={levels.includes("all") ? "selected" : ""}
-      onClick={(e) => handleOptions("levels")(e)}
+      onClick={handleOptions("levels")}
     >
       ALL LEVELS
     </li>
