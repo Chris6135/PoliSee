@@ -4,10 +4,10 @@ import SearchBar from "./search/search_bar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { fetchRepresentatives } from "../actions/search_actions";
-import { cronTest } from "../util/cron_util";
 import logo from "../icons/logo.svg";
 
-const Splash = () => {
+
+const Splash = ({user, logout}) => {
   const [headSearchStr, setHeadSearchStr] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -19,6 +19,31 @@ const Splash = () => {
       .join("")
       .split(" ")
       .join("%20");
+
+
+
+    let loggedInStuff;
+    if (user) {
+      loggedInStuff = (
+        <div className="signin-button">
+          <button onClick={() => logout()}>LOG OUT</button>
+          <Link to="/edit" className="signup-button">
+            EDIT
+          </Link>
+        </div>
+      );
+    } else {
+      loggedInStuff = (
+        <div className="header-links">
+          <Link to="/login" className="signin-button">
+            SIGN IN{" "}
+          </Link>
+          <Link to="/register" className="signup-button">
+            SIGN UP
+          </Link>
+        </div>
+      );
+    }
 
   return (
     <div className="splash">
@@ -56,13 +81,15 @@ const Splash = () => {
                 <FontAwesomeIcon icon="search" flip="horizontal" />
               </button>
             </form>
-            <Link to="/login" className="signin-button">
+            {/* <Link to="/login" className="signin-button">
               <div>Sign In</div>
             </Link>
             <Link to="/register" className="signup-button">
               <div>Sign Up</div>
-            </Link>
+            </Link> */}
+            {loggedInStuff}
           </div>
+
         </section>
         <section className="splash-search-text">
           <div className="splash-search-text-container">
