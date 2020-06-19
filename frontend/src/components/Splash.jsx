@@ -133,11 +133,6 @@ const Splash = () => {
           </div>
 
           <div className="splash-body-one-three">
-            <div className="splash-body-one-three-title-container">
-              <div className="splash-body-one-three-title-thin">
-                Keep tabs on your offcials
-              </div>
-            </div>
 
             <div className="splash-body-one-three-title-container">
               <div className="splash-body-one-three-title-bold">Keep tabs</div>
@@ -153,7 +148,6 @@ const Splash = () => {
               <div className="splash-body-one-three-body">...and against!</div>
             </div>
           </div>
-          <div className="splash-body-one-three"></div>
         </section>
 
         <section className="splash-body-two">
