@@ -52,7 +52,16 @@ const PoliticianSchema = new Schema({
   roles: {
     type: Array,
     default: []
+  },
+  congressId:{
+    type: String,
+  },
+  nextElection:{
+    type: String,
+  },
+  apiUri:{
+    type: String,
   }
 })
 
-module.exports = Politician = mongoose.model('Politican', PoliticianSchema);
+module.exports = Politician = mongoose.model('Politician', PoliticianSchema);
