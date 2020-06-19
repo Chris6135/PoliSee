@@ -64,20 +64,25 @@
           button {
             height:24px;
             width:24px;
-            right:0px;
-            bottom: 32px;
+            right:2px;
+            bottom: 22px;
             position: absolute;
             @include flex(column, center, center);
-            border-left: 1px solid white;
-            border-top: 1px solid white;
-            border-top-left-radius: 5px;
-            font-weight: 500;
-            font-size: 20px;
-            color: $blue-equiv-to-darker-grey;
-            background: lightcoral;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            color: $go-text;
+            text-align: center;
+            padding-bottom: 2px;
+            border: 1px solid rgba($color: $go-text, $alpha: 0.15);
+            span {
+              display: block;
+              transform: scale(1,0.8);
+            }
+            background: $header-background;
             &:hover {
               cursor: pointer;
-              background: rgb(167, 72, 72);
+              background: $darker-grey;
             }
             z-index: 3;
           }
@@ -89,6 +94,7 @@
             @include flex(column, center, center);
             line-height: 95%;
             padding: 3px;
+            background: $header-background-grey;
             text-transform: lowercase;
             h2 {
               font-size: 16px;
