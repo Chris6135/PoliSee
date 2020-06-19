@@ -2,6 +2,7 @@ import {
   RECEIVE_REPS,
   RECEIVE_REP,
   RECEIVE_SUB,
+  CLEAR_ENTITIES,
 } from "../../actions/search_actions";
 import {
   RECEIVE_SENATORS,
@@ -38,6 +39,8 @@ const officialsReducer = (state = {}, action) => {
       const merged = mergePol(newState, action.member);
       newState[merged.id] = merged;
       return newState;
+    case CLEAR_ENTITIES:
+      return {};
     default:
       return state;
   }
@@ -45,11 +48,7 @@ const officialsReducer = (state = {}, action) => {
 
 const mergePol = (state, pol) => {
   const ids = Object.keys(state);
-  const polId = ids.find(
-    (id) =>
-      state[id].name.includes(pol.first_name) &&
-      state[id].name.includes(pol.last_name)
-  );
+  const polId = ids.find((id) => state[id].name.includes(pol.last_name));
   return mergeProperties(state[polId], pol);
 };
 

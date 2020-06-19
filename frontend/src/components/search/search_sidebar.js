@@ -11,6 +11,7 @@ const SearchSidebar = ({
   descending,
   address,
   divisions,
+  location,
 }) => {
   const dispatch = useDispatch();
 
@@ -28,12 +29,14 @@ const SearchSidebar = ({
   const countyDiv = divisions[coId];
 
   useEffect(() => {
-    if (cdId && address.state && !member) {
+    if (cdId && address.state) {
       const cdNum = cdId.match(/\/cd:(\d+)$/)[1];
-      dispatch(fetchMember(address.state, cdNum)).then(setMember(true));
+      if (cdNum !== member)
+        dispatch(fetchMember(address.state, cdNum)).then(setMember(cdNum));
     }
-    if (address.state && !senators) {
-      dispatch(fetchSenators(address.state)).then(setSenators(true));
+    if (address.state) {
+      if (address.state !== senators)
+        dispatch(fetchSenators(address.state)).then(setSenators(address.state));
     }
   }, [cdId]);
 
