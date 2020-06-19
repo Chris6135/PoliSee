@@ -28,6 +28,7 @@ const officialsReducer = (state = {}, action) => {
       newState[action.official._id] = action.official;
       return newState;
     case RECEIVE_SENATORS:
+      debugger
       const [sen1, sen2] = action.senators;
       const merged1 = mergePol(newState, sen1);
       const merged2 = mergePol(newState, sen2);

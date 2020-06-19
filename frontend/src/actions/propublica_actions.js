@@ -21,8 +21,9 @@ const receiveProPublicaError = (error) => ({
 
 export const fetchSenators = (state) => (dispatch) =>
   ProPublicaAPI.senatorsByState(state)
+    // .then((res) => console.log(res)
     .then((res) => dispatch(receiveSenators(res.data.results)))
-    .catch((e) => dispatch(receiveProPublicaError(e.response.data)));
+    // .catch((e) => dispatch(receiveProPublicaError(e.response.data))));
 
 export const fetchMember = (state, cd) => (dispatch) =>
   ProPublicaAPI.memberByDistrict(state, cd)
