@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import shortid from "shortid";
-import man from "../../icons/Man.jpg"
-
+import man from "../../icons/Man.jpg";
 
 import {
   fetchRepresentative,
@@ -128,26 +127,25 @@ const PoliticianShow = ({
     );
   };
 
-  const userToggle = (user, official) => {
-    console.log(official)
-    if (user && user.savedPoliticians.includes(id)){
-    return(
-      <div className="follow-btn" onClick={handleSubscribe("save")}>
-        {" "}
-        <span>-</span>
-      </div>
-    )
-    }else if (user){
-      return(
+  const userToggle = () => {
+    if (user && user.savedPoliticians.includes(id)) {
+      return (
+        <div className="follow-btn" onClick={handleSubscribe("save")}>
+          {" "}
+          <span>-</span>
+        </div>
+      );
+    } else if (user) {
+      return (
         <div className="follow-btn" onClick={handleSubscribe("save")}>
           {" "}
           <span>+</span>
         </div>
-      )
-    }else{
-      return null
+      );
+    } else {
+      return null;
     }
-  }
+  };
 
   return (
     <>
@@ -165,7 +163,7 @@ const PoliticianShow = ({
                     {/* Only show alert if politician is up for re-election */}
                     <span>!</span>
                   </div>
-                  {userToggle(user, id)}
+                  {userToggle()}
                 </figure>
                 <aside>
                   <div>
@@ -182,7 +180,10 @@ const PoliticianShow = ({
                     </span>
                   </div>
                   <div>
-                    Up for election/ How long they've served/Unopposed?{" "}
+                    {official.nextElection
+                      ? `Up for reelection: ${official.nextElection}`
+                      : "Info TK!"}
+                    {/* Up for election/ How long they've served/Unopposed?{" "} */}
                     {/* fill in with info  */}
                   </div>
                   {getAreas(official.roles)}
