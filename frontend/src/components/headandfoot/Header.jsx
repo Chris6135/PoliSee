@@ -15,7 +15,7 @@ class Header extends React.Component {
     const formatAddress = (string) =>
       string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
     const search = formatAddress(this.state.searchQuery);
-    if (this.props.user.interests.length !== 0){
+    if (this.props.user && this.props.user.interests.length !== 0){
       this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=${this.props.user.interests.join('%20')}`))
     }else{
       this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=all`))

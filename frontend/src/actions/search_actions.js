@@ -63,6 +63,6 @@ export const toggleRepresentative = (id, type) => (dispatch) =>
       dispatch(receivePassportError(e.response.data));
     });
 
-export const fetchUserRepresentatives = (userId) => (dispatch) =>
-    UserAPI.fetchUserRepresentatives(userId)
+export const fetchUserRepresentatives = () => (dispatch) =>
+    UserAPI.fetchUserRepresentatives()
       .then((res) => dispatch(receiveReps(res.data)))

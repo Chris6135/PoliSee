@@ -10,7 +10,7 @@
     height: 491px;
     background: $darker-grey;
     font-weight: 500;
-    .rep-edit-options {
+    .rep-edit-reps {
       border-radius: 4px;
       background: $form-bg;
       width: 493px;
@@ -18,7 +18,68 @@
       position: relative;
       left: 88px;
       top: -18px;
-      @include flex(column, center, center);
+      padding: 10px;
+      @include flex(column, flex-start, center);
+      .rep-edit-rep-list {
+        min-height: 10px;
+        @include flex(row, flex-start, flex-start);
+        flex-wrap: wrap;
+        li {
+          border-radius: 2px;
+          &:hover {
+            cursor: pointer;
+          }
+          position: relative;
+          height: 180.5px;
+          width: 166px;
+          overflow: hidden;
+          margin: 20.5px 20.5px 0 0;
+          > * {
+            width: 100%;
+          }
+          header {
+            position: absolute;
+            background: rgba($color: $footer-button-hover, $alpha: 0.65);
+            height: 35px;
+            padding: 3px 5px;
+            backdrop-filter: blur(4px);
+            h2 {
+              font-weight: 500;
+              font-size: 13px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+            }
+            h3 {
+              font-size: 10px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+            }
+          }
+          img {
+            background: $auth-background-grey;
+            min-height: 100%;
+          }
+          footer {
+            // height: 48.5px;  <-- Full height for when "contact" line is back
+            height: 32px;
+            position: absolute;
+            bottom: 0;
+            @include flex(column, center, center);
+            line-height: 95%;
+            padding: 3px;
+            text-transform: lowercase;
+            h2 {
+              font-size: 16px;
+            }
+            h3 {
+              font-weight: 500;
+              font-size: 11px;
+            }
+          }
+        }
+      }
     }
   }
 }

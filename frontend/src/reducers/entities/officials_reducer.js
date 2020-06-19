@@ -4,6 +4,9 @@ import {
   RECEIVE_SUB,
 } from "../../actions/search_actions";
 
+import {RECEIVE_SAVED_REPS} from "../../actions/user_actions";
+
+
 const formatString = (string) =>
   string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
 
@@ -22,6 +25,16 @@ const officialsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_SUB:
       newState[action.official._id] = action.official;
+      return newState;
+    case RECEIVE_SAVED_REPS:
+      action.savedPoliticians.forEach((politician) => {
+        newState[politician._id] = politician;
+        delete newState[
+          `${formatString(politician.name)}_${formatString(
+            politician.office
+          ).slice(0, 5)}`
+        ];
+      })
       return newState;
     default:
       return state;

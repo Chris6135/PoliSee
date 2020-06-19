@@ -25,7 +25,7 @@ const UserSchema = new Schema({
   savedPoliticians: [
     {
     type: Schema.Types.ObjectId,
-    ref: 'Politican'
+    ref: 'Politician'
     }
   ],
   contactPoliticians: [
