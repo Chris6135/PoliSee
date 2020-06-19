@@ -118,11 +118,13 @@ const PoliticianShow = ({
     const issues = Object.keys(issueMap);
     return (
       <div>
+        <div className="issues-container">
         {issues
           .filter((i) => roles.some((r) => issueMap[i].includes(r)))
           .map((a) => (
             <div key={shortid.generate()}>{a}</div>
           ))}
+      </div>
       </div>
     );
   };
