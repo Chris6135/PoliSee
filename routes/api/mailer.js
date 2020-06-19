@@ -15,7 +15,7 @@ router.post(`/send`, (req, res) => {
     let mail = {
         from: "PoliSee",
         to: req.body.email,
-        subject: "test",
+        subject: "test2",
 
         html: req.body.message
     }

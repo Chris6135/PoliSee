@@ -12,7 +12,7 @@ import InfoEditContainer from "../user/InfoEditContainer";
 import InterestEditContainer from "../user/InterestEditContainer";
 import HeaderContainer from "../headandfoot/HeaderContainer";
 // import RepEdit from "../user/RepEdit";
-// import ContactEdit from "../user/ContactEdit";
+import ContactEditContainer from "../user/ContactEditContainer";
 
 
 
@@ -29,6 +29,8 @@ function App() {
         path="/edit/interests"
         component={InterestEditContainer}
       />
+      <ProtectedRoute path="/edit/contact" component={ContactEditContainer} />
+
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
       <Route path="/search" component={SearchLanding} />
       <Route path="/politician/:id" component={PoliticianShow} />
