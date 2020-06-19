@@ -96,9 +96,11 @@ const PoliticianShow = ({
     if (savant)
       return (
         <div>
-          <div>education</div>
-          <div>justice</div>
-          <div>legislation</div>
+          <div className="issues-container">
+            <div>education</div>
+            <div>justice</div>
+            <div>legislation</div>
+          </div>
         </div>
       );
     const issues = Object.keys(issueMap);
