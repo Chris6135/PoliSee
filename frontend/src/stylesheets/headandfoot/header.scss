@@ -18,6 +18,8 @@
 
 .header-logo{
   margin-left: 70px;
+  background: rgba($color: $footer-button-hover, $alpha: 0.005);
+  padding: 0 10px 3px;
   img {
     width: 200px;
     background: none;

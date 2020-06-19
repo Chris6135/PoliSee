@@ -8,14 +8,32 @@
 .splash-top{
     width:100%;
     height: 100vh;
-    // height:20%; //may need to change to 20%
-    background: #C4C4C0;
+    position: relative;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-bottom: 3px solid $header-background;
+    overflow: hidden;
+
+  &::after {
+    content: "";
+    background-image: url("../icons/test-group.jpg");
+    background-position: center;
+    opacity: 0.6;
+    background-size: cover;
+    filter: brightness(50%);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;   
+  }
 }
 
 .splash-header{
+    z-index: 1;
     width: 100%;
     height: 64px;
     margin-top: 25px;
@@ -30,8 +48,8 @@
 }
 .splash-header-logo{
     // height: 100%;
-    // width: 347px;
-    // background: $switch-text;
+    width: 300px;
+    background: radial-gradient(ellipse closest-side, rgba($switch-text, 0.3) 5px, transparent 94%);
     margin-bottom: 6px;
     img {
       height: 64px;
@@ -45,7 +63,7 @@
     color: $go-text;
     @include flex($align: center, $justify: center);
     &:hover {
-      background: $go-button;
+      background: rgba($color: $go-button, $alpha: 0.6);
       cursor: pointer;
     }
     div {
@@ -77,6 +95,8 @@
       padding-left: 12.5px;
       font-size: 16px;
       height: 100%;
+      width: 100%;
+      margin-right: 8px;
       font-variant: small-caps;
       font-feature-settings: normal;
     }
@@ -89,8 +109,9 @@
 }
 .signin-button{
   &:hover {
-    background: $button;
+    background: rgba($color: $go-button, $alpha: 0.6);
     color: $go-text;
+    cursor: pointer;
   }
   margin-left: 15.5px;
   width: 128px;
@@ -106,8 +127,9 @@
 
 .signup-button{
     &:hover {
-      background: $button;
+      background: rgba($color: $go-button, $alpha: 0.6);
       color: $go-text;
+      cursor: pointer;
     }
     color: white;
     width: 128px;
@@ -122,6 +144,8 @@
 
 
 .splash-search-text{
+    z-index: 1;
+    text-shadow: 0 0 0.5px rgba($color: $button, $alpha: 0.2);
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -145,6 +169,7 @@
 }
 
 .splash-searchbar{
+    z-index: 1;
     background: white;
     display:flex;
     justify-content: center;
@@ -171,6 +196,7 @@
         }
         .address-input {
           width: 640px;
+          margin-right: 14px;
           font-size: 24px;
           height: 100%;
           padding-left: 33px;
@@ -248,13 +274,14 @@
             height: 100%;
             width: 100px;
             text-align: center;
-            background: $go-button;
+            background: $blue-equiv-to-darker-grey;
             border-radius: 0 9px 9px 0;
             font-weight: 600;
             color: $go-text;
             box-shadow: inset 4px 0 1px -2px rgba($color: $show-font-color, $alpha: 0.3);
             &:hover {
-              background: mix($auth-background-grey, $go-button, $weight: 25%);
+              // background: mix($auth-background-grey, $go-button, $weight: 25%);
+              background: mix($blue-equiv-to-darker-grey, $splash-show-bg, $weight: 20%);
             }
           }
         }
@@ -268,6 +295,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: $splash-show-bg;
 }
 
 $smaller-box-height: 305px;
@@ -276,7 +304,8 @@ $smaller-box-width: 256.5px;
 .splash-body-one-one{
     height: $smaller-box-height;
     width: $smaller-box-width;
-    background: $auth-background-grey;
+    color: $footer-button-text;
+    background: $button;
     padding-right: 51.5px;
     border-radius: 3px 0 0 3px;
     position: relative;
@@ -356,7 +385,8 @@ $smaller-box-width: 256.5px;
 .splash-body-one-three{
   height: $smaller-box-height;
   width: $smaller-box-width;
-  background: $auth-background-grey;
+  color: $footer-button-text;
+  background: $button;
   padding-left: 51.5px;
   border-radius: 0 3px 3px 0;
   position: relative;
@@ -438,8 +468,9 @@ $smaller-box-width: 256.5px;
 .splash-body-two{
   height: 815px;
   width: 100%;
-  background: $splash-show-bg;
-  
+  background: $splash-show-bg-b;
+  border-bottom: 3px double $splash-show-bg;
+  border-top: 3px double $splash-show-bg;
 }
 
 .splash-body-showpage-container {
@@ -459,7 +490,7 @@ margin: 0 auto;
 .splash-body-politician-show-upper-photo{
   width: 331.5px;
   height: 258.5px;
-  background: rgb(58, 58, 109);
+  background: rgba($color: $header-background, $alpha: 0.8);
 }
 
 .splash-body-politician-show-upper-text-container {
@@ -471,7 +502,7 @@ margin-left: 37px;
   width: 336px;
   height: 61px;
   margin-bottom: 34.5px;
-  background: rgb(165, 67, 67);
+  background: $stripe-red;
   &:last-of-type {
     margin-bottom: unset;
   }
@@ -482,7 +513,7 @@ margin-left: 37px;
   margin-top: 32px;
   width: 100%;
   height: 61px;
-  background: rgb(165, 67, 67);
+  background: $stripe-red;
 
 }
 
@@ -497,14 +528,14 @@ margin-left: 37px;
   margin-right: 34.5px;
   width: 220px;
   height: 100%;
-  background: rgb(165, 67, 67);
+  background: $stripe-red;
 
 }
 
 .splash-body-politican-show-middle-container-right{
   height: 100%;
   width: 450px;
-  background: rgb(165, 67, 67);
+  background: $stripe-red;
 }
 
 
@@ -515,7 +546,7 @@ margin-left: 37px;
   margin-left: 85px;
   position: relative;
   top: -24px;
-  color: $body-one-text;
+  color: $show-font-color;
 }
 
 
@@ -647,11 +678,14 @@ margin-left: 37px;
   height: 816px;
   border-bottom: solid 1px $header-background;
   @include flex(column, center, center);
-  width: 1300px;
+  border-bottom: 3px double $background;
+  background: $splash-show-bg;
 }
 
 .splash-source-information{
+    width: 1300px;
     height: 669px;
+    color: $sources-text;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -675,7 +709,7 @@ margin-left: 37px;
     height: 265px;
     margin: auto 0;
     width: 265px;
-    background: #BEBDBB;
+    background: $stripe-red;
     
     border-radius: 300px;
     display:flex;
@@ -685,7 +719,7 @@ margin-left: 37px;
 
 .github-repo-info > *{
     font-size: 255px;
-    color:#F2F1EC;
+    color: $sources-text;
 }
 
 .api-boxes{
@@ -697,10 +731,14 @@ margin-left: 37px;
     height: 72.5px;
     text-transform: uppercase;
     font-size: 26px;
-    background: #E7E6E1;
+    border-radius: 3px;
+    background: rgba($color: $go-button, $alpha: 0.4);
     letter-spacing: 2px;
     &:not(:last-of-type) {
       margin-right: 27px;
+    }
+    &:hover {
+      background: rgba($color: $go-button, $alpha: 0.7);
     }
 }
 .splash-body-bottom{ 
@@ -712,7 +750,7 @@ margin-left: 37px;
     justify-content: space-between;
 }
 .logo{ padding: 100px;
-    background: $search-text;
+    background: $blue-equiv-to-darker-grey;
     margin-right:160px}
 
 
@@ -720,6 +758,6 @@ margin-left: 37px;
     padding: 200px;
     padding-left:  120px;
     padding-right: 120px;
-    background: $footer-button-hover;
+    background: $red-equiv-to-darker-grey;
 }
 
