@@ -10,18 +10,9 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  zip: {
-    type: Number,
+  address: {
+    type: String,
     required: true,
-  },
-  district: {
-    type: String,
-  },
-  county: {
-    type: String,
-  },
-  state: {
-    type: String,
   },
   date: {
     type: Date,
@@ -31,6 +22,22 @@ const UserSchema = new Schema({
     type: Array,
     default: []
   },
+  savedPoliticians: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: 'Politican'
+    }
+  ],
+  contactPoliticians: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Politician'
+    }
+  ],
+  outgoingEmails: {
+    type: Array,
+    default: []
+  }
 })
 
 module.exports = User = mongoose.model('User', UserSchema);

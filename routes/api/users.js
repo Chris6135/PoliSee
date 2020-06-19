@@ -9,7 +9,12 @@ const secret = process.env.SECRET_OR_KEY;
 
 const getPayload = (user) => {
   return {
-    id: user.id, email: user.email, zip: user.zip, interests: user.interests
+    id: user.id, 
+    email: user.email, 
+    address: user.address, 
+    interests: user.interests, 
+    savedPoliticians: user.savedPoliticians,
+    contactPoliticians: user.contactPoliticians
   }
 }
 
@@ -36,7 +41,7 @@ router.post('/register', (req, res) => {
         const newUser = new User({
           email: req.body.email,
           password: req.body.password,
-          zip: req.body.zip,
+          address: req.body.address,
         })
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -107,8 +112,10 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
   res.json({
     id: req.user.id,
     email: req.user.email,
-    zip: req.user.zip,
-    interests: req.user.interests
+    address: req.user.address,
+    interests: req.user.interests,
+    savedPoliticians: req.user.savedPoliticians,
+    contactPoliticians: req.user.contactPoliticians
   });
 })
 
@@ -117,7 +124,7 @@ router.patch('/edit', (req, res) => {
     User.findByIdAndUpdate(
       req.body.id,
       {
-        $set: {email: req.body.email, zip: req.body.zip}
+        $set: {email: req.body.email, address: req.body.address}
       },
       { new: true }).then((result) => {
         jwt.sign(
@@ -154,8 +161,70 @@ router.patch('/edit', (req, res) => {
       })
         .catch((err) => res.status(404).end())
   }
+  // else if(req.body.contactPoliticians){
+  //   const contactPoliticians = req.body.contactPoliticians.split('%20');
+  //   const savedPoliticians = req.body.savedPoliticians.split('%20');
+  //   User.findByIdAndUpdate(
+  //     req.body.id,
+  //     {
+  //       savedPoliticians: savedPoliticians,
+  //       contactPoliticians: contactPoliticians
+  //     },
+  //     { new: true }).then((result) => {
+  //       jwt.sign(
+  //         getPayload(result),
+  //         secret,
+  //         { expiresIn: 3600 },
+  //         (err, token) => {
+  //           res.json({
+  //             success: true,
+  //             token: 'Bearer ' + token
+  //           });
+  //         });
+  //     })
+  //     .catch((err) => res.status(404).end())
+  // }
 
 })
+
+router.patch('/subscribe', async (req, res) => {
+  const curUser = await User.findById(req.body.userId)
+  if (curUser) {
+    const { savedPoliticians, contactPoliticians } = curUser;
+
+    if (req.body.save) {
+      if (savedPoliticians.includes(req.body.politicianId)) {
+        savedPoliticians.splice(savedPoliticians.indexOf(req.body.politicianId), 1);
+      } else {
+        savedPoliticians.push(req.body.politicianId)
+      }
+    }
+    else if (req.body.contact) {
+      if (contactPoliticians.includes(req.body.politicianId)) {
+        contactPoliticians.splice(contactPoliticians.indexOf(req.body.politicianId), 1);
+      } else {
+        contactPoliticians.push(req.body.politicianId)
+      }
+    }
+  }
+
+  User.updateOne({ _id: req.body.userId }, { savedPoliticians, contactPoliticians })
+    .then((updatedUser) => {
+      jwt.sign(
+        getPayload(updatedUser),
+        secret,
+        { expiresIn: 3600 },
+        (err, token) => {
+          res.json({
+            success: true,
+            token: 'Bearer ' + token
+          });
+        });
+    })
+    .catch(err => res.status(404).end())
+
+})
+
 router.patch('/search', async (req, res) => {
   const params = { state: req.body.state, county: req.body.county };
 
