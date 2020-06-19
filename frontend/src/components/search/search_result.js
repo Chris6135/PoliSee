@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import man from "../../icons/Man.jpg"
 
 import { saveRepresentative } from "../../actions/search_actions";
 
@@ -20,7 +21,9 @@ const SearchResult = ({ official, history }) => {
         <h2>{official.name}</h2>
         <h3>{official.office}</h3>
       </header>
-      <img src={official.photoUrl} alt="" />
+      <img src={official.photoUrl || man} alt="" />
+      {/* <img src={man} alt="" /> */}
+
       <footer>
         <h2>{official.phone || ""}</h2>
         {/* <h3>{`Contact ${official.name}`}</h3> */}
