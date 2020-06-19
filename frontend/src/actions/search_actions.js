@@ -1,5 +1,7 @@
 import CivicsAPI from "../util/civics_api_util";
 import { getUser } from "./session_actions";
+import * as UserAPI from "../util/user_api_util";
+
 
 export const RECEIVE_REPS = "RECEIVE_REPS";
 export const RECEIVE_REP = "RECEIVE_REP";
@@ -65,3 +67,7 @@ export const toggleRepresentative = (id, type) => (dispatch) =>
     .catch((e) => {
       dispatch(receivePassportError(e.response.data));
     });
+
+export const fetchUserRepresentatives = () => (dispatch) =>
+    UserAPI.fetchUserRepresentatives()
+      .then((res) => dispatch(receiveReps(res.data)))

@@ -48,31 +48,40 @@ class InterestEdit extends React.Component {
           <div className="interest-edit-form">
             <form onSubmit={this.handleSubmit}>
               <h1>Update your interests</h1>
-              <div className="interest-box">
+              <div className="interest-box" >
                 <label htmlFor="education">Education</label>
-                <input
-                  name="education"
-                  type="checkbox"
-                  checked={usableInterests.includes('education')}
-                  onChange={this.handleChange("education")}
-                />
+                <div className="slide-box"onClick={this.handleChange("education")} >
+                  <input
+                    name="education"
+                    type="checkbox"
+                    checked={usableInterests.includes('education')}
+                    onChange={this.handleChange("education")}
+                  />
+                  <span className="slider"/>
+                </div>
               </div>
               <div className="interest-box">
                 <label htmlFor="justice">Justice</label>
-                <input
-                  name="justice"
-                  type="checkbox"
-                  checked={usableInterests.includes('justice')}
-                  onChange={this.handleChange("justice")}
-                />
+                <div className="slide-box"onClick={this.handleChange("justice")} >
+                  <input
+                    name="justice"
+                    type="checkbox"
+                    checked={usableInterests.includes('justice')}
+                    onChange={this.handleChange("justice")}
+                  />
+                  <span className="slider"/>
+                </div>
               </div>
               <div className="interest-box">
                 <label htmlFor="legislation">Legislation</label>
-                <input
-                  type="checkbox"
-                  checked={usableInterests.includes('legislation')}
-                  onChange={this.handleChange("legislation")}
-                />  
+                <div className="slide-box"onClick={this.handleChange("legislation")} >
+                  <input
+                    type="checkbox"
+                    checked={usableInterests.includes('legislation')}
+                    onChange={this.handleChange("legislation")}
+                  />  
+                  <span className="slider"/>
+                </div>
               </div>            
               <button onClick={this.handleSubmit}>
                 Confirm Changes

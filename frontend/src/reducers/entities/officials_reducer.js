@@ -9,6 +9,9 @@ import {
   RECEIVE_MEMBER,
 } from "../../actions/propublica_actions";
 
+import {RECEIVE_SAVED_REPS} from "../../actions/user_actions";
+
+
 const formatString = (string) =>
   string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
 
@@ -28,7 +31,17 @@ const officialsReducer = (state = {}, action) => {
     case RECEIVE_SUB:
       newState[action.official._id] = action.official;
       return newState;
+    case RECEIVE_SAVED_REPS:
+      action.savedPoliticians.forEach((politician) => {
+        newState[politician._id] = politician;
+        delete newState[
+          `${formatString(politician.name)}_${formatString(
+            politician.office
+          ).slice(0, 5)}`
+        ];
+      })
     case RECEIVE_SENATORS:
+      debugger
       const [sen1, sen2] = action.senators;
       const merged1 = mergePol(newState, sen1);
       const merged2 = mergePol(newState, sen2);

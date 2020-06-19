@@ -18,18 +18,22 @@
       position: relative;
       left: 88px;
       top: -18px;
+      @include flex(column, center, center);
       form{
+        width: 330px;
         @include flex(column, center, center);
       }
         h1{
           text-align: center;
-          line-height: 50px;
+          line-height: 30px;
           font-size: 30px;
           font-variant: small-caps;
-          margin-bottom: 80px;
+          margin-bottom: 15px;
         }
         label {
+          align-self: flex-start;
           position: relative;
+          margin: 3px 0;
           font-variant: small-caps;
         }
         .err-msg {
@@ -45,7 +49,7 @@
           padding: 10px;
           height: 38px;
           border: 2.5px solid #9a9a9a;
-          width: 420px;
+          width: 100%;
           font-size: 14px;
           border-radius: 10px;
         }
@@ -53,27 +57,30 @@
           @include flex(row, center, center);
           line-height: 48.5px;
           width: 200px;
-          margin: 20px;
+          margin: 20px 0 10px;
           height: 48.5px;
           background: $button;
+          color: $background;
           border-radius: 7px;
         }
         button:hover{
-          background: lightgray;
+          background: $footer-button-hover;
         }
         
         .info-links{
-          @include flex(row, center, center)
+          @include flex(column, center, center)
         }
       a {
           @include flex(row, center, center);
           line-height: 48.5px;
           width: 200px;
-          margin: 20px;
           height: 48.5px;
           background: $button;
           border-radius: 7px;
-
+          color: $background;
+          &:not(:last-of-type) {
+            margin-bottom: 10px;
+          }
       }
       a:hover{
         background: lightgray;
