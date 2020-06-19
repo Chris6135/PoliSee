@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 class RepEdit extends React.Component {
   constructor(props) {
@@ -8,11 +8,11 @@ class RepEdit extends React.Component {
     this.handleToggle = this.handleToggle.bind(this);
   }
 
-  componentDidMount(){
-    this.props.fetchUserRepresentatives()
+  componentDidMount() {
+    this.props.fetchUserRepresentatives();
   }
 
-  handleClick(e){
+  handleClick(e) {
     e.preventDefault();
     this.props.history.push(`/officials/${e.currentTarget.getAttribute("value")}`)
 
@@ -24,18 +24,18 @@ class RepEdit extends React.Component {
   }
 
   render() {
-    let officialsToMap = []; 
+    let officialsToMap = [];
 
-    for(let i=0; i< this.props.user.savedPoliticians.length; i++){
-      if (this.props.officials[this.props.user.savedPoliticians[i]] !== undefined){
-        officialsToMap.push(this.props.officials[this.props.user.savedPoliticians[i]])
+    for (let i = 0; i < this.props.user.savedPoliticians.length; i++) {
+      if (
+        this.props.officials[this.props.user.savedPoliticians[i]] !== undefined
+      ) {
+        officialsToMap.push(
+          this.props.officials[this.props.user.savedPoliticians[i]]
+        );
       }
     }
-    if (officialsToMap.length === 0){
-      return null;
-    }else{
-
-      return (
+    return (
         <div className="rep-edit">
           <div className="rep-edit-backdrop">
             <div className="rep-edit-reps">
@@ -65,9 +65,7 @@ class RepEdit extends React.Component {
             </div>
           </div>
         </div>
-      )
-    }
-
+    );
   }
 }
 

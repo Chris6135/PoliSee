@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import shortid from "shortid";
+import man from "../../icons/Man.jpg"
+
 
 import {
   fetchRepresentative,
@@ -156,7 +158,7 @@ const PoliticianShow = ({
               <div className="flag-top">
                 <figure className="image">
                   <div className="image-container">
-                    <img src={official.photoUrl} alt={official.name} />
+                    <img src={official.photoUrl || man} alt={official.name} />
                   </div>
                   <div className="alert">
                     {" "}
@@ -207,7 +209,7 @@ const PoliticianShow = ({
               </aside>
             </div>
             <div className="propublica">
-              propublica info <br />
+              propublica info coming soon <br />
               committee memberships <br />
               blurb if non-existant <br />
             </div>

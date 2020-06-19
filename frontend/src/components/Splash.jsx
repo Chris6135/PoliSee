@@ -7,7 +7,7 @@ import { fetchRepresentatives } from "../actions/search_actions";
 import logo from "../icons/logo.svg";
 
 
-const Splash = ({user, logout}) => {
+const Splash = (props) => {
   const [headSearchStr, setHeadSearchStr] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,25 +23,71 @@ const Splash = ({user, logout}) => {
 
 
     let loggedInStuff;
-    if (user) {
+    if (props.user) {
       loggedInStuff = (
-        <div className="signin-button">
-          <button onClick={() => logout()}>LOG OUT</button>
-          <Link to="/edit" className="signup-button">
-            EDIT
-          </Link>
+        <div className="splash-header-right">
+        <form
+            className="splash-header-search-bar"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const search = formatAddress(headSearchStr);
+              dispatch(fetchRepresentatives(search)).then(
+                history.push(
+                  `/search?address=${search}&levels=all&issues=all`
+                )
+              );
+            }}
+          >
+          <input
+            type="text"
+            value={headSearchStr}
+            onChange={(e) => setHeadSearchStr(e.target.value)}
+            placeholder="Find Your Representatives"
+          />
+          <button className="header-search-icon">
+            <FontAwesomeIcon icon="search" flip="horizontal" />
+          </button>
+        </form>
+        <div onClick={() => props.logout()} className="signin-button">
+          <div>Log Out</div>
         </div>
+        <Link to="/edit" className="signup-button">
+          <div>Edit</div>
+        </Link>
+      </div>
       );
     } else {
-      loggedInStuff = (
-        <div className="header-links">
-          <Link to="/login" className="signin-button">
-            SIGN IN{" "}
-          </Link>
-          <Link to="/register" className="signup-button">
-            SIGN UP
-          </Link>
-        </div>
+     loggedInStuff= ( 
+     <div className="splash-header-right">
+        <form
+          className="splash-header-search-bar"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const search = formatAddress(headSearchStr);
+            dispatch(fetchRepresentatives(search)).then(
+              history.push(
+                `/search?address=${search}&levels=all&issues=all`
+              )
+            );
+          }}
+        >
+        <input
+          type="text"
+          value={headSearchStr}
+          onChange={(e) => setHeadSearchStr(e.target.value)}
+          placeholder="Find Your Representatives"
+        />
+        <button className="header-search-icon">
+          <FontAwesomeIcon icon="search" flip="horizontal" />
+        </button>
+      </form>
+      <Link to="/login" className="signin-button">
+        <div>Sign In</div>
+      </Link>
+      <Link to="/register" className="signup-button">
+        <div>Sign Up</div>
+      </Link>
+   </div>
       );
     }
 
@@ -58,37 +104,9 @@ const Splash = ({user, logout}) => {
             </div>
           </div>
 
-          <div className="splash-header-right">
-            <form
-              className="splash-header-search-bar"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const search = formatAddress(headSearchStr);
-                dispatch(fetchRepresentatives(search)).then(
-                  history.push(
-                    `/search?address=${search}&levels=all&issues=all`
-                  )
-                );
-              }}
-            >
-              <input
-                type="text"
-                value={headSearchStr}
-                onChange={(e) => setHeadSearchStr(e.target.value)}
-                placeholder="Find Your Representatives"
-              />
-              <button className="header-search-icon">
-                <FontAwesomeIcon icon="search" flip="horizontal" />
-              </button>
-            </form>
-            {/* <Link to="/login" className="signin-button">
-              <div>Sign In</div>
-            </Link>
-            <Link to="/register" className="signup-button">
-              <div>Sign Up</div>
-            </Link> */}
+          
             {loggedInStuff}
-          </div>
+         
 
         </section>
         <section className="splash-search-text">
