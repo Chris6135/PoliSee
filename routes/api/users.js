@@ -242,4 +242,16 @@ router.patch('/search', async (req, res) => {
 
 });
 
+router.get('/politicians', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  User.findById(req.user.id)
+    .populate({ path: 'savedPoliticians' })
+    .select("savedPoliticians -_id")
+    .then(savedPoliticians => {
+      res.status(200).json(savedPoliticians)
+    })
+})
+
+// 
+
 module.exports = router;

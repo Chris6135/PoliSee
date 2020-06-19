@@ -60,14 +60,14 @@ const PoliticianShow = ({
     `${line1}, ${city}, ${state} ${zip}`;
 
   const channels = official
-    ? official.socialMedia.map((channel, i) => {
-        switch (channel.type) {
+    ? Object.keys(official.socialMedia).map((channel) => {
+        switch (channel) {
           case "Facebook":
             return (
               <a
-                key={i}
+                key={shortid.generate()}
                 target="_blank"
-                href={`https://www.facebook.com/${channel.id}`}
+                href={`https://www.facebook.com/${official.socialMedia[channel]}`}
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={["fab", "facebook-square"]} />
@@ -76,9 +76,9 @@ const PoliticianShow = ({
           case "Twitter":
             return (
               <a
-                key={i}
+                key={shortid.generate()}
                 target="_blank"
-                href={`https://twitter.com/${channel.id}`}
+                href={`https://twitter.com/${official.socialMedia[channel]}`}
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={["fab", "twitter-square"]} />
@@ -87,9 +87,9 @@ const PoliticianShow = ({
           case "YouTube":
             return (
               <a
-                key={i}
+                key={shortid.generate()}
                 target="_blank"
-                href={`https://www.youtube.com/user/${channel.id}`}
+                href={`https://www.youtube.com/user/${official.socialMedia[channel]}`}
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={["fab", "youtube"]} />
@@ -177,7 +177,7 @@ const PoliticianShow = ({
               </aside>
 
               <aside className="contact secondary">
-                <p>{formatAddress(official.address)}</p>
+                <p>{official.address && formatAddress(official.address)}</p>
                 <p>
                   {official.url && <a href={official.url}>Official Website </a>}
                 </p>

@@ -16,7 +16,7 @@ class Header extends React.Component {
     const formatAddress = (string) =>
       string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
     const search = formatAddress(this.state.searchQuery);
-    if (this.props.user.interests.length !== 0){
+    if (this.props.user && this.props.user.interests.length !== 0){
       this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=${this.props.user.interests.join('%20')}`))
     }else{
       this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=all`))
@@ -34,11 +34,43 @@ class Header extends React.Component {
         case "/login": //when we figure out cases and content we can expand this
           return (
             <div className="header-drop-content">
-              <p>Funky Kong</p>
-              <p>Funky Kong</p>
-              <p>Funky Kong</p>
+              <p>Enter your info to acces your account</p>
+              <p>When signed in you can manage saved representitives and sign up for automatic email updates</p>
+              <p>Accounts are created via the "Sign Up" button.</p>
             </div>
           );
+        case "/register": //when we figure out cases and content we can expand this
+        return (
+          <div className="header-drop-content">
+          <p>Enter your info to make an account!</p>
+          <p>Please enter your whole adresss, including state.</p>
+          <p>It helps us grab accurate information about your representitives</p>
+          </div>
+        );
+      case "/edit": //when we figure out cases and content we can expand this
+      return (
+        <div className="header-drop-content">
+          <p>From here you can change information on your account.</p>
+          <p>Set up default interests, change saved representitves, and change your address</p>
+          <p>Email reminder funcationality is coming soon</p>
+        </div>
+      );
+      case "/edit/interests": 
+      return (
+        <div className="header-drop-content">
+          <p>Here you can toggle your default interests.</p>
+          <p>Your default interests will automatically filter any serach results</p>
+          <p>Representitives outside of your intererests can still be seen using the search page filter</p>
+        </div>
+      );
+      case "/edit/info": 
+      return (
+        <div className="header-drop-content">
+          <p>Use this page to edit your user info.</p>
+          <p>Change your Email or Home Adresss</p>
+          <p>When you log it it will automatically send you to your home's search page</p>
+        </div>
+      );
         case "/":
           return (
             <div className="header-drop-content">
