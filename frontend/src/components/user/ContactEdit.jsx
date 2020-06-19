@@ -12,6 +12,24 @@ class ContactEdit extends React.Component {
   }
 
 
+  //use nodemailer handlebars to get some css in here eventually. 
+  // buildMessage(){
+
+  //   return( )
+
+  // }
+
+  buildEmail(message){
+
+  
+
+    return{
+      email: this.props.user.email,
+      message: "",
+      }
+  }
+
+
   render(){
 
     return(
