@@ -18,17 +18,14 @@ class RepEdit extends React.Component {
 
   render() {
     let officialsToMap = []; 
-    console.log(this.props.officials)
     for(let i=0; i< this.props.user.savedPoliticians.length; i++){
       if (this.props.officials[this.props.user.savedPoliticians[i]] !== undefined){
         officialsToMap.push(this.props.officials[this.props.user.savedPoliticians[i]])
       }
     }
     if (officialsToMap.length === 0){
-      console.log("i didn't push")
       return null;
     }else{
-      console.log(officialsToMap)
       return (
         <div className="rep-edit">
           <div className="rep-edit-backdrop">
