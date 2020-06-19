@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import logo from "../icons/logo.svg";
 import SearchBar from "./search/search_bar";
-import { fetchRepresentatives, clearEntities } from "../actions/search_actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
+import { fetchRepresentatives } from "../actions/search_actions";
+import logo from "../icons/logo.svg";
 
-const Splash = ({ user, logout }) => {
+
+const Splash = (props) => {
   const [headSearchStr, setHeadSearchStr] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,32 +20,76 @@ const Splash = ({ user, logout }) => {
       .split(" ")
       .join("%20");
 
-  let loggedInStuff;
-  if (user) {
-    loggedInStuff = (
-      <div className="signin-button">
-        <button onClick={() => logout()}>LOG OUT</button>
-        <Link to="/edit" className="signup-button">
-          EDIT
-        </Link>
-      </div>
-    );
-  } else {
-    loggedInStuff = (
-      <div className="header-links">
-        <Link to="/login" className="signin-button">
-          SIGN IN{" "}
-        </Link>
-        <Link to="/register" className="signup-button">
-          SIGN UP
-        </Link>
-      </div>
-    );
-  }
 
-  useEffect(() => {
-    dispatch(clearEntities());
-  }, []);
+
+    let loggedInStuff;
+    if (props.user) {
+      loggedInStuff = (
+        <div className="splash-header-right">
+        <form
+            className="splash-header-search-bar"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const search = formatAddress(headSearchStr);
+              dispatch(fetchRepresentatives(search)).then(
+                history.push(
+                  `/search?address=${search}&levels=all&issues=all`
+                )
+              );
+            }}
+          >
+          <input
+            type="text"
+            value={headSearchStr}
+            onChange={(e) => setHeadSearchStr(e.target.value)}
+            placeholder="Find Your Representatives"
+          />
+          <button className="header-search-icon">
+            <FontAwesomeIcon icon="search" flip="horizontal" />
+          </button>
+        </form>
+        <div onClick={() => props.logout()} className="signin-button">
+          <div>Log Out</div>
+        </div>
+        <Link to="/edit" className="signup-button">
+          <div>Edit</div>
+        </Link>
+      </div>
+      );
+    } else {
+     loggedInStuff= ( 
+     <div className="splash-header-right">
+        <form
+          className="splash-header-search-bar"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const search = formatAddress(headSearchStr);
+            dispatch(fetchRepresentatives(search)).then(
+              history.push(
+                `/search?address=${search}&levels=all&issues=all`
+              )
+            );
+          }}
+        >
+        <input
+          type="text"
+          value={headSearchStr}
+          onChange={(e) => setHeadSearchStr(e.target.value)}
+          placeholder="Find Your Representatives"
+        />
+        <button className="header-search-icon">
+          <FontAwesomeIcon icon="search" flip="horizontal" />
+        </button>
+      </form>
+      <Link to="/login" className="signin-button">
+        <div>Sign In</div>
+      </Link>
+      <Link to="/register" className="signup-button">
+        <div>Sign Up</div>
+      </Link>
+   </div>
+      );
+    }
 
   return (
     <div className="splash">
@@ -53,44 +97,17 @@ const Splash = ({ user, logout }) => {
         <section className="splash-header">
           <div className="splash-header-left">
             <div className="splash-header-logo">
-              <img src={logo} />
+              <img src={ logo } />
             </div>
             <div className="splash-header-left-dropdown">
               <div>?</div>
             </div>
           </div>
 
-          <div className="splash-header-right">
-            <form
-              className="splash-header-search-bar"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const search = formatAddress(headSearchStr);
-                dispatch(fetchRepresentatives(search)).then(
-                  history.push(
-                    `/search?address=${search}&levels=all&issues=all`
-                  )
-                );
-              }}
-            >
-              <input
-                type="text"
-                value={headSearchStr}
-                onChange={(e) => setHeadSearchStr(e.target.value)}
-                placeholder="Find Your Representatives"
-              />
-              <button className="header-search-icon">
-                <FontAwesomeIcon icon="search" flip="horizontal" />
-              </button>
-            </form>
-            {/* <Link to="/login" className="signin-button">
-              <div>Sign In</div>
-            </Link>
-            <Link to="/register" className="signup-button">
-              <div>Sign Up</div>
-            </Link> */}
+          
             {loggedInStuff}
-          </div>
+         
+
         </section>
         <section className="splash-search-text">
           <div className="splash-search-text-container">
@@ -164,6 +181,7 @@ const Splash = ({ user, logout }) => {
           </div>
 
           <div className="splash-body-one-three">
+
             <div className="splash-body-one-three-title-container">
               <div className="splash-body-one-three-title-bold">Keep tabs</div>
               <div className="splash-body-one-three-title-thin">on your</div>
