@@ -37,6 +37,7 @@
         color: $section-headers;
         font-weight: 400;
         height: 100%;
+        max-width: 100%;
         border-bottom: 3px solid $divider;
         @include flex(column, $justify: center);
         h1 {

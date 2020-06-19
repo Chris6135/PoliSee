@@ -4,7 +4,8 @@ $font: 'Montserrat', sans-serif;
 
 $background: #f2f1ec;
 $header-background: #a8a8a8;
-$splash-show-bg: #E6E5E1;
+$splash-show-bg: #4b4677ff;
+$splash-show-bg-b: #E6E5E1;
 
 $footer-button-text: #eeeeee;
 $footer-button-hover: #c3c3c3;
@@ -37,6 +38,9 @@ $go-text: #f4f4f4;
 $body-one-center: #ebebeb;
 $body-one-text: #636363;
 
+$stripe-red: rgba(165, 67, 67, 0.8);
+$stripe-red-full-opacity: rgb(165, 67, 67);
+
 //search-landing
 $sidebar-bg: #d0d0cc;
 $pseudos: #c9c6c4;
@@ -50,3 +54,4 @@ $sidebar-buttons: #c7c7c6;
 $selected-sidebar-buttons: #e7e7e7;
 
 $alert-red: #840909;
+
