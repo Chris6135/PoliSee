@@ -1,4 +1,8 @@
-const { RECEIVE_REPS, RECEIVE_REP } = require("../../actions/search_actions");
+const {
+  RECEIVE_REPS,
+  RECEIVE_REP,
+  CLEAR_ENTITIES,
+} = require("../../actions/search_actions");
 
 const formatString = (string) =>
   string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
@@ -21,6 +25,8 @@ const officesReducer = (state = {}, action) => {
         );
       }
       return newState;
+    case CLEAR_ENTITIES:
+      return {};
     default:
       return state;
   }

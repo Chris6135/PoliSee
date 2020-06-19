@@ -8,6 +8,8 @@ const formatString = (string) =>
 const formatOfficials = (officials, offices) =>
   officials.map((o, i) => {
     const office = offices.find((off) => off.officialIndices.includes(i));
+    const socialMedia = {};
+    if (o.channels) o.channels.forEach((sm) => (socialMedia[sm.type] = sm.id));
     const newO = {
       ...o,
       id: `${formatString(o.name)}_${formatString(office.name).slice(0, 5)}`,
@@ -15,7 +17,7 @@ const formatOfficials = (officials, offices) =>
       url: o.urls ? o.urls.pop() : null,
       phone: o.phones ? o.phones.pop() : null,
       email: o.emails ? o.emails.pop() : null,
-      socialMedia: o.channels || null,
+      socialMedia,
       office: office.name,
       divisionId: office.divisionId,
       levels: office.levels || [],
