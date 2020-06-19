@@ -45,6 +45,7 @@ class RepEdit extends React.Component {
                         <h3>{rep.office}</h3>
                       </header>
                       <img src={rep.photoUrl} alt="" />
+                      <button value={rep._id} onClick={this.handleClick}>X</button>
                       <footer>
                         <h2>{rep.phone || ""}</h2>
 

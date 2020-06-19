@@ -26,9 +26,6 @@
         flex-wrap: wrap;
         li {
           border-radius: 2px;
-          &:hover {
-            cursor: pointer;
-          }
           position: relative;
           height: 180.5px;
           width: 166px;
@@ -61,6 +58,24 @@
             background: $auth-background-grey;
             min-height: 100%;
           }
+          button {
+            height:24px;
+            width:24px;
+            right:0px;
+            bottom: 32px;
+            position: absolute;
+            @include flex(column, center, center);
+            border-left: 1px solid white;
+            border-top: 1px solid white;
+            border-top-left-radius: 5px;
+            font-weight: 500;
+            font-size: 20px;
+            color: darkblue;
+            background: maroon;
+            &:hover {
+              cursor: pointer;
+            }
+          }
           footer {
             // height: 48.5px;  <-- Full height for when "contact" line is back
             height: 32px;
@@ -84,4 +99,3 @@
     }
   }
 }
-
