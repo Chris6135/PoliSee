@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import SearchBar from "./search/search_bar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { fetchRepresentatives } from "../actions/search_actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import logo from "../icons/logo.svg";
+import SearchBar from "./search/search_bar";
+import { fetchRepresentatives, clearEntities } from "../actions/search_actions";
 
-
-const Splash = ({user, logout}) => {
+const Splash = ({ user, logout }) => {
   const [headSearchStr, setHeadSearchStr] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,30 +20,32 @@ const Splash = ({user, logout}) => {
       .split(" ")
       .join("%20");
 
+  let loggedInStuff;
+  if (user) {
+    loggedInStuff = (
+      <div className="signin-button">
+        <button onClick={() => logout()}>LOG OUT</button>
+        <Link to="/edit" className="signup-button">
+          EDIT
+        </Link>
+      </div>
+    );
+  } else {
+    loggedInStuff = (
+      <div className="header-links">
+        <Link to="/login" className="signin-button">
+          SIGN IN{" "}
+        </Link>
+        <Link to="/register" className="signup-button">
+          SIGN UP
+        </Link>
+      </div>
+    );
+  }
 
-
-    let loggedInStuff;
-    if (user) {
-      loggedInStuff = (
-        <div className="signin-button">
-          <button onClick={() => logout()}>LOG OUT</button>
-          <Link to="/edit" className="signup-button">
-            EDIT
-          </Link>
-        </div>
-      );
-    } else {
-      loggedInStuff = (
-        <div className="header-links">
-          <Link to="/login" className="signin-button">
-            SIGN IN{" "}
-          </Link>
-          <Link to="/register" className="signup-button">
-            SIGN UP
-          </Link>
-        </div>
-      );
-    }
+  useEffect(() => {
+    dispatch(clearEntities());
+  }, []);
 
   return (
     <div className="splash">
@@ -51,7 +53,7 @@ const Splash = ({user, logout}) => {
         <section className="splash-header">
           <div className="splash-header-left">
             <div className="splash-header-logo">
-              <img src={ logo } />
+              <img src={logo} />
             </div>
             <div className="splash-header-left-dropdown">
               <div>?</div>
@@ -89,7 +91,6 @@ const Splash = ({user, logout}) => {
             </Link> */}
             {loggedInStuff}
           </div>
-
         </section>
         <section className="splash-search-text">
           <div className="splash-search-text-container">
@@ -163,7 +164,6 @@ const Splash = ({user, logout}) => {
           </div>
 
           <div className="splash-body-one-three">
-
             <div className="splash-body-one-three-title-container">
               <div className="splash-body-one-three-title-bold">Keep tabs</div>
               <div className="splash-body-one-three-title-thin">on your</div>
