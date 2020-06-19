@@ -52,7 +52,7 @@ class RepEdit extends React.Component {
                         <h3>{rep.office}</h3>
                       </header>
                       <img src={rep.photoUrl} alt="" />
-                      <button value={rep._id} onClick={this.handleToggle}>X</button>
+                      <button value={rep._id} onClick={this.handleToggle}><span>X</span></button>
                       <footer>
                         <h2>{rep.phone || ""}</h2>
 
