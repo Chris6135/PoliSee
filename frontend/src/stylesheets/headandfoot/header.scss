@@ -118,7 +118,7 @@
   @include flex(column)
 }
 
-.header-right a{
+.header-right a, .header-links button{
   width: 100px;
   text-align: center;
   font-weight: 600;

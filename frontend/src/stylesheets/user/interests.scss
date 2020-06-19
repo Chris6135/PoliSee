@@ -11,6 +11,7 @@
     background: $darker-grey;
     font-weight: 500;
     .interest-edit-form {
+      @include flex(column, center, center);
       border-radius: 4px;
       background: $form-bg;
       width: 493px;
@@ -19,26 +20,75 @@
       left: 88px;
       top: -18px;
       form{
+        width: 300px;
         @include flex(column, center, center);
       }
         .interest-box{
           width:100%;
-          @include flex(row, center, center);
+          @include flex(row, $justify: space-between, $align: center);
           line-height: 55px;
           font-size: 20px;
+          .slide-box {
+            position: relative;
+            display: inline-block;
+            width: 54px;
+            height: 30px;
+            input {
+              opacity: 0;
+              width: 0;
+              height: 0;
+              &:checked + .slider {
+                background-color: $blue-equiv-to-darker-grey;
+                &:after {
+                  -webkit-transform: translateX(22px);
+                  -ms-transform: translateX(22px);
+                  transform: translateX(22px);
+                  background: $form-bg;
+                }
+              }
+            }
+            .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              -webkit-transition: .2s;
+              transition: .2s;
+              border-radius: 18px;
+              border: 1px solid $blue-equiv-to-darker-grey;
+              box-shadow: 0 0 0px 0.5px $blue-equiv-to-darker-grey;
+              &:after {
+                position: absolute;
+                border-radius: 50%;
+                content: "";
+                height: 20px;
+                width: 20px;
+                left: 5px;
+                top: 4px;
+                -webkit-transition: .2s;
+                transition: .2s;
+                background: $red-equiv-to-darker-grey;
+            }
+            }
+          }
         }
         h1{
           text-align: center;
           line-height: 50px;
           font-size: 30px;
           font-variant: small-caps;
-          margin-bottom: 80px;
+          margin-bottom: 15px;
+          width: 350px;
+          font-feature-settings: normal;
         }
         label {
           position: relative;
           font-variant: small-caps;
           padding-right: 10px;
           font-size: 26px;
+          font-weight: 400;
         }
         .err-msg {
           position: absolute;
@@ -49,45 +99,52 @@
           font-weight: 500;
         }
 
-        input {
-          padding: 10px;
-          height: 38px;
-          border: 2.5px solid #9a9a9a;
-          font-size: 26px;
-          border-radius: 10px;
-        }
 
-        input:hover{
-          cursor: pointer;
-        }
+
+
+        // input {
+        //   padding: 10px;
+        //   height: 38px;
+        //   border: 2.5px solid #9a9a9a;
+        //   font-size: 26px;
+        //   border-radius: 10px;
+        // }
+
+        // input:hover{
+        //   cursor: pointer;
+        // }
         button {
           @include flex(row, center, center);
           line-height: 48.5px;
           width: 200px;
-          margin: 20px;
+          margin: 20px 0 10px;
           height: 48.5px;
           background: $button;
           border-radius: 7px;
+          color: $background;
         }
         button:hover{
-          background: lightgray;
+          background: $footer-button-hover;
         }
         
         .info-links{
-          @include flex(row, center, center)
+          @include flex(column, $align: center, $justify: flex-start)
         }
       a {
           @include flex(row, center, center);
           line-height: 48.5px;
           width: 200px;
-          margin: 20px;
           height: 48.5px;
           background: $button;
           border-radius: 7px;
+          color: $background;
+          &:not(:last-of-type) {
+            margin-bottom: 10px;
+          }
 
       }
       a:hover{
-        background: lightgray;
+        background: $footer-button-hover;
       }
     }
   }
