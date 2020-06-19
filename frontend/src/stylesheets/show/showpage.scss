@@ -61,7 +61,7 @@ $image-border: $border;
             width: 60px;
             text-align: right;
             padding: 3px 15px 0 0;
-            background: rgba($color: $red-equiv-to-darker-grey, $alpha: 1);
+            background: mix($red-equiv-to-darker-grey, $button, 40%);
             color: $background;
             font-size: 24px;
             font-weight: 700;
@@ -213,6 +213,20 @@ $image-border: $border;
       border-radius: 2px;
       color: $sources-text;
       padding: 20px;
+      h2 {
+        letter-spacing: 0.5px;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: justify;
+        margin-bottom: 10px;
+      }
+      ul {
+        margin: 0 2px 0 7px;
+        font-size: 14px;
+        p {
+          margin: 4px 0;
+        }
+      }
     }
   }
 }
