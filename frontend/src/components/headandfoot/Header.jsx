@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../../icons/logo.svg";
 
 class Header extends React.Component {
   constructor(props) {
@@ -83,7 +84,11 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="header-left">
-          <div className="header-logo">Logo</div>
+          <div className="header-logo">
+            <Link to="/">
+              <img src={ logo } />
+            </Link>
+          </div>
           <div className="information-dropdown">
             <div className="header-drop-btn">
               <span>?</span>

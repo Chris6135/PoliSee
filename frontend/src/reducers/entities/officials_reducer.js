@@ -3,6 +3,10 @@ import {
   RECEIVE_REP,
   RECEIVE_SUB,
 } from "../../actions/search_actions";
+import {
+  RECEIVE_SENATORS,
+  RECEIVE_MEMBER,
+} from "../../actions/propublica_actions";
 
 import {RECEIVE_SAVED_REPS} from "../../actions/user_actions";
 
@@ -26,6 +30,7 @@ const officialsReducer = (state = {}, action) => {
     case RECEIVE_SUB:
       newState[action.official._id] = action.official;
       return newState;
+<<<<<<< HEAD
     case RECEIVE_SAVED_REPS:
       action.savedPoliticians.forEach((politician) => {
         newState[politician._id] = politician;
@@ -35,10 +40,39 @@ const officialsReducer = (state = {}, action) => {
           ).slice(0, 5)}`
         ];
       })
+=======
+    case RECEIVE_SENATORS:
+      const [sen1, sen2] = action.senators;
+      const merged1 = mergePol(newState, sen1);
+      const merged2 = mergePol(newState, sen2);
+      newState[merged1.id] = merged1;
+      newState[merged2.id] = merged2;
+      return newState;
+    case RECEIVE_MEMBER:
+      const merged = mergePol(newState, action.member);
+      newState[merged.id] = merged;
+>>>>>>> ce003ab0f66bf4eb96b44a7da2ec0ef07a5a1701
       return newState;
     default:
       return state;
   }
 };
+
+const mergePol = (state, pol) => {
+  const ids = Object.keys(state);
+  const polId = ids.find(
+    (id) =>
+      state[id].name.includes(pol.first_name) &&
+      state[id].name.includes(pol.last_name)
+  );
+  return mergeProperties(state[polId], pol);
+};
+
+const mergeProperties = (old, pol) =>
+  Object.assign(old, {
+    congressId: pol.id,
+    nextElection: pol.next_election,
+    apiUri: pol.api_uri,
+  });
 
 export default officialsReducer;

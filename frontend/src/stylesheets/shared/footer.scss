@@ -1,13 +1,13 @@
 footer {
-    height: 87.5px;
+    height: 67.5px;
     width: 100%;
     background: $header-background;
     @include flex(row, flex-end, center);
     button {
-        font-size: 28px;
+        font-size: 26px;
         letter-spacing: -0.8px;
         font-weight: 600;
-        height: 54px;
+        height: 44px;
         padding: 0 32px;
         color: $footer-button-text;
         border-radius: 6px;
@@ -15,14 +15,14 @@ footer {
             @include flex(row, $align: center);
             margin-left: 23.5px;
             margin-right: auto;
-            font-size: 20px;
+            font-size: 18px;
             letter-spacing: normal;
             vertical-align: center;
             svg {
                 position: relative;
-                font-size: 42px;
+                font-size: 36px;
                 left: -3.5px;
-                margin-right: 10px;
+                margin-right: 8px;
             }
         }
         &:hover {
@@ -30,7 +30,7 @@ footer {
         }
         &:last-of-type {
             font-weight: 500;
-            font-size: 20px;
+            font-size: 18px;
             margin: 0 23.5px 0 14.5px;
             letter-spacing: normal;
         }
