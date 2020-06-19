@@ -11,6 +11,13 @@ class InfoEdit extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     this.props.editUser({id: this.props.user.id, address:this.state.address, email: this.state.email})
+    setTimeout(() => {
+      if (this.props.user.interests.length !== 0) {
+        this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`)
+      } else {
+        this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=all`)
+      }
+    }, 200);
   }
 
   handleChange(type){
@@ -26,7 +33,7 @@ class InfoEdit extends React.Component {
           <div className="info-edit-form">
             <form onSubmit={this.handleSubmit}>
               <h1>Change your information</h1>
-              <label for ="address">address</label>
+              <label htmlFor ="address">address</label>
                 <input
                   type="text"
                   name="address"
@@ -34,7 +41,7 @@ class InfoEdit extends React.Component {
                   onChange={this.handleChange('address')}
                 />
               
-              <label for="email">e-mail address</label>
+              <label htmlFor="email">e-mail address</label>
               <input
                 type="text"
                 name="email"
