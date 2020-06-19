@@ -29,9 +29,13 @@
     width: 473px;
 }
 .splash-header-logo{
-    height: 100%;
-    width: 347px;
-    background: $switch-text;
+    // height: 100%;
+    // width: 347px;
+    // background: $switch-text;
+    margin-bottom: 6px;
+    img {
+      height: 64px;
+    }
 }
 .splash-header-left-dropdown{
     width: 96.5px;
@@ -79,6 +83,7 @@
     .header-search-icon {
       font-size: 22px;
       margin-right: 14.5px;
+      transform: rotate(-15deg);
     }
 
 }

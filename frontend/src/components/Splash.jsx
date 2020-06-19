@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { fetchRepresentatives } from "../actions/search_actions";
 import { cronTest } from "../util/cron_util";
+import logo from "../icons/logo.svg";
 
 const Splash = () => {
   const [headSearchStr, setHeadSearchStr] = useState("");
@@ -24,7 +25,9 @@ const Splash = () => {
       <section className="splash-top">
         <section className="splash-header">
           <div className="splash-header-left">
-            <div className="splash-header-logo"></div>
+            <div className="splash-header-logo">
+              <img src={ logo } />
+            </div>
             <div className="splash-header-left-dropdown">
               <div>?</div>
             </div>
@@ -133,11 +136,6 @@ const Splash = () => {
           </div>
 
           <div className="splash-body-one-three">
-            <div className="splash-body-one-three-title-container">
-              <div className="splash-body-one-three-title-thin">
-                Keep tabs on your offcials
-              </div>
-            </div>
 
             <div className="splash-body-one-three-title-container">
               <div className="splash-body-one-three-title-bold">Keep tabs</div>
@@ -153,7 +151,6 @@ const Splash = () => {
               <div className="splash-body-one-three-body">...and against!</div>
             </div>
           </div>
-          <div className="splash-body-one-three"></div>
         </section>
 
         <section className="splash-body-two">
