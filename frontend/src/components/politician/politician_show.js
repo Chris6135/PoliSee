@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import shortid from "shortid";
@@ -9,6 +9,7 @@ import {
 } from "../../actions/search_actions";
 import Article from "./article";
 import { fetchArticles } from "../../actions/news_actions";
+import ProPublicaAPI from "../../util/propublica_api_util";
 
 const issueMap = {
   justice: ["judge", "highestCourtJudge"],
@@ -35,12 +36,21 @@ const PoliticianShow = ({
   const official = useSelector((state) => state.entities.officials[id]);
   const articles = useSelector((state) => state.entities.news);
 
+  const [record, setRecord] = useState(null);
+  const [news, setNews] = useState(null);
+
   useEffect(() => {
     if (!official) dispatch(fetchRepresentative(id));
   }, []);
 
   useEffect(() => {
-    if (official) dispatch(fetchArticles(official.name));
+    if (official && !news)
+      dispatch(fetchArticles(official.name)).then(setNews(true));
+    if (official && official.congressId && !record) {
+      ProPublicaAPI.specificMember(official.congressId).then((res) =>
+        setRecord(res.data.results.pop())
+      );
+    }
   }, [official]);
 
   const handleSubscribe = (type) => () =>
@@ -107,7 +117,7 @@ const PoliticianShow = ({
         {issues
           .filter((i) => roles.some((r) => issueMap[i].includes(r)))
           .map((a) => (
-            <div>a</div>
+            <div key={shortid.generate()}>{a}</div>
           ))}
       </div>
     );
