@@ -17,7 +17,11 @@
 }
 
 .header-logo{
-  margin-left: 50px
+  margin-left: 70px;
+  img {
+    width: 200px;
+    background: none;
+  }
 }
 
 .header-skinny-middle{
@@ -114,7 +118,7 @@
   @include flex(column)
 }
 
-.header-right a{
+.header-right a, .header-links button{
   width: 100px;
   text-align: center;
   font-weight: 600;
