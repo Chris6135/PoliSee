@@ -61,7 +61,7 @@ $image-border: $border;
             width: 60px;
             text-align: right;
             padding: 3px 15px 0 0;
-            background: rgba($color: $red-equiv-to-darker-grey, $alpha: 1);
+            background: mix($red-equiv-to-darker-grey, $button, 40%);
             color: $background;
             font-size: 24px;
             font-weight: 700;
