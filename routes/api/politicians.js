@@ -106,4 +106,13 @@ router.patch(
   }
 );
 
+router.get('/user/', (req, res) => {
+  Politician.find({"savedUsers._id": req.body.userId})
+    .then(politicians => res.status(200).json(politicians))
+    .catch(err =>
+      res.status(404).json({ nopoliticiansfound: 'You do not currently have any followed representatives' }
+      )
+    );
+});
+
 module.exports = router;
