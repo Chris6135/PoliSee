@@ -84,6 +84,7 @@
             @include flex(column, center, center);
             line-height: 95%;
             padding: 3px;
+            background: $header-background-grey;
             text-transform: lowercase;
             h2 {
               font-size: 16px;
