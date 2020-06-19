@@ -121,11 +121,13 @@ const PoliticianShow = ({
     const issues = Object.keys(issueMap);
     return (
       <div>
+        <div className="issues-container">
         {issues
           .filter((i) => roles.some((r) => issueMap[i].includes(r)))
           .map((a) => (
             <div key={shortid.generate()}>{a}</div>
           ))}
+      </div>
       </div>
     );
   };
@@ -233,16 +235,16 @@ const PoliticianShow = ({
                           ` (${congress.missed_votes_pct}%)`
                         }`}</p>
                       )}
-                      {congress.bills_sponsored && (
+                      {congress.bills_sponsored !== null && (
                         <p>{`Bills sponsored: ${congress.bills_sponsored}`}</p>
                       )}
-                      {congress.bills_cosponsored && (
+                      {congress.bills_cosponsored !== null && (
                         <p>{`Bills cosponsored: ${congress.bills_cosponsored}`}</p>
                       )}
-                      {congress.votes_with_party_pct && (
+                      {congress.votes_with_party_pct !== null && (
                         <p>{`Votes with party ${congress.votes_with_party_pct}% of the time`}</p>
                       )}
-                      {congress.against && (
+                      {congress.votes_against_party_pct !== null && (
                         <p>{`Votes against party ${congress.votes_against_party_pct}% of the time`}</p>
                       )}
                     </ul>
