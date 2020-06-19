@@ -163,11 +163,13 @@ const PoliticianShow = ({
                   <div className="image-container">
                     <img src={official.photoUrl || man} alt={official.name} />
                   </div>
+                  { (new Date()).getFullYear().toString() === official.nextElection ? (
                   <div className="alert">
                     {" "}
                     {/* Only show alert if politician is up for re-election */}
                     <span>!</span>
                   </div>
+                  ) : null }
                   {userToggle()}
                 </figure>
                 <aside>
