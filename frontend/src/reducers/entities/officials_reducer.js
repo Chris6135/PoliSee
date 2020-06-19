@@ -2,14 +2,14 @@ import {
   RECEIVE_REPS,
   RECEIVE_REP,
   RECEIVE_SUB,
+  CLEAR_ENTITIES,
 } from "../../actions/search_actions";
 import {
   RECEIVE_SENATORS,
   RECEIVE_MEMBER,
 } from "../../actions/propublica_actions";
 
-import {RECEIVE_SAVED_REPS} from "../../actions/user_actions";
-
+import { RECEIVE_SAVED_REPS } from "../../actions/user_actions";
 
 const formatString = (string) =>
   string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
@@ -38,9 +38,8 @@ const officialsReducer = (state = {}, action) => {
             politician.office
           ).slice(0, 5)}`
         ];
-      })
+      });
     case RECEIVE_SENATORS:
-      debugger
       const [sen1, sen2] = action.senators;
       const merged1 = mergePol(newState, sen1);
       const merged2 = mergePol(newState, sen2);
@@ -51,6 +50,8 @@ const officialsReducer = (state = {}, action) => {
       const merged = mergePol(newState, action.member);
       newState[merged.id] = merged;
       return newState;
+    case CLEAR_ENTITIES:
+      return {};
     default:
       return state;
   }
@@ -58,11 +59,7 @@ const officialsReducer = (state = {}, action) => {
 
 const mergePol = (state, pol) => {
   const ids = Object.keys(state);
-  const polId = ids.find(
-    (id) =>
-      state[id].name.includes(pol.first_name) &&
-      state[id].name.includes(pol.last_name)
-  );
+  const polId = ids.find((id) => state[id].name.includes(pol.last_name));
   return mergeProperties(state[polId], pol);
 };
 

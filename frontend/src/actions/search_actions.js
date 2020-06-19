@@ -8,6 +8,7 @@ export const RECEIVE_REP = "RECEIVE_REP";
 export const RECEIVE_SUB = "RECEIVE_SUB";
 export const RECEIVE_CIVICS_API_ERRORS = "RECEIVE_CIVICS_API_ERRORS";
 export const RECEIVE_PASSPORT_ERROR = "RECEIVE_PASSPORT_ERROR";
+export const CLEAR_ENTITIES = "CLEAR_ENTITIES";
 
 const receiveReps = (results) => ({
   type: RECEIVE_REPS,
@@ -32,6 +33,10 @@ export const receiveCivicsApiError = (error) => ({
 export const receivePassportError = (error) => ({
   type: RECEIVE_PASSPORT_ERROR,
   error,
+});
+
+export const clearEntities = () => ({
+  type: CLEAR_ENTITIES,
 });
 
 export const fetchRepresentatives = (address) => (dispatch) =>
