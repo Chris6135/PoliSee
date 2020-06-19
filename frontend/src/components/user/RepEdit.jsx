@@ -5,6 +5,7 @@ class RepEdit extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentDidMount(){
@@ -12,6 +13,12 @@ class RepEdit extends React.Component {
   }
 
   handleClick(e){
+    e.preventDefault();
+    this.props.history.push(`/officials/${e.currentTarget.getAttribute("value")}`)
+
+  }
+
+  handleToggle(e){
     e.preventDefault();
     this.props.toggleRepresentative(e.currentTarget.getAttribute("value"), { "save": true })
   }
@@ -45,7 +52,7 @@ class RepEdit extends React.Component {
                         <h3>{rep.office}</h3>
                       </header>
                       <img src={rep.photoUrl} alt="" />
-                      <button value={rep._id} onClick={this.handleClick}>X</button>
+                      <button value={rep._id} onClick={this.handleToggle}>X</button>
                       <footer>
                         <h2>{rep.phone || ""}</h2>
 

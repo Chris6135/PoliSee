@@ -34,6 +34,7 @@ const PoliticianShow = ({
   const dispatch = useDispatch();
 
   const official = useSelector((state) => state.entities.officials[id]);
+  const user = useSelector((state) => state.session.user);
   const articles = useSelector((state) => state.entities.news);
 
   const [record, setRecord] = useState(null);
@@ -125,6 +126,27 @@ const PoliticianShow = ({
     );
   };
 
+  const userToggle = (user, official) => {
+    console.log(official)
+    if (user && user.savedPoliticians.includes(id)){
+    return(
+      <div className="follow-btn" onClick={handleSubscribe("save")}>
+        {" "}
+        <span>-</span>
+      </div>
+    )
+    }else if (user){
+      return(
+        <div className="follow-btn" onClick={handleSubscribe("save")}>
+          {" "}
+          <span>+</span>
+        </div>
+      )
+    }else{
+      return null
+    }
+  }
+
   return (
     <>
       {official && (
@@ -141,10 +163,11 @@ const PoliticianShow = ({
                     {/* Only show alert if politician is up for re-election */}
                     <span>!</span>
                   </div>
+                  {userToggle(user, id)}
                 </figure>
                 <aside>
                   <div>
-                    <span className="name" onClick={handleSubscribe("save")}>
+                    <span className="name">
                       {official ? official.name : ""}
                     </span>
                     <span>

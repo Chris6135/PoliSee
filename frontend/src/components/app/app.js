@@ -10,7 +10,7 @@ import PoliticianShow from "../politician/politician_show";
 import Edit from "../user/Edit";
 import InfoEditContainer from "../user/InfoEditContainer";
 import InterestEditContainer from "../user/InterestEditContainer";
-import HeaderContainer from "../headandfoot/HeaderContainer";
+import HeaderContainer from "../header/HeaderContainer";
 import RepEditContainer from "../user/RepEditContainer";
 // import ContactEdit from "../user/ContactEdit";
 
