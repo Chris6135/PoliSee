@@ -21,15 +21,20 @@
 
   &::after {
     content: "";
+    background-image: url("../icons/test-group.jpg");
+    background-position: center;
+    opacity: 0.6;
+    background-size: cover;
+    filter: brightness(75%);
     // background-image: url("../icons/hands.jpg");
     // opacity: 0.9;
     // background-size: cover;
     // filter: brightness(65%);
-    background-image: url("../icons/stickers.jpg");
-    opacity: 0.75;
-    transform: scale(1.1);
-    background-size: cover;
-    filter: brightness(55%) blur(3px);
+    // background-image: url("../icons/stickers.jpg");
+    // opacity: 0.75;
+    // transform: scale(1.1);
+    // background-size: cover;
+    // filter: brightness(55%) blur(3px);
     top: 0;
     left: 0;
     bottom: 0;
@@ -308,7 +313,7 @@ $smaller-box-width: 256.5px;
 .splash-body-one-one{
     height: $smaller-box-height;
     width: $smaller-box-width;
-    background: $auth-background-grey;
+    background: $red-equiv-to-darker-grey;
     padding-right: 51.5px;
     border-radius: 3px 0 0 3px;
     position: relative;
@@ -388,7 +393,7 @@ $smaller-box-width: 256.5px;
 .splash-body-one-three{
   height: $smaller-box-height;
   width: $smaller-box-width;
-  background: $auth-background-grey;
+  background: $red-equiv-to-darker-grey;
   padding-left: 51.5px;
   border-radius: 0 3px 3px 0;
   position: relative;
@@ -471,8 +476,8 @@ $smaller-box-width: 256.5px;
   height: 815px;
   width: 100%;
   background: $splash-show-bg;
-  border-bottom: 3px double $header-background;
-  border-top: 3px double $header-background;
+  border-bottom: 3px double $background;
+  border-top: 3px double $background;
 }
 
 .splash-body-showpage-container {
@@ -749,7 +754,7 @@ margin-left: 37px;
     justify-content: space-between;
 }
 .logo{ padding: 100px;
-    background: $search-text;
+    background: $blue-equiv-to-darker-grey;
     margin-right:160px}
 
 
@@ -757,6 +762,6 @@ margin-left: 37px;
     padding: 200px;
     padding-left:  120px;
     padding-right: 120px;
-    background: $footer-button-hover;
+    background: $red-equiv-to-darker-grey;
 }
 
