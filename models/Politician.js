@@ -21,9 +21,9 @@ const PoliticianSchema = new Schema({
   email: {
     type: String,
   },
-  socialMedia: [{
+  socialMedia: {
     type: Object,
-  }],
+  },
   party: {
     type: String,
   },
@@ -64,4 +64,6 @@ const PoliticianSchema = new Schema({
   }
 })
 
+
 module.exports = Politician = mongoose.model('Politician', PoliticianSchema);
+

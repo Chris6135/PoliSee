@@ -9,7 +9,7 @@ import {
   RECEIVE_MEMBER,
 } from "../../actions/propublica_actions";
 
-import { RECEIVE_SAVED_REPS } from "../../actions/user_actions";
+import {RECEIVE_SAVED_REPS} from "../../actions/user_actions";
 
 const formatString = (string) =>
   string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");
@@ -38,7 +38,8 @@ const officialsReducer = (state = {}, action) => {
             politician.office
           ).slice(0, 5)}`
         ];
-      });
+      })
+      return newState;
     case RECEIVE_SENATORS:
       const [sen1, sen2] = action.senators;
       const merged1 = mergePol(newState, sen1);

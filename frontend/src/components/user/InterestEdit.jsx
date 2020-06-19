@@ -12,6 +12,16 @@ class InterestEdit extends React.Component {
     e.preventDefault()
     let interests = [...this.state.interests];
     this.props.editUser({ id: this.props.user.id, interests: interests.join('%20') })
+    setTimeout(() => {
+      if (this.props.user.interests.length !== 0) {
+        this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`)
+      } else {
+        this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=all`)
+      }
+    }, 200);
+
+
+
   }
 
   handleChange(type) {
