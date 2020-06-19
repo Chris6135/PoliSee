@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 3px double $header-background;
+    border-bottom: 3px solid $header-background;
     overflow: hidden;
 
   &::after {
@@ -25,7 +25,7 @@
     background-position: center;
     opacity: 0.6;
     background-size: cover;
-    filter: brightness(75%);
+    filter: brightness(50%);
     // background-image: url("../icons/hands.jpg");
     // opacity: 0.9;
     // background-size: cover;
@@ -305,6 +305,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: $splash-show-bg;
 }
 
 $smaller-box-height: 305px;
@@ -313,7 +314,8 @@ $smaller-box-width: 256.5px;
 .splash-body-one-one{
     height: $smaller-box-height;
     width: $smaller-box-width;
-    background: $red-equiv-to-darker-grey;
+    color: $footer-button-text;
+    background: $button;
     padding-right: 51.5px;
     border-radius: 3px 0 0 3px;
     position: relative;
@@ -393,7 +395,8 @@ $smaller-box-width: 256.5px;
 .splash-body-one-three{
   height: $smaller-box-height;
   width: $smaller-box-width;
-  background: $red-equiv-to-darker-grey;
+  color: $footer-button-text;
+  background: $button;
   padding-left: 51.5px;
   border-radius: 0 3px 3px 0;
   position: relative;
@@ -475,9 +478,9 @@ $smaller-box-width: 256.5px;
 .splash-body-two{
   height: 815px;
   width: 100%;
-  background: $splash-show-bg;
-  border-bottom: 3px double $background;
-  border-top: 3px double $background;
+  background: $splash-show-bg-b;
+  border-bottom: 3px double $splash-show-bg;
+  border-top: 3px double $splash-show-bg;
 }
 
 .splash-body-showpage-container {
@@ -497,7 +500,7 @@ margin: 0 auto;
 .splash-body-politician-show-upper-photo{
   width: 331.5px;
   height: 258.5px;
-  background: rgba($color: $splash-show-bg-b, $alpha: 0.7);
+  background: rgba($color: $header-background, $alpha: 0.8);
 }
 
 .splash-body-politician-show-upper-text-container {
@@ -553,7 +556,7 @@ margin-left: 37px;
   margin-left: 85px;
   position: relative;
   top: -24px;
-  color: $elections-alert-bg;
+  color: $show-font-color;
 }
 
 
@@ -685,12 +688,14 @@ margin-left: 37px;
   height: 816px;
   border-bottom: solid 1px $header-background;
   @include flex(column, center, center);
-  width: 1300px;
+  border-bottom: 3px double $background;
+  background: $splash-show-bg;
 }
 
 .splash-source-information{
+    width: 1300px;
     height: 669px;
-    color: $section-headers;
+    color: $sources-text;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -724,7 +729,7 @@ margin-left: 37px;
 
 .github-repo-info > *{
     font-size: 255px;
-    color:#F2F1EC;
+    color: $sources-text;
 }
 
 .api-boxes{
@@ -736,13 +741,14 @@ margin-left: 37px;
     height: 72.5px;
     text-transform: uppercase;
     font-size: 26px;
-    background: #E7E6E1;
+    border-radius: 3px;
+    background: rgba($color: $go-button, $alpha: 0.4);
     letter-spacing: 2px;
     &:not(:last-of-type) {
       margin-right: 27px;
     }
     &:hover {
-      background: rgba($color: $splash-show-bg, $alpha: 0.4);
+      background: rgba($color: $go-button, $alpha: 0.7);
     }
 }
 .splash-body-bottom{ 

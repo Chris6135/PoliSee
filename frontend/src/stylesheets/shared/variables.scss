@@ -3,9 +3,10 @@
 $font: 'Montserrat', sans-serif;
 
 $background: #f2f1ec;
-// $header-background: #a8a8a8;
+$header-background: #a8a8a8;
 $header-background: #5a5d79ff;
-$splash-show-bg: #4b4677ff;
+// $header-background: #794e4ecf;
+$splash-show-bg: rgb(54, 56, 85);
 $splash-show-bg-b: #E6E5E1;
 
 $footer-button-text: #eeeeee;
@@ -16,12 +17,12 @@ $show-font-color: #444444;
 // moved here/named in context of auth-page
 //     - feel free to rename as long as you do it everywhere! :)
 
-// $auth-background-grey: #dcdcd8;
-$auth-background-grey: #b8b5c8ff;
+$auth-background-grey: #dcdcd8;
+// $auth-background-grey: #b8b5c8ff;
 $red-equiv-to-darker-grey: #dcb2b2ff;
 $blue-equiv-to-darker-grey: #8585a9ba;
 // $darker-grey: #b9b9b9;
-$darker-grey: #a22f2f8f;
+$darker-grey: #a22f2fe5;
 $form-bg: #fefefe;
 $form-font-color: #666666;
 // $button: #999999;
@@ -38,7 +39,7 @@ $search-border: #505050;
 $search-text: #838383;
 $go-button: #adadad;
 $go-text: #f4f4f4;
-
+$sources-text: #c9c6c4;
 $body-one-center: #ebebeb;
 // $body-one-center: #dcb2b25e;
 $body-one-text: #636363;

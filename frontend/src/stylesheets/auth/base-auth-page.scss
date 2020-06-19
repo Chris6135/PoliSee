@@ -10,14 +10,32 @@
     color: $form-font-color;
     font-family: $font;
     background: $auth-background-grey;
+    position: relative;
     width: 100vw;
     height: 66.2vh;
     @include flex(row, center, center);
+    &::after {
+      content: "";
+      background-position: center;
+      opacity: 0.6;
+      background-clip: border-box;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-image: url("../../icons/stickers.jpg");
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: 0;   
+    }
     .session-form-backdrop {
+        z-index: 1;
         width: 669px;
         height: 491px;
         background: $darker-grey;
         font-weight: 500;
+        backdrop-filter: blur(5px);
         .session-form {
             border-radius: 4px;
             background: $form-bg;
