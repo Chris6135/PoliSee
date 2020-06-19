@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import shortid from "shortid";
 
 import {
   fetchRepresentative,
   toggleRepresentative,
 } from "../../actions/search_actions";
-import ArticleItem from "./article_item";
+import Article from "./article";
+import { fetchArticles } from "../../actions/news_actions";
 
 const issueMap = {
   justice: ["judge", "highestCourtJudge"],
@@ -31,10 +33,15 @@ const PoliticianShow = ({
   const dispatch = useDispatch();
 
   const official = useSelector((state) => state.entities.officials[id]);
+  const articles = useSelector((state) => state.entities.news);
 
   useEffect(() => {
     if (!official) dispatch(fetchRepresentative(id));
   }, []);
+
+  useEffect(() => {
+    if (official) dispatch(fetchArticles(official.name));
+  }, [official]);
 
   const handleSubscribe = (type) => () =>
     dispatch(toggleRepresentative(id, { [type]: true }));
@@ -106,24 +113,6 @@ const PoliticianShow = ({
     );
   };
 
-  const articles = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-  ].map((i) => <ArticleItem key={i} num={i} />);
-
   return (
     <>
       {official && (
@@ -178,9 +167,7 @@ const PoliticianShow = ({
               <aside className="contact secondary">
                 <p>{formatAddress(official.address)}</p>
                 <p>
-                  {official.url && (
-                    <a href={official.url}>Official Website // </a>
-                  )}
+                  {official.url && <a href={official.url}>Official Website </a>}
                 </p>
               </aside>
             </div>
@@ -192,7 +179,10 @@ const PoliticianShow = ({
           </section>
 
           <section className="news">
-            <ul>{articles}</ul>
+            <ul>
+              {articles.length &&
+                articles.map((a) => <Article key={shortid.generate()} a={a} />)}
+            </ul>
           </section>
         </div>
       )}
