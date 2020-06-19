@@ -76,7 +76,7 @@ $image-border: $border;
           @include flex(column, $justify: center);
           flex: 1 1 auto;
           padding-left: $stripe-width - 10px;
-          div {
+          > div {
             width: 100%;
             height: $stripe-width;
             background: rgba($color: $border, $alpha: 0.4);
@@ -84,6 +84,19 @@ $image-border: $border;
             padding: 0 20px;
             font-size: 15px;
             @include flex(column, $justify: center);
+            .issues-container{
+              @include flex(row);
+              div {
+                padding: 5px 10px;
+                background: $darker-grey;
+                border: 1px solid $switch-border-b;
+                border-radius: 2px;
+                color: $form-bg;
+                font-weight: 600;
+                margin-right: 10px;
+                text-shadow: 0 0 1.5px rgba($color: $search-border, $alpha: 0.5);
+              }
+            }
             > span {
               display: block;
               line-height: 22px;

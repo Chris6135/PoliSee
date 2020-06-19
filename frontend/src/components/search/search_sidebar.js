@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { fetchMember, fetchSenators } from "../../actions/propublica_actions";
 
 const SearchSidebar = ({
   levels,
@@ -9,8 +12,13 @@ const SearchSidebar = ({
   address,
   divisions,
 }) => {
+  const dispatch = useDispatch();
+
   const { federal, state, county, local } = levels;
   const { education, justice, legislation } = issues;
+
+  const [member, setMember] = useState(false);
+  const [senators, setSenators] = useState(false);
 
   const ocdIds = Object.keys(divisions);
 
@@ -18,6 +26,16 @@ const SearchSidebar = ({
   const coId = ocdIds.find((id) => id.match(/\/county:(\w+)$/));
   const cd = divisions[cdId];
   const countyDiv = divisions[coId];
+
+  useEffect(() => {
+    if (cdId && address.state && !member) {
+      const cdNum = cdId.match(/\/cd:(\d+)$/)[1];
+      dispatch(fetchMember(address.state, cdNum)).then(setMember(true));
+    }
+    if (address.state && !senators) {
+      dispatch(fetchSenators(address.state)).then(setSenators(true));
+    }
+  }, [cdId]);
 
   return (
     <div className="search-sidebar">
@@ -32,12 +50,12 @@ const SearchSidebar = ({
           <button
             className={
               descending
-                ? "sidebar-order-toggle selected"
-                : "sidebar-order-toggle"
+                ? "sidebar-order-toggle"
+                : "sidebar-order-toggle selected"
             }
             onClick={toggleDesc}
           >
-            Trickle Down
+            LOCAL
           </button>
           <button
             className={
@@ -47,13 +65,19 @@ const SearchSidebar = ({
             }
             onClick={toggleDesc}
           >
-            From the Ground Up
+            FEDERAL
           </button>
         </div>
       </header>
       <div className="search-sidebar-district-info">
         <div className="search-sidebar-leaning"></div>
-        <div className="search-sidebar-election"></div>
+        <div className="search-sidebar-election">
+          <div className="alert">!</div>
+          <div className="elections">
+            <h3>Election day is coming up on</h3>
+            <h2>Tuesday November 3rd, 2020</h2>
+          </div>
+        </div>
       </div>
       <div className="search-sidebar-issues">
         <button

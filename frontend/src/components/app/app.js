@@ -33,7 +33,7 @@ function App() {
 
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
       <Route path="/search" component={SearchLanding} />
-      <Route path="/politician/:id" component={PoliticianShow} />
+      <Route path="/officials/:id" component={PoliticianShow} />
 
       <Footer />
     </div>

@@ -1,7 +1,23 @@
 const express = require("express");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
+const Politician = require("../../models/Politician");
 
 const router = express.Router();
-const Politician = require("../../models/Politician");
+const secret = process.env.SECRET_OR_KEY;
+
+const getPayload = (user) => {
+  return {
+    id: user.id,
+    email: user.email,
+    address: user.address,
+    interests: user.interests,
+    savedPoliticians: user.savedPoliticians,
+    contactPoliticians: user.contactPoliticians,
+  };
+};
 
 //to subscribe
 
@@ -11,10 +27,18 @@ const Politician = require("../../models/Politician");
 
 //might be req.body.politican
 
+router.param("id", async (req, res, next, id) => {
+  const pol = await Politician.findById(id);
+  if (pol) {
+    req.politician = pol;
+    next();
+  } else {
+    res.status(404).json("File not found");
+  }
+});
+
 router.get(`/:id`, (req, res) => {
-  Politician.findById(req.params.id)
-    .then((politician) => res.json(politician))
-    .catch((err) => res.status(404).end());
+  res.status(200).json(req.politician);
 });
 
 router.post("/add", (req, res) => {
@@ -24,35 +48,62 @@ router.post("/add", (req, res) => {
     { new: true, upsert: true }
   )
     .then((result) => res.json(result))
-    .catch((err) => res.status(404).end());
+    .catch((err) => res.status(404).json(err));
 });
 
-router.patch("/subscribe", async (req, res) => {
-  const curPol = await Politician.findById(req.body.politicianId);
-  if (curPol) {
-    const { savedUsers, contactUsers } = curPol;
+router.patch(
+  "/:id/subscribe",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const { user, politician } = req;
 
     if (req.body.save) {
-      if (savedUsers.includes(req.body.userId)) {
-        savedUsers.splice(savedUsers.indexOf(req.body.userId), 1);
+      if (politician.savedUsers.includes(user.id)) {
+        politician.savedUsers.splice(politician.savedUsers.indexOf(user.id), 1);
+        user.savedPoliticians.splice(
+          user.savedPoliticians.indexOf(politician._id),
+          1
+        );
       } else {
-        savedUsers.push(req.body.userId);
+        politician.savedUsers.push(user.id);
+        user.savedPoliticians.push(politician._id);
       }
     } else if (req.body.contact) {
-      if (contactUsers.includes(req.body.userId)) {
-        contactUsers.splice(contactUsers.indexOf(req.body.userId), 1);
+      if (politician.contactUsers.includes(user.id)) {
+        politician.contactUsers.splice(
+          politician.contactUsers.indexOf(user.id),
+          1
+        );
+        user.contactPoliticians.splice(
+          user.contactPoliticians.indexOf(politician._id),
+          1
+        );
       } else {
-        contactUsers.push(req.body.userId);
+        politician.contactUsers.push(user.id);
+        user.contactPoliticians.push(politician._id);
       }
     }
-  }
 
-  Politician.updateOne(
-    { _id: req.body.politicianId },
-    { savedUsers, contactUsers }
-  )
-    .then((updatedPolitician) => res.json(updatedPolitician))
-    .catch((err) => res.status(404).end());
-});
+    try {
+      const official = await politician.save();
+      const updatedUser = await user.save();
+
+      jwt.sign(
+        getPayload(updatedUser),
+        secret,
+        { expiresIn: 3600 },
+        (err, token) => {
+          res.json({
+            success: true,
+            token: `Bearer ${token}`,
+            official,
+          });
+        }
+      );
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+);
 
 module.exports = router;

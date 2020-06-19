@@ -6,6 +6,7 @@ import officesReducer from "./offices_reducer";
 import officialsReducer from "./officials_reducer";
 import levelsReducer from "./levels_reducer";
 import rolesReducer from "./roles_reducer";
+import newsReducer from "./news_reducer";
 
 const entitiesReducer = combineReducers({
   address: addressReducer,
@@ -14,6 +15,7 @@ const entitiesReducer = combineReducers({
   officials: officialsReducer,
   levels: levelsReducer,
   roles: rolesReducer,
+  news: newsReducer,
 });
 
 export default entitiesReducer;
