@@ -71,6 +71,28 @@ $image-border: $border;
               100% 100%
             );
           }
+          .follow-btn {
+            position: absolute;
+            right: -1px;
+            bottom: -1px;
+            height: 60px;
+            width: 60px;
+            text-align: right;
+            padding: 22px 10px 0 0;
+            background: rgba($color: $blue-equiv-to-darker-grey, $alpha: .85);
+            color: $background;
+            font-size: 34px;
+            font-weight: 600;
+            clip-path: polygon(
+              100% 0,
+              100% 100%,
+              0 100%
+            );
+            &:hover {
+              cursor: pointer;
+              background: rgba($color: $blue-equiv-to-darker-grey, $alpha: 1);
+            }
+          }
         }
         aside {
           @include flex(column, $justify: center);

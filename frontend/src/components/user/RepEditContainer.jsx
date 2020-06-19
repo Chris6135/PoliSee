@@ -3,6 +3,7 @@ import React from 'react';
 import RepEdit from './RepEdit';
 import { toggleRepresentative } from '../../actions/search_actions';
 import {fetchUserRepresentatives } from '../../actions/user_actions';
+import {withRouter} from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
@@ -18,5 +19,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RepEdit);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RepEdit));
 

@@ -5,6 +5,7 @@ class RepEdit extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentDidMount() {
@@ -13,9 +14,13 @@ class RepEdit extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.props.toggleRepresentative(e.currentTarget.getAttribute("value"), {
-      save: true,
-    });
+    this.props.history.push(`/officials/${e.currentTarget.getAttribute("value")}`)
+
+  }
+
+  handleToggle(e){
+    e.preventDefault();
+    this.props.toggleRepresentative(e.currentTarget.getAttribute("value"), { "save": true })
   }
 
   render() {
@@ -31,35 +36,35 @@ class RepEdit extends React.Component {
       }
     }
     return (
-      <div className="rep-edit">
-        <div className="rep-edit-backdrop">
-          <div className="rep-edit-reps">
-            <h1>Edit your followed representatives</h1>
-            <ul className="rep-edit-rep-list">
-              {officialsToMap.length ? (
-                officialsToMap.map((rep, idx) => (
-                  <li key={idx} value={rep._id} onClick={this.handleClick}>
-                    <header>
-                      <h2>{rep.name}</h2>
-                      <h3>{rep.office}</h3>
-                    </header>
-                    <img src={rep.photoUrl} alt="" />
-                    <footer>
-                      <h2>{rep.phone || ""}</h2>
+        <div className="rep-edit">
+          <div className="rep-edit-backdrop">
+            <div className="rep-edit-reps">
+              <h1>
+                  Edit your followed representatives
+              </h1>
+              <ul className="rep-edit-rep-list">
+                {officialsToMap.map((rep, idx) => {
+                  return (
 
-                      {/* <h3>{`Contact ${official.name}`}</h3> */}
-                    </footer>
-                  </li>
-                ))
-              ) : (
-                <li>
-                  You have to follow someone first! (Not in a creepy way though)
-                </li>
-              )}
-            </ul>
+                    <li key={idx} value={rep._id} onClick={this.handleClick}>
+                      <header>
+                        <h2>{rep.name}</h2>
+                        <h3>{rep.office}</h3>
+                      </header>
+                      <img src={rep.photoUrl} alt="" />
+                      <button value={rep._id} onClick={this.handleToggle}>X</button>
+                      <footer>
+                        <h2>{rep.phone || ""}</h2>
+
+                        {/* <h3>{`Contact ${official.name}`}</h3> */}
+                      </footer>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
     );
   }
 }
