@@ -21,9 +21,9 @@ const PoliticianSchema = new Schema({
   email: {
     type: String,
   },
-  socialMedia: [{
+  socialMedia: {
     type: Object,
-  }],
+  },
   party: {
     type: String,
   },

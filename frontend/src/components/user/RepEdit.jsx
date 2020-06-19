@@ -39,7 +39,7 @@ class RepEdit extends React.Component {
               <ul className="rep-edit-rep-list">
                 {officialsToMap.map((rep, idx) => {
                   return (
-                    <li key={idx} value={rep._id} onClick={this.handleClick}>
+                    <li key={idx} value={rep._id}>
                       <header>
                         <h2>{rep.name}</h2>
                         <h3>{rep.office}</h3>
@@ -47,8 +47,8 @@ class RepEdit extends React.Component {
                       <img src={rep.photoUrl} alt="" />
                       <footer>
                         <h2>{rep.phone || ""}</h2>
-                        {/* <h3>{`Contact ${official.name}`}</h3> */}
                       </footer>
+                      {/* <button onClick={this.handleClick}>X</button> */}
                     </li>
                   )
                 })}
