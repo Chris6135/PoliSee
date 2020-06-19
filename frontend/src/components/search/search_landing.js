@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import shortid from "shortid";
 
 import { searchResults } from "../../reducers/selectors/selectors";
-import { fetchRepresentatives } from "../../actions/search_actions";
+import {
+  fetchRepresentatives,
+  clearEntities,
+} from "../../actions/search_actions";
 import SearchResult from "./search_result";
 import SearchIndex from "./search_index";
 import SearchSidebar from "./search_sidebar";
@@ -161,6 +164,7 @@ const SearchLanding = ({ location, history }) => {
         address={address}
         divisions={divisions}
         descending={desc}
+        location={location}
       />
       <SearchIndex
         levels={levels}

@@ -18,6 +18,7 @@ class RepEdit extends React.Component {
 
   render() {
     let officialsToMap = []; 
+
     for(let i=0; i< this.props.user.savedPoliticians.length; i++){
       if (this.props.officials[this.props.user.savedPoliticians[i]] !== undefined){
         officialsToMap.push(this.props.officials[this.props.user.savedPoliticians[i]])
@@ -26,6 +27,7 @@ class RepEdit extends React.Component {
     if (officialsToMap.length === 0){
       return null;
     }else{
+
       return (
         <div className="rep-edit">
           <div className="rep-edit-backdrop">
@@ -36,7 +38,8 @@ class RepEdit extends React.Component {
               <ul className="rep-edit-rep-list">
                 {officialsToMap.map((rep, idx) => {
                   return (
-                    <li key={idx} value={rep._id}>
+
+                    <li key={idx} value={rep._id} onClick={this.handleClick}>
                       <header>
                         <h2>{rep.name}</h2>
                         <h3>{rep.office}</h3>
@@ -45,6 +48,8 @@ class RepEdit extends React.Component {
                       <button value={rep._id} onClick={this.handleClick}>X</button>
                       <footer>
                         <h2>{rep.phone || ""}</h2>
+
+                        {/* <h3>{`Contact ${official.name}`}</h3> */}
                       </footer>
                     </li>
                   )
