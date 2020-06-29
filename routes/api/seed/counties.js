@@ -1,5 +1,5 @@
 const fs = require("fs");
-const County = require('../models/County');
+const County = require('../../../models/County');
 const seeder = require("mongoose-seed");
 const path = require("path");
 

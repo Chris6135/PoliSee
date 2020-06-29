@@ -11,12 +11,25 @@ import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
 import axios from "axios";
 import cron from "node-cron";
+import {sendTestMail} from "./util/mail_util"
+// import {nodemailer} from "nodemailer"
 // import {cronBuilder} from "./util/cron_util"
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
-  // window.cronTest = cronTest
-  // window.cronBuilder = cronBuilder
+//   const data =  {
+//     name: "Chris",
+//     email: "Christopher.simons10@gmail.com",
+//     message: "Continuing to test"
+// }
+
+  // sendTestMail(data) //comment this in to send chris an email.
+  // console.log("sent test mail")
+
+
+
+
+
 
   if (localStorage.jwt) {
     SessionAPI.setAuthToken(localStorage.jwt);
