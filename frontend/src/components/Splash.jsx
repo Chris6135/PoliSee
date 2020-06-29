@@ -90,7 +90,15 @@ const Splash = (props) => {
    </div>
       );
     }
-
+  const dropdown = () => {
+    return (
+      <div className="header-drop-content">
+        <p>Funky Kong</p>
+        <p>Funky Kong</p>
+        <p>Funky Kong</p>
+      </div>
+    );
+  };
   return (
     <div className="splash">
       <section className="splash-top">
@@ -99,8 +107,11 @@ const Splash = (props) => {
             <div className="splash-header-logo">
               <img src={ logo } />
             </div>
-            <div className="splash-header-left-dropdown">
-              <div>?</div>
+            <div className="information-dropdown">
+              <div className="header-drop-btn">
+                <span>?</span>
+              </div>
+              {dropdown()}
             </div>
           </div>
 
