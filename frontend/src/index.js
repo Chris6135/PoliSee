@@ -17,15 +17,14 @@ import {sendTestMail} from "./util/mail_util"
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
-  const data =  {
-    name: "Chris",
-    email: "Christopher.simons10@gmail.com",
-    message: "Continuing to test"
-}
+//   const data =  {
+//     name: "Chris",
+//     email: "Christopher.simons10@gmail.com",
+//     message: "Continuing to test"
+// }
 
-  sendTestMail(data)
-  
-  console.log("sent test mail")
+  // sendTestMail(data) //comment this in to send chris an email.
+  // console.log("sent test mail")
 
 
 
