@@ -93,9 +93,11 @@ const Splash = (props) => {
   const dropdown = () => {
     return (
       <div className="header-drop-content">
-        <p>Funky Kong</p>
-        <p>Funky Kong</p>
-        <p>Funky Kong</p>
+        <p>Welcome to PoliSee!</p>
+        <p>Begin by entering an adress into the search bar</p>
+        <p>Select levels to only see representitives at your chosen level</p>
+        <p>Selecting issues will limit results to reps who deal with those issues!</p>
+
       </div>
     );
   };
