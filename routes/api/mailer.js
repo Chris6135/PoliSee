@@ -11,29 +11,26 @@ const transporter = require("../../mailer/transporter");
 //might be req.body.politican
 
 router.post(`/send`, (req, res) => {
+  const mail = {
+    from: "PoliSee",
+    to: req.body.email,
+    subject: "test2",
 
-    let mail = {
-        from: "PoliSee",
-        to: req.body.email,
-        subject: "test2",
+    html: req.body.message,
+  };
 
-        html: req.body.message
+  transporter.sendMail(mail, (err, data) => {
+    console.log("in transporter in mailer.js");
+    if (err) {
+      res.json({
+        msg: "failed",
+      });
+    } else {
+      res.json({
+        msg: "sucess",
+      });
     }
-
-    transporter.sendMail(mail, (err,data) =>{
-        console.log("in transporter in mailer.js")
-        if (err){
-            res.json({
-                msg: "failed"
-            })
-        }else{
-            res.json({
-                msg: "sucess"
-            })
-        }
-    })
-})
+  });
+});
 
 module.exports = router;
-
-
