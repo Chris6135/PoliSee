@@ -7,10 +7,26 @@ const formatString = (string) =>
 
 
 const NewsAPI = {
-  articlesByName: (name) => 
-    axios.get(
-      `https://newsapi.org/v2/everything?q=${formatString(name)}&apiKey=${key}&pageSize=12`
-    ),
+  articlesByName: (name) => {
+    return axios.get(
+      `https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/NewsSearchAPI`,
+      {
+        headers:
+          {
+          "X-RapidAPI-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
+          "X-RapidAPI-Key": key,
+          "useQueryString": true
+        },
+        params:
+          {
+            "autoCorrect": "false",
+            "pageNumber": "1",
+            "pageSize": "12",
+            "q": name,
+            "safeSearch": "false"
+          }
+      }
+    )},
 }
 
 export default NewsAPI
