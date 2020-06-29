@@ -10,9 +10,17 @@ import PoliticianShow from "../politician/politician_show";
 import Edit from "../user/Edit";
 import InfoEditContainer from "../user/InfoEditContainer";
 import InterestEditContainer from "../user/InterestEditContainer";
+<<<<<<< HEAD
+import HeaderContainer from "../headandfoot/HeaderContainer";
+// import RepEdit from "../user/RepEdit";
+import ContactEditContainer from "../user/ContactEditContainer";
+
+
+=======
 import HeaderContainer from "../header/HeaderContainer";
 import RepEditContainer from "../user/RepEditContainer";
 // import ContactEdit from "../user/ContactEdit";
+>>>>>>> 402700194e311924581d63b9c91c743636f7fb49
 
 function App() {
   return (
@@ -27,7 +35,11 @@ function App() {
         path="/edit/interests"
         component={InterestEditContainer}
       />
+<<<<<<< HEAD
+      <ProtectedRoute path="/edit/contact" component={ContactEditContainer} />
+=======
       <ProtectedRoute path="/edit/representatives" component={RepEditContainer} />
+>>>>>>> 402700194e311924581d63b9c91c743636f7fb49
 
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
       <Route path="/search" component={SearchLanding} />
