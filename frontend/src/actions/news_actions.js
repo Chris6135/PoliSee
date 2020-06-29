@@ -13,23 +13,9 @@ const receiveNewsError = (error) => ({
   error,
 });
 
-// export const fetchArticles = (name) => async (dispatch) => {
-//   try{
-//     const res = await NewsAPI.articlesByName(name);
-//     debugger
-//     console.log(res.data)
-//     // dispatch(receiveArticles(res.data.articles))
-//   }
-//   catch (e){
-//     dispatch(receiveNewsError(e.response.data))
-//   };
-// }
-
-
-export const fetchArticles = (name) => (dispatch) => 
+export const fetchArticles = (name) => (dispatch) =>
   NewsAPI.articlesByName(name)
     .then((res) => {
-      return dispatch(receiveArticles(res.data.value))
+      return dispatch(receiveArticles(res.data.value));
     })
     .catch((e) => dispatch(receiveNewsError(e.response.data)));
-
