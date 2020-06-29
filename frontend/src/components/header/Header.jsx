@@ -42,7 +42,7 @@ class Header extends React.Component {
         case "/login": //when we figure out cases and content we can expand this
           return (
             <div className="header-drop-content">
-              <p>Enter your info to acces your account</p>
+              <p>Enter your info to access your account</p>
               <p>
                 When signed in you can manage saved representitives and sign up
                 for automatic email updates
