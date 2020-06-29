@@ -61,7 +61,7 @@ $image-border: $border;
             width: 60px;
             text-align: right;
             padding: 3px 15px 0 0;
-            background: rgba($color: $red-equiv-to-darker-grey, $alpha: 1);
+            background: mix($red-equiv-to-darker-grey, $button, 40%);
             color: $background;
             font-size: 24px;
             font-weight: 700;
@@ -70,6 +70,35 @@ $image-border: $border;
               100% 0,
               100% 100%
             );
+          }
+          .follow-btn {
+            position: absolute;
+            right: -1px;
+            bottom: -1px;
+            height: 60px;
+            width: 60px;
+            text-align: right;
+            padding: 20px 9px 0 0;
+            background: rgba($color: $header-background, $alpha: 1);
+            color: $background;
+            font-size: 34px;
+            font-weight: 600;
+            clip-path: polygon(
+              100% 0,
+              100% 100%,
+              0 100%
+            );
+            span {
+              margin-left: 30px;
+              display: block;
+              text-align: center;
+              width: 20px;
+              height: 20px;
+            }
+            &:hover {
+              cursor: pointer;
+              background: rgba($color: $blue-equiv-to-darker-grey, $alpha: 1);
+            }
           }
         }
         aside {
@@ -87,6 +116,9 @@ $image-border: $border;
             .issues-container{
               @include flex(row);
               div {
+                &:hover {
+                  cursor: default;
+                }
                 padding: 5px 10px;
                 background: $darker-grey;
                 border: 1px solid $switch-border-b;
@@ -151,6 +183,7 @@ $image-border: $border;
             height: 35px;
             width: 35px;
             margin-left: 10px;
+            color: $splash-show-bg;
             &.fa-youtube {
               margin-left: 5px;
               width: 50px;
@@ -159,7 +192,7 @@ $image-border: $border;
               margin-right: 15px;
             }
             &:hover {
-              color: $form-font-color;
+              color: $header-background;
             }
           }
         }
@@ -176,8 +209,24 @@ $image-border: $border;
       margin-left: 100px;
       width: 329.5px;
       height: 100%;
-      background: $border;
+      background: mix($button, $section-headers, 80%);
+      border-radius: 2px;
+      color: $sources-text;
       padding: 20px;
+      h2 {
+        letter-spacing: 0.5px;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: justify;
+        margin-bottom: 10px;
+      }
+      ul {
+        margin: 0 2px 0 7px;
+        font-size: 14px;
+        p {
+          margin: 4px 0;
+        }
+      }
     }
   }
 }

@@ -19,14 +19,6 @@ const getPayload = (user) => {
   };
 };
 
-//to subscribe
-
-//req body has userid, politicanid
-//if savedpolitician, findbyidandupdate
-//if contactpolitician
-
-//might be req.body.politican
-
 router.param("id", async (req, res, next, id) => {
   const pol = await Politician.findById(id);
   if (pol) {

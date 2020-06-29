@@ -3,12 +3,12 @@ import React from "react";
 const Article = ({ a }) => (
   <a href={a.url}>
     <li className="show-page-article">
-      <img src={a.urlToImage} alt={a.title} />
+      <img src={a.image.url} alt={a.title} />
       <div className="caption" >
-        <h3>{a.title}</h3>
+        <h3>{a.title.replace(/<b>/g,"").replace(/<\/b>/g,"")}</h3>
         <aside>
-          <span>{a.source.name}</span>
-          <span>{new Date(a.publishedAt).toLocaleDateString()}</span>
+          <span>{a.provider.name}</span>
+          <span>{new Date(a.datePublished).toLocaleDateString()}</span>
         </aside>
       </div>
     </li>
@@ -16,3 +16,4 @@ const Article = ({ a }) => (
 );
 
 export default Article;
+

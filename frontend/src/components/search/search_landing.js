@@ -88,7 +88,7 @@ const SearchLanding = ({ location, history }) => {
   useEffect(() => {
     const address = location.search.match(/\?address=(.+)&lev/)[1];
     dispatch(fetchRepresentatives(address)).then(setState());
-  }, []);
+  }, [location.search]);
 
   const toggleOption = (type, name) => () => {
     if (type === "levels") {
@@ -161,6 +161,7 @@ const SearchLanding = ({ location, history }) => {
         address={address}
         divisions={divisions}
         descending={desc}
+        location={location}
       />
       <SearchIndex
         levels={levels}

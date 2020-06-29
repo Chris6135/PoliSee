@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import shortid from "shortid";
+import man from "../../icons/Man.jpg";
 
 import {
   fetchRepresentative,
@@ -34,10 +35,13 @@ const PoliticianShow = ({
   const dispatch = useDispatch();
 
   const official = useSelector((state) => state.entities.officials[id]);
+  const user = useSelector((state) => state.session.user);
   const articles = useSelector((state) => state.entities.news);
 
   const [record, setRecord] = useState(null);
   const [news, setNews] = useState(null);
+
+  const congress = record ? record.roles[0] : null;
 
   useEffect(() => {
     if (!official) dispatch(fetchRepresentative(id));
@@ -59,47 +63,48 @@ const PoliticianShow = ({
   const formatAddress = ({ line1, city, state, zip }) =>
     `${line1}, ${city}, ${state} ${zip}`;
 
-  const channels = official
-    ? official.socialMedia.map((channel, i) => {
-        switch (channel.type) {
-          case "Facebook":
-            return (
-              <a
-                key={i}
-                target="_blank"
-                href={`https://www.facebook.com/${channel.id}`}
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon icon={["fab", "facebook-square"]} />
-              </a>
-            );
-          case "Twitter":
-            return (
-              <a
-                key={i}
-                target="_blank"
-                href={`https://twitter.com/${channel.id}`}
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon icon={["fab", "twitter-square"]} />
-              </a>
-            );
-          case "YouTube":
-            return (
-              <a
-                key={i}
-                target="_blank"
-                href={`https://www.youtube.com/user/${channel.id}`}
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon icon={["fab", "youtube"]} />
-              </a>
-            );
-          default:
-            return null;
-        }
-      })
-    : null;
+  const channels =
+    official && official.socialMedia
+      ? Object.keys(official.socialMedia).map((channel) => {
+          switch (channel) {
+            case "Facebook":
+              return (
+                <a
+                  key={shortid.generate()}
+                  target="_blank"
+                  href={`https://www.facebook.com/${official.socialMedia[channel]}`}
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon icon={["fab", "facebook-square"]} />
+                </a>
+              );
+            case "Twitter":
+              return (
+                <a
+                  key={shortid.generate()}
+                  target="_blank"
+                  href={`https://twitter.com/${official.socialMedia[channel]}`}
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon icon={["fab", "twitter-square"]} />
+                </a>
+              );
+            case "YouTube":
+              return (
+                <a
+                  key={shortid.generate()}
+                  target="_blank"
+                  href={`https://www.youtube.com/user/${official.socialMedia[channel]}`}
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon icon={["fab", "youtube"]} />
+                </a>
+              );
+            default:
+              return null;
+          }
+        })
+      : null;
 
   const getAreas = (roles) => {
     const savant = roles.some((r) => issueMap.all.includes(r));
@@ -116,13 +121,35 @@ const PoliticianShow = ({
     const issues = Object.keys(issueMap);
     return (
       <div>
+        <div className="issues-container">
         {issues
           .filter((i) => roles.some((r) => issueMap[i].includes(r)))
           .map((a) => (
             <div key={shortid.generate()}>{a}</div>
           ))}
       </div>
+      </div>
     );
+  };
+
+  const userToggle = () => {
+    if (user && user.savedPoliticians.includes(id)) {
+      return (
+        <div className="follow-btn" onClick={handleSubscribe("save")}>
+          {" "}
+          <span>-</span>
+        </div>
+      );
+    } else if (user) {
+      return (
+        <div className="follow-btn" onClick={handleSubscribe("save")}>
+          {" "}
+          <span>+</span>
+        </div>
+      );
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -134,17 +161,20 @@ const PoliticianShow = ({
               <div className="flag-top">
                 <figure className="image">
                   <div className="image-container">
-                    <img src={official.photoUrl} alt={official.name} />
+                    <img src={official.photoUrl || man} alt={official.name} />
                   </div>
+                  { (new Date()).getFullYear().toString() === official.nextElection ? (
                   <div className="alert">
                     {" "}
                     {/* Only show alert if politician is up for re-election */}
                     <span>!</span>
                   </div>
+                  ) : null }
+                  {userToggle()}
                 </figure>
                 <aside>
                   <div>
-                    <span className="name" onClick={handleSubscribe("save")}>
+                    <span className="name">
                       {official ? official.name : ""}
                     </span>
                     <span>
@@ -157,7 +187,10 @@ const PoliticianShow = ({
                     </span>
                   </div>
                   <div>
-                    Up for election/ How long they've served/Unopposed?{" "}
+                    {official.nextElection
+                      ? `Up for reelection: ${official.nextElection}`
+                      : "Info TK!"}
+                    {/* Up for election/ How long they've served/Unopposed?{" "} */}
                     {/* fill in with info  */}
                   </div>
                   {getAreas(official.roles)}
@@ -177,16 +210,54 @@ const PoliticianShow = ({
               </aside>
 
               <aside className="contact secondary">
-                <p>{formatAddress(official.address)}</p>
+                <p>{official.address && formatAddress(official.address)}</p>
                 <p>
                   {official.url && <a href={official.url}>Official Website </a>}
                 </p>
               </aside>
             </div>
             <div className="propublica">
-              propublica info <br />
+              {record ? (
+                <div>
+                  <div>
+                    <h2>{`Stats for the ${congress.congress}th Congress`}</h2>
+                    <ul>
+                      {congress.cook_pvi && (
+                        <p>{`Cook Partisan Voter Index: ${congress.cook_pvi}`}</p>
+                      )}
+                      {congress.total_votes && (
+                        <p>{`Total votes: ${congress.total_votes}`}</p>
+                      )}
+                      {record.most_recent_vote && (
+                        <p>{`Most recent vote: ${record.most_recent_vote}`}</p>
+                      )}
+                      {congress.missed_votes !== null && (
+                        <p>{`Missed votes: ${congress.missed_votes}${
+                          congress.missed_votes_pct !== null &&
+                          ` (${congress.missed_votes_pct}%)`
+                        }`}</p>
+                      )}
+                      {congress.bills_sponsored !== null && (
+                        <p>{`Bills sponsored: ${congress.bills_sponsored}`}</p>
+                      )}
+                      {congress.bills_cosponsored !== null && (
+                        <p>{`Bills cosponsored: ${congress.bills_cosponsored}`}</p>
+                      )}
+                      {congress.votes_with_party_pct !== null && (
+                        <p>{`Votes with party ${congress.votes_with_party_pct}% of the time`}</p>
+                      )}
+                      {congress.votes_against_party_pct !== null && (
+                        <p>{`Votes against party ${congress.votes_against_party_pct}% of the time`}</p>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                "Info Tk!"
+              )}
+              {/* propublica info coming soon <br />
               committee memberships <br />
-              blurb if non-existant <br />
+              blurb if non-existant <br /> */}
             </div>
           </section>
 

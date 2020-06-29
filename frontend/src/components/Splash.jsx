@@ -4,9 +4,10 @@ import SearchBar from "./search/search_bar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { fetchRepresentatives } from "../actions/search_actions";
-import { cronTest } from "../util/cron_util";
+import logo from "../icons/logo.svg";
 
-const Splash = () => {
+
+const Splash = (props) => {
   const [headSearchStr, setHeadSearchStr] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -19,47 +20,94 @@ const Splash = () => {
       .split(" ")
       .join("%20");
 
+
+
+    let loggedInStuff;
+    if (props.user) {
+      loggedInStuff = (
+        <div className="splash-header-right">
+        <form
+            className="splash-header-search-bar"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const search = formatAddress(headSearchStr);
+              dispatch(fetchRepresentatives(search)).then(
+                history.push(
+                  `/search?address=${search}&levels=all&issues=all`
+                )
+              );
+            }}
+          >
+          <input
+            type="text"
+            value={headSearchStr}
+            onChange={(e) => setHeadSearchStr(e.target.value)}
+            placeholder="Find Your Representatives"
+          />
+          <button className="header-search-icon">
+            <FontAwesomeIcon icon="search" flip="horizontal" />
+          </button>
+        </form>
+        <div onClick={() => props.logout()} className="signin-button">
+          <div>Log Out</div>
+        </div>
+        <Link to="/edit" className="signup-button">
+          <div>Edit</div>
+        </Link>
+      </div>
+      );
+    } else {
+     loggedInStuff= ( 
+     <div className="splash-header-right">
+        <form
+          className="splash-header-search-bar"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const search = formatAddress(headSearchStr);
+            dispatch(fetchRepresentatives(search)).then(
+              history.push(
+                `/search?address=${search}&levels=all&issues=all`
+              )
+            );
+          }}
+        >
+        <input
+          type="text"
+          value={headSearchStr}
+          onChange={(e) => setHeadSearchStr(e.target.value)}
+          placeholder="Find Your Representatives"
+        />
+        <button className="header-search-icon">
+          <FontAwesomeIcon icon="search" flip="horizontal" />
+        </button>
+      </form>
+      <Link to="/login" className="signin-button">
+        <div>Sign In</div>
+      </Link>
+      <Link to="/register" className="signup-button">
+        <div>Sign Up</div>
+      </Link>
+   </div>
+      );
+    }
+
   return (
     <div className="splash">
       <section className="splash-top">
         <section className="splash-header">
           <div className="splash-header-left">
-            <div className="splash-header-logo"></div>
+            <div className="splash-header-logo">
+              <img src={ logo } />
+            </div>
             <div className="splash-header-left-dropdown">
               <div>?</div>
             </div>
           </div>
 
-          <div className="splash-header-right">
-            <form
-              className="splash-header-search-bar"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const search = formatAddress(headSearchStr);
-                dispatch(fetchRepresentatives(search)).then(
-                  history.push(
-                    `/search?address=${search}&levels=all&issues=all`
-                  )
-                );
-              }}
-            >
-              <input
-                type="text"
-                value={headSearchStr}
-                onChange={(e) => setHeadSearchStr(e.target.value)}
-                placeholder="Find Your Representatives"
-              />
-              <button className="header-search-icon">
-                <FontAwesomeIcon icon="search" flip="horizontal" />
-              </button>
-            </form>
-            <Link to="/login" className="signin-button">
-              <div>Sign In</div>
-            </Link>
-            <Link to="/register" className="signup-button">
-              <div>Sign Up</div>
-            </Link>
-          </div>
+          
+            {loggedInStuff}
+         
+
         </section>
         <section className="splash-search-text">
           <div className="splash-search-text-container">

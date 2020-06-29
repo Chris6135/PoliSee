@@ -26,9 +26,10 @@
           background: $button;
           border-radius: 7px;
           text-align: center;
+          color: $background;
       }
       a:hover{
-        background: lightgray;
+        background: rgba($color: $button, $alpha: 0.75);
       }
     }
   }
