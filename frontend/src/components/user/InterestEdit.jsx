@@ -101,7 +101,7 @@ class InterestEdit extends React.Component {
               <Link to="/edit">
                 Return to user edit
               </Link>
-              <Link to="/edit/interests">
+              <Link to={`/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`}>
                 Return to search
               </Link>
             </div>

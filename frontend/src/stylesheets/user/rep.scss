@@ -22,8 +22,10 @@
       @include flex(column, flex-start, center);
       .rep-edit-rep-list {
         min-height: 10px;
-        @include flex(row, flex-start, flex-start);
+        @include flex(row, center, flex-start);
         flex-wrap: wrap;
+        max-height: 80%;
+        overflow-y: scroll;
         li {
           border-radius: 2px;
           position: relative;
@@ -107,6 +109,23 @@
           }
         }
       }
+      .info-links{
+        width: 100%;
+        margin-top: 20px;
+        @include flex(row, $align: center, $justify: space-evenly);
+        a {
+          @include flex(row, center, center);
+          line-height: 48.5px;
+          width: 200px;
+          height: 48.5px;
+          background: $button;
+          border-radius: 7px;
+          color: $background;
+          }
+        a:hover{
+          background: $footer-button-hover;
+        }
+      }      
     }
   }
 }
