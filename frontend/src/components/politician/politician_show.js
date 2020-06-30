@@ -9,7 +9,7 @@ import {
   toggleRepresentative,
 } from "../../actions/search_actions";
 import Article from "./article";
-import { fetchArticles } from "../../actions/news_actions";
+import { fetchArticles, clearArticles } from "../../actions/news_actions";
 import ProPublicaAPI from "../../util/propublica_api_util";
 
 const issueMap = {
@@ -46,6 +46,7 @@ const PoliticianShow = ({
 
   useEffect(() => {
     if (!official) dispatch(fetchRepresentative(id));
+    return () => dispatch(clearArticles());
   }, []);
 
   useEffect(() => {
@@ -123,12 +124,12 @@ const PoliticianShow = ({
     return (
       <div>
         <div className="issues-container">
-        {issues
-          .filter((i) => roles.some((r) => issueMap[i].includes(r)))
-          .map((a) => (
-            <div key={shortid.generate()}>{a}</div>
-          ))}
-      </div>
+          {issues
+            .filter((i) => roles.some((r) => issueMap[i].includes(r)))
+            .map((a) => (
+              <div key={shortid.generate()}>{a}</div>
+            ))}
+        </div>
       </div>
     );
   };
@@ -153,6 +154,122 @@ const PoliticianShow = ({
     }
   };
 
+  const propublica = () => {
+    if ((!record && !official) || (!record && official.congressId)) {
+      return (
+        <FontAwesomeIcon
+          icon="spinner"
+          size="2x"
+          spin
+          className="propublica-spinner"
+        />
+      );
+    }
+    if (record) {
+      return (
+        <div>
+          <div>
+            <h2>{`${official.name} in the ${congress.congress}th Congress`}</h2>
+            <ul>
+              {congress.cook_pvi && (
+                <p>{`Cook Partisan Voter Index: ${congress.cook_pvi}`}</p>
+              )}
+              {congress.committees && (
+                <div
+                  tabIndex="0"
+                  onFocus={() => {
+                    setShowCommittees(true);
+                  }}
+                  onBlur={() => setShowCommittees(false)}
+                >
+                  Committees
+                  {showCommittees ? (
+                    <ul>
+                      <h3>Committee Chairs</h3>
+                      {congress.committees.map((committee) => (
+                        <li>
+                          <strong>{`${committee.name}`}</strong>
+                          <span>
+                            {committee.side[0].toUpperCase() +
+                              committee.side.slice(1) +
+                              " " +
+                              committee.title}
+                          </span>
+                        </li>
+                      ))}
+                      <h3>Subcommittee Chairs</h3>
+                      {congress.subcommittees.length > 0 ? (
+                        congress.subcommittees.map((subcommittee) => (
+                          <li>
+                            <strong>{`${subcommittee.name}`}</strong>
+                            <span>
+                              {subcommittee.side[0].toUpperCase() +
+                                subcommittee.side.slice(1) +
+                                " " +
+                                subcommittee.title}
+                            </span>
+                          </li>
+                        ))
+                      ) : (
+                        <li>No Subcommittee Chairs</li>
+                      )}
+                    </ul>
+                  ) : null}
+                </div>
+              )}
+              {congress.bills_sponsored !== null && (
+                <p>
+                  Bills sponsored: <strong>{congress.bills_sponsored}</strong>
+                </p>
+              )}
+              {congress.bills_cosponsored !== null && (
+                <p className="bills">
+                  Bills cosponsored:{" "}
+                  <strong>{congress.bills_cosponsored}</strong>
+                </p>
+              )}
+              {record.most_recent_vote && (
+                <p className="recent">
+                  Most recent vote: <strong>{record.most_recent_vote}</strong>
+                </p>
+              )}
+              {congress.total_votes && (
+                <p>
+                  Total votes: <strong>{congress.total_votes}</strong>
+                </p>
+              )}
+              {congress.missed_votes !== null && (
+                <p>
+                  Missed votes:{" "}
+                  <strong>
+                    {congress.missed_votes}
+                    {congress.missed_votes_pct !== null &&
+                      ` (${congress.missed_votes_pct}%)`}
+                  </strong>
+                </p>
+              )}
+              {congress.votes_with_party_pct !== null && (
+                <p>
+                  Votes with party{" "}
+                  <span>
+                    <strong>{`${congress.votes_with_party_pct}%`}</strong>
+                  </span>
+                </p>
+              )}
+              {congress.votes_against_party_pct !== null && (
+                <p>
+                  Votes against party{" "}
+                  <strong>{`${congress.votes_against_party_pct}%`}</strong>
+                </p>
+              )}
+            </ul>
+          </div>
+        </div>
+      );
+    }
+    return "Info tk";
+  };
+
   return (
     <>
       {official && (
@@ -164,13 +281,14 @@ const PoliticianShow = ({
                   <div className="image-container">
                     <img src={official.photoUrl || man} alt={official.name} />
                   </div>
-                  { (new Date()).getFullYear().toString() === official.nextElection ? (
-                  <div className="alert">
-                    {" "}
-                    {/* Only show alert if politician is up for re-election */}
-                    <span>!</span>
-                  </div>
-                  ) : null }
+                  {new Date().getFullYear().toString() ===
+                  official.nextElection ? (
+                    <div className="alert">
+                      {" "}
+                      {/* Only show alert if politician is up for re-election */}
+                      <span>!</span>
+                    </div>
+                  ) : null}
                   {userToggle()}
                 </figure>
                 <aside>
@@ -218,6 +336,10 @@ const PoliticianShow = ({
               </aside>
             </div>
             <div className="propublica">
+              {propublica()}
+              {/* {!record && official.congressId && (
+                <FontAwesomeIcon icon="spinner" size="2x" spin />
+              )}
               {record ? (
                 <div>
                   <div>
@@ -226,83 +348,112 @@ const PoliticianShow = ({
                       {congress.cook_pvi && (
                         <p>{`Cook Partisan Voter Index: ${congress.cook_pvi}`}</p>
                       )}
-                      { congress.committees && (
+                      {congress.committees && (
                         <div
                           tabIndex="0"
-                          onFocus={ () => { setShowCommittees(true) }}
-                          onBlur={ () => setShowCommittees(false) }>
+                          onFocus={() => {
+                            setShowCommittees(true);
+                          }}
+                          onBlur={() => setShowCommittees(false)}
+                        >
                           Committees
-                          { showCommittees ? (
+                          {showCommittees ? (
                             <ul>
                               <h3>Committee Chairs</h3>
-                              { congress.committees.map( committee => (
+                              {congress.committees.map((committee) => (
                                 <li>
-                                  <strong>
-                                    { `${ committee.name }` }
-                                  </strong>
+                                  <strong>{`${committee.name}`}</strong>
                                   <span>
-                                   { committee.side[0].toUpperCase() + committee.side.slice(1) + " " + committee.title }
+                                    {committee.side[0].toUpperCase() +
+                                      committee.side.slice(1) +
+                                      " " +
+                                      committee.title}
                                   </span>
                                 </li>
-                              )) }
+                              ))}
                               <h3>Subcommittee Chairs</h3>
-                                { congress.subcommittees.length > 0 ? congress.subcommittees.map( subcommittee => (
+                              {congress.subcommittees.length > 0 ? (
+                                congress.subcommittees.map((subcommittee) => (
                                   <li>
-                                    <strong>
-                                      { `${ subcommittee.name }` }
-                                    </strong>
+                                    <strong>{`${subcommittee.name}`}</strong>
                                     <span>
-                                      { subcommittee.side[0].toUpperCase() + subcommittee.side.slice(1) + " " + subcommittee.title }
+                                      {subcommittee.side[0].toUpperCase() +
+                                        subcommittee.side.slice(1) +
+                                        " " +
+                                        subcommittee.title}
                                     </span>
                                   </li>
-                                )) : (
-                                  <li>No Subcommittee Chairs</li>
-                                )}
+                                ))
+                              ) : (
+                                <li>No Subcommittee Chairs</li>
+                              )}
                             </ul>
-                          ) : null }
+                          ) : null}
                         </div>
-                      )}                   
+                      )}
                       {congress.bills_sponsored !== null && (
-                        <p>Bills sponsored: <strong>{congress.bills_sponsored}</strong></p>
+                        <p>
+                          Bills sponsored:{" "}
+                          <strong>{congress.bills_sponsored}</strong>
+                        </p>
                       )}
                       {congress.bills_cosponsored !== null && (
-                        <p className="bills">Bills cosponsored: <strong>{congress.bills_cosponsored}</strong></p>
+                        <p className="bills">
+                          Bills cosponsored:{" "}
+                          <strong>{congress.bills_cosponsored}</strong>
+                        </p>
                       )}
                       {record.most_recent_vote && (
-                        <p className="recent">Most recent vote: <strong>{record.most_recent_vote}</strong></p>
+                        <p className="recent">
+                          Most recent vote:{" "}
+                          <strong>{record.most_recent_vote}</strong>
+                        </p>
                       )}
                       {congress.total_votes && (
-                        <p>Total votes: <strong>{congress.total_votes}</strong></p>
+                        <p>
+                          Total votes: <strong>{congress.total_votes}</strong>
+                        </p>
                       )}
                       {congress.missed_votes !== null && (
-                        <p>Missed votes: <strong>{congress.missed_votes}
-                          {congress.missed_votes_pct !== null &&
-                          ` (${congress.missed_votes_pct}%)`
-                        }</strong></p>
+                        <p>
+                          Missed votes:{" "}
+                          <strong>
+                            {congress.missed_votes}
+                            {congress.missed_votes_pct !== null &&
+                              ` (${congress.missed_votes_pct}%)`}
+                          </strong>
+                        </p>
                       )}
                       {congress.votes_with_party_pct !== null && (
-                        <p>Votes with party <span><strong>{`${congress.votes_with_party_pct}%`}</strong></span>
-</p>
+                        <p>
+                          Votes with party{" "}
+                          <span>
+                            <strong>{`${congress.votes_with_party_pct}%`}</strong>
+                          </span>
+                        </p>
                       )}
                       {congress.votes_against_party_pct !== null && (
-                        <p>Votes against party <strong>{`${congress.votes_against_party_pct}%`}</strong></p>
+                        <p>
+                          Votes against party{" "}
+                          <strong>{`${congress.votes_against_party_pct}%`}</strong>
+                        </p>
                       )}
                     </ul>
                   </div>
                 </div>
               ) : (
                 "Info Tk!"
-              )}
-              {/* propublica info coming soon <br />
-              committee memberships <br />
-              blurb if non-existant <br /> */}
+              )} */}
             </div>
           </section>
 
           <section className="news">
             <ul>
-              {articles.length &&
-                articles.map((a) => <Article key={shortid.generate()} a={a} />)}
+              {articles.length ? (
+                articles.map((a) => <Article key={shortid.generate()} a={a} />)
+              ) : (
+                <FontAwesomeIcon icon="spinner" size="2x" spin />
+              )}
             </ul>
           </section>
         </div>
