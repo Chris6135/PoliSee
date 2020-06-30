@@ -4,10 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import shortid from "shortid";
 import man from "../../icons/Man.jpg";
 
-import {
-  fetchRepresentative,
-  toggleRepresentative,
-} from "../../actions/search_actions";
+import { fetchRepresentative } from "../../actions/search_actions";
+import { toggleRepresentative } from "../../actions/user_actions";
 import Article from "./article";
 import { fetchArticles, clearArticles } from "../../actions/news_actions";
 import ProPublicaAPI from "../../util/propublica_api_util";
@@ -59,8 +57,7 @@ const PoliticianShow = ({
     }
   }, [official]);
 
-  const handleSubscribe = (type) => () =>
-    dispatch(toggleRepresentative(id, { [type]: true }));
+  const handleSubscribe = () => dispatch(toggleRepresentative(id));
 
   const formatAddress = ({ line1, city, state, zip }) =>
     `${line1}, ${city}, ${state} ${zip}`;
@@ -137,14 +134,14 @@ const PoliticianShow = ({
   const userToggle = () => {
     if (user && user.savedPoliticians.includes(id)) {
       return (
-        <div className="follow-btn" onClick={handleSubscribe("save")}>
+        <div className="follow-btn" onClick={handleSubscribe}>
           {" "}
           <span>-</span>
         </div>
       );
     } else if (user) {
       return (
-        <div className="follow-btn" onClick={handleSubscribe("save")}>
+        <div className="follow-btn" onClick={handleSubscribe}>
           {" "}
           <span>+</span>
         </div>

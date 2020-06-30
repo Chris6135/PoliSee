@@ -23,7 +23,6 @@ export const fetchSenators = (state) => (dispatch) =>
   ProPublicaAPI.senatorsByState(state)
     .then((res) => dispatch(receiveSenators(res.data.results)))
     .catch((e) => {
-      debugger;
       return dispatch(receiveProPublicaError(e.response.data));
     });
 
@@ -31,6 +30,5 @@ export const fetchMember = (state, cd) => (dispatch) =>
   ProPublicaAPI.memberByDistrict(state, cd)
     .then((res) => dispatch(receiveMember(...res.data.results)))
     .catch((e) => {
-      debugger;
       return dispatch(receiveProPublicaError(e.response.data));
     });

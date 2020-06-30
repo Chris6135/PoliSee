@@ -1,10 +1,11 @@
 import axios from "axios";
 
-
-export const editUser = data => {
-  return axios.patch('/api/users/edit', data)
+const UserAPI = {
+  editUser: (data) => axios.patch("/api/users/edit", data),
+  fetchUserRepresentatives: () => axios.get("/api/users/politicians"),
+  toggleSubscribe: (id) => axios.patch(`/api/politicians/${id}/subscribe`),
+  toggleContact: () => axios.put("/api/users/contact"),
+  emailNow: () => axios.put("/api/users/email"),
 };
 
-export const fetchUserRepresentatives = () => {
-  return axios.get('/api/users/politicians')
-};
+export default UserAPI;

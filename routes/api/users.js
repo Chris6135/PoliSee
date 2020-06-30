@@ -148,7 +148,7 @@ router.put(
     try {
       await Mailer.findByIdAndUpdate(mailerId, { list });
       await User.findByIdAndUpdate(id, { contact });
-      res.status(200).json({ success: true });
+      res.status(200).json({ contact });
     } catch (e) {
       res.status(500).json(e);
     }
