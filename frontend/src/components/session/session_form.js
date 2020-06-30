@@ -52,7 +52,14 @@ const SessionForm = ({ match, history }) => {
     e.preventDefault();
     if (formIsValid()) {
       return (reg ? dispatch(register(user)) : dispatch(login(user)))
-        .then(action => (history.push(`/search?address=${formatAddress(action.user.address)}&levels=all&issues=all`)))
+        .then(action => 
+          {
+            if (!action.user){
+              console.log("Incorrect username/password combination")
+            }else{
+              history.push(`/search?address=${formatAddress(action.user.address)}&levels=all&issues=all`)
+            }
+          })
     }
   };
 
