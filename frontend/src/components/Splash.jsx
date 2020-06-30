@@ -90,7 +90,17 @@ const Splash = (props) => {
    </div>
       );
     }
+  const dropdown = () => {
+    return (
+      <div className="header-drop-content">
+        <p>Welcome to PoliSee!</p>
+        <p>Begin by entering an adress into the search bar</p>
+        <p>Select levels to only see representitives at your chosen level</p>
+        <p>Selecting issues will limit results to reps who deal with those issues!</p>
 
+      </div>
+    );
+  };
   return (
     <div className="splash">
       <section className="splash-top">
@@ -99,8 +109,11 @@ const Splash = (props) => {
             <div className="splash-header-logo">
               <img src={ logo } />
             </div>
-            <div className="splash-header-left-dropdown">
-              <div>?</div>
+            <div className="information-dropdown">
+              <div className="header-drop-btn">
+                <span>?</span>
+              </div>
+              {dropdown()}
             </div>
           </div>
 
@@ -255,16 +268,16 @@ const Splash = (props) => {
                 href="https://www.propublica.org/datastore/api/propublica-congress-api"
                 className="api-box"
               >
-                propublica congress API
+                propublica
               </a>
-              <a href="https://newsapi.org/" className="api-box">
-                news API
+              <a href="https://contextualweb.io/news-api/" className="api-box">
+                Contextualweb
               </a>
               <a
                 href="https://developers.google.com/civic-information"
                 className="api-box"
               >
-                google civic API
+                google civics
               </a>
             </div>
           </section>

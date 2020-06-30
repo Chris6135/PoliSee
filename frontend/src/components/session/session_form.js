@@ -53,15 +53,23 @@ const SessionForm = ({ match, history }) => {
     if (formIsValid()) {
       return (reg ? dispatch(register(user)) : dispatch(login(user))).then(
         (action) => {
-          if (action.type === "RECEIVE_CURRENT_USER")
-            return history.push(
+          if (action.user) {
+            history.push(
               `/search?address=${formatAddress(
                 action.user.address
               )}&levels=all&issues=all`
             );
+          }
         }
       );
     }
+  };
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    user.email = "polisee.devteam@gmail.com";
+    user.password = "password";
+    dispatch(login(user));
   };
 
   const formHead = reg ? "Sign Up for Free" : "Sign In";
@@ -83,7 +91,7 @@ const SessionForm = ({ match, history }) => {
     >
       <h1>{formHead}</h1>
       {reg && <h3>AND STAY INFORMED</h3>}
-      <button>GOOGLE BUTTON GOES HERE</button>
+      <button onClick={demoLogin}>DEMO LOGIN</button>
       <label htmlFor="email">
         <h6>EMAIL</h6>
         {emailError && <span className="err-msg">{emailError}</span>}

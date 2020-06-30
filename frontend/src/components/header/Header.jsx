@@ -36,13 +36,24 @@ class Header extends React.Component {
     this.setState({ searchQuery: e.currentTarget.value });
   }
 
-  render() {
+  render() {    
     const dropdown = (path) => {
+      console.log(path)
+
+      let emailMessage;
+
+      if (false){
+        emailMessage = 'Or press "Stop my reminders" to cancel weekly emails'
+      }else{
+        emailMessage = 'Or press "Remind me every week"to sign up for weekly emails'
+      }
+
+
       switch (path) {
         case "/login": //when we figure out cases and content we can expand this
           return (
             <div className="header-drop-content">
-              <p>Enter your info to acces your account</p>
+              <p>Enter your info to access your account</p>
               <p>
                 When signed in you can manage saved representitives and sign up
                 for automatic email updates
@@ -96,26 +107,48 @@ class Header extends React.Component {
               </p>
             </div>
           );
-        case "/":
+        case "/edit/representatives":
           return (
             <div className="header-drop-content">
-              <p>Funky Kong</p>
-              <p>Funky Kong</p>
-              <p>Funky Kong</p>
+              <p>Here you can see all of your followed representitives</p>
+              <p>By clicking on their photo you can jump to their info page.</p>
+              <p>
+                Press the little 'X' to remove the politican from your list.
+              </p>
             </div>
           );
+        case "/search":
+          return (
+            <div className="header-drop-content">
+              <p>This page shows all the reps in the searched adress</p>
+              <p>Click on a picture to see more info. </p>
+              <p>Use the nav bar on the left to order by local, and federal representitives
+                as well as sort by gov. level and interests
+              </p>
+          </div>
+          );
+          case "/edit/contact":
+            return (
+              <div className="header-drop-content">
+                <p>From here you can email yourself information on your saved reps.</p>
+                <p>Click send now to instantly receive an email. </p>
+                <p>{emailMessage}
+                </p>
+            </div>
+            );
         default:
           return (
             <div className="header-drop-content">
-              <p>Funky Kong</p>
-              <p>Funky Kong</p>
-              <p>Funky Kong</p>
+              <p>Here you can see in depth info on reps.</p>
+              <p>Scroll to see phone numbers, social media, and recent news</p>
+              <p>Federal Congress Memebers will have more detailed info on the right sidebar</p>
             </div>
           );
       }
     };
 
     let loggedInStuff;
+    let logoRoute;
     if (this.props.user) {
       loggedInStuff = (
         <div className="header-links">
@@ -125,6 +158,8 @@ class Header extends React.Component {
           </Link>
         </div>
       );
+
+      logoRoute = `/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`
     } else {
       loggedInStuff = (
         <div className="header-links">
@@ -136,13 +171,15 @@ class Header extends React.Component {
           </Link>
         </div>
       );
+
+      logoRoute = "/"
     }
 
     return (
       <div className="header">
         <div className="header-left">
           <div className="header-logo">
-            <Link to="/">
+            <Link to={logoRoute}>
               <img src={logo} />
             </Link>
           </div>

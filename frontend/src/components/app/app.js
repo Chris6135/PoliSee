@@ -12,7 +12,7 @@ import InfoEditContainer from "../user/InfoEditContainer";
 import InterestEditContainer from "../user/InterestEditContainer";
 import HeaderContainer from "../header/HeaderContainer";
 import RepEditContainer from "../user/RepEditContainer";
-// import ContactEdit from "../user/ContactEdit";
+import ContactEdit from "../user/ContactEditContainer";
 
 function App() {
   return (
@@ -23,11 +23,10 @@ function App() {
       </Switch>
       <ProtectedRoute exact path="/edit" component={Edit} />
       <ProtectedRoute path="/edit/info" component={InfoEditContainer} />
-      <ProtectedRoute
-        path="/edit/interests"
-        component={InterestEditContainer}
-      />
+      <ProtectedRoute path="/edit/interests"component={InterestEditContainer}/>
       <ProtectedRoute path="/edit/representatives" component={RepEditContainer} />
+      <ProtectedRoute path="/edit/contact" component={ContactEdit} />
+
 
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
       <Route path="/search" component={SearchLanding} />
