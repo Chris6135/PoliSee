@@ -27,6 +27,14 @@ class InfoEdit extends React.Component {
   }
 
   render() {
+    let demo;
+    if(this.state.email === "polisee.devteam@gmail.com"){
+      demo = true
+    }else{
+      demo = false
+    }
+
+
     return (
       <div className="info-edit">
         <div className="info-edit-backdrop">
@@ -43,6 +51,7 @@ class InfoEdit extends React.Component {
               
               <label htmlFor="email">e-mail address</label>
               <input
+                disabled={demo}
                 type="text"
                 name="email"
                 value={this.state.email}
