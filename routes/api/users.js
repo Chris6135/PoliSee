@@ -1,11 +1,14 @@
+require("dotenv").config();
 const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcryptjs");
-const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
-require("dotenv").config();
+
+const User = require("../../models/User");
+
+const router = express.Router();
 const secret = process.env.SECRET_OR_KEY;
+const mailer = process.env.MAILER_ID;
 
 const getPayload = (user) => {
   return {
@@ -20,16 +23,6 @@ const getPayload = (user) => {
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
-
-router.get("/users", async (req, res) => {
-  const u = await User.findOne({ name: req.body.name });
-
-  if (u) {
-    res.json(u);
-  } else {
-    res.status(404).json("sorry");
-  }
-});
 
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -129,6 +122,26 @@ router.get(
   }
 );
 
+router.put(
+  "/contact",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const list = await User.findById(mailer);
+
+    if (list.usersToMail.includes(req.user.id)) {
+      list.usersToMail.splice(list.usersToMail.indexOf(req.user.id), 1);
+    } else {
+      list.usersToMail.push(req.user.id);
+    }
+    try {
+      list.save();
+      res.status(200).json({ contact: "success" });
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+);
+
 router.patch("/edit", (req, res) => {
   if (req.body.email) {
     User.findByIdAndUpdate(
@@ -201,51 +214,51 @@ router.patch("/edit", (req, res) => {
   // }
 });
 
-router.patch("/subscribe", async (req, res) => {
-  const curUser = await User.findById(req.body.userId);
-  if (curUser) {
-    const { savedPoliticians, contactPoliticians } = curUser;
+// router.patch("/subscribe", async (req, res) => {
+//   const curUser = await User.findById(req.body.userId);
+//   if (curUser) {
+//     const { savedPoliticians, contactPoliticians } = curUser;
 
-    if (req.body.save) {
-      if (savedPoliticians.includes(req.body.politicianId)) {
-        savedPoliticians.splice(
-          savedPoliticians.indexOf(req.body.politicianId),
-          1
-        );
-      } else {
-        savedPoliticians.push(req.body.politicianId);
-      }
-    } else if (req.body.contact) {
-      if (contactPoliticians.includes(req.body.politicianId)) {
-        contactPoliticians.splice(
-          contactPoliticians.indexOf(req.body.politicianId),
-          1
-        );
-      } else {
-        contactPoliticians.push(req.body.politicianId);
-      }
-    }
-  }
+//     if (req.body.save) {
+//       if (savedPoliticians.includes(req.body.politicianId)) {
+//         savedPoliticians.splice(
+//           savedPoliticians.indexOf(req.body.politicianId),
+//           1
+//         );
+//       } else {
+//         savedPoliticians.push(req.body.politicianId);
+//       }
+//     } else if (req.body.contact) {
+//       if (contactPoliticians.includes(req.body.politicianId)) {
+//         contactPoliticians.splice(
+//           contactPoliticians.indexOf(req.body.politicianId),
+//           1
+//         );
+//       } else {
+//         contactPoliticians.push(req.body.politicianId);
+//       }
+//     }
+//   }
 
-  User.updateOne(
-    { _id: req.body.userId },
-    { savedPoliticians, contactPoliticians }
-  )
-    .then((updatedUser) => {
-      jwt.sign(
-        getPayload(updatedUser),
-        secret,
-        { expiresIn: 3600 },
-        (err, token) => {
-          res.json({
-            success: true,
-            token: "Bearer " + token,
-          });
-        }
-      );
-    })
-    .catch((err) => res.status(404).end());
-});
+//   User.updateOne(
+//     { _id: req.body.userId },
+//     { savedPoliticians, contactPoliticians }
+//   )
+//     .then((updatedUser) => {
+//       jwt.sign(
+//         getPayload(updatedUser),
+//         secret,
+//         { expiresIn: 3600 },
+//         (err, token) => {
+//           res.json({
+//             success: true,
+//             token: "Bearer " + token,
+//           });
+//         }
+//       );
+//     })
+//     .catch((err) => res.status(404).end());
+// });
 
 router.patch("/search", async (req, res) => {
   const params = { state: req.body.state, county: req.body.county };
@@ -275,7 +288,5 @@ router.get(
       });
   }
 );
-
-//
 
 module.exports = router;

@@ -1,10 +1,11 @@
 require("dotenv").config();
 const Agenda = require("agenda");
 
-const transporter = require("../mailer/transporter");
+const transporter = require("./transporter");
 const User = require("../models/User");
 
 const mongo = process.env.MONGO_URI;
+const mailer = process.env.MAILER_ID;
 
 const dbConnect = {
   db: {
@@ -19,7 +20,7 @@ const dbConnect = {
 const agenda = new Agenda(dbConnect);
 
 agenda.define("mailer", async (job, done) => {
-  const list = await User.findById("5efa69d1432c0cd6391bdd12");
+  const list = await User.findById(mailer);
   const users = list.toJSON().usersToMail;
   users.forEach((uId) => {
     User.findById(uId)
