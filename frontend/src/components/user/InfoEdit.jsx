@@ -10,14 +10,18 @@ class InfoEdit extends React.Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.editUser({id: this.props.user.id, address:this.state.address, email: this.state.email})
-    setTimeout(() => {
-      if (this.props.user.interests.length !== 0) {
-        this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`)
-      } else {
-        this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=all`)
-      }
-    }, 200);
+    if (this.state.address.length > 5){
+      this.props.editUser({ id: this.props.user.id, address: this.state.address, email: this.state.email })
+      setTimeout(() => {
+        if (this.props.user.interests.length !== 0) {
+          this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`)
+        } else {
+          this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=all`)
+        }
+      }, 200);
+    }else{
+      this.setState({address: "Please enter a full address"})
+    }
   }
 
   handleChange(type){

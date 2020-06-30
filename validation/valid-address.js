@@ -1,5 +1,5 @@
 const validAddress = address => {
-  if (address !== "") {
+  if (address !== "" && address.length > 5) {
     return true;
   }
   else {
