@@ -40,6 +40,7 @@ const PoliticianShow = ({
 
   const [record, setRecord] = useState(null);
   const [news, setNews] = useState(null);
+  const [showCommittees, setShowCommittees] = useState(false);
 
   const congress = record ? record.roles[0] : null;
 
@@ -220,28 +221,62 @@ const PoliticianShow = ({
               {record ? (
                 <div>
                   <div>
-                    <h2>{`Stats for the ${congress.congress}th Congress`}</h2>
+                    <h2>{`${official.name} in the ${congress.congress}th Congress`}</h2>
                     <ul>
                       {congress.cook_pvi && (
                         <p>{`Cook Partisan Voter Index: ${congress.cook_pvi}`}</p>
                       )}
-                      {congress.total_votes && (
-                        <p>{`Total votes: ${congress.total_votes}`}</p>
+                      { congress.committees && (
+                        <div
+                          tabIndex="0"
+                          onFocus={ () => { setShowCommittees(true) }}
+                          onBlur={ () => setShowCommittees(false) }>
+                          Committees
+                          { showCommittees ? (
+                            <ul>
+                              <h3>Committee Chairs</h3>
+                              { congress.committees.map( committee => (
+                                <li>
+                                  <strong>
+                                    { `${ committee.name }` }
+                                  </strong>
+                                  <span>
+                                   { committee.side[0].toUpperCase() + committee.side.slice(1) + " " + committee.title }
+                                  </span>
+                                </li>
+                              )) }
+                              <h3>Subcommittee Chairs</h3>
+                                { congress.subcommittees.map( subcommittee => (
+                                  <li>
+                                    <strong>
+                                      { `${ subcommittee.name }` }
+                                    </strong>
+                                    <span>
+                                      { subcommittee.side[0].toUpperCase() + subcommittee.side.slice(1) + " " + subcommittee.title }
+                                    </span>
+                                  </li>
+                                )) }
+                            </ul>
+                          ) : null }
+                        </div>
+                      )}                   
+                      {congress.bills_sponsored !== null && (
+                        <p>{`Bills sponsored: ${congress.bills_sponsored}`}</p>
+                      )}
+                      {congress.bills_cosponsored !== null && (
+                        <p>{`Bills cosponsored: ${congress.bills_cosponsored}`}</p>
                       )}
                       {record.most_recent_vote && (
                         <p>{`Most recent vote: ${record.most_recent_vote}`}</p>
+                      )}
+                      {congress.total_votes && (
+                        <p>{`Total votes: ${congress.total_votes}`}</p>
                       )}
                       {congress.missed_votes !== null && (
                         <p>{`Missed votes: ${congress.missed_votes}${
                           congress.missed_votes_pct !== null &&
                           ` (${congress.missed_votes_pct}%)`
                         }`}</p>
-                      )}
-                      {congress.bills_sponsored !== null && (
-                        <p>{`Bills sponsored: ${congress.bills_sponsored}`}</p>
-                      )}
-                      {congress.bills_cosponsored !== null && (
-                        <p>{`Bills cosponsored: ${congress.bills_cosponsored}`}</p>
                       )}
                       {congress.votes_with_party_pct !== null && (
                         <p>{`Votes with party ${congress.votes_with_party_pct}% of the time`}</p>
