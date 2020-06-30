@@ -246,7 +246,7 @@ const PoliticianShow = ({
                                 </li>
                               )) }
                               <h3>Subcommittee Chairs</h3>
-                                { congress.subcommittees.map( subcommittee => (
+                                { congress.subcommittees.length > 0 ? congress.subcommittees.map( subcommittee => (
                                   <li>
                                     <strong>
                                       { `${ subcommittee.name }` }
@@ -255,34 +255,37 @@ const PoliticianShow = ({
                                       { subcommittee.side[0].toUpperCase() + subcommittee.side.slice(1) + " " + subcommittee.title }
                                     </span>
                                   </li>
-                                )) }
+                                )) : (
+                                  <li>No Subcommittee Chairs</li>
+                                )}
                             </ul>
                           ) : null }
                         </div>
                       )}                   
                       {congress.bills_sponsored !== null && (
-                        <p>{`Bills sponsored: ${congress.bills_sponsored}`}</p>
+                        <p>Bills sponsored: <strong>{congress.bills_sponsored}</strong></p>
                       )}
                       {congress.bills_cosponsored !== null && (
-                        <p>{`Bills cosponsored: ${congress.bills_cosponsored}`}</p>
+                        <p>Bills cosponsored: <strong>{congress.bills_cosponsored}</strong></p>
                       )}
                       {record.most_recent_vote && (
-                        <p>{`Most recent vote: ${record.most_recent_vote}`}</p>
+                        <p>Most recent vote: <strong>{record.most_recent_vote}</strong></p>
                       )}
                       {congress.total_votes && (
-                        <p>{`Total votes: ${congress.total_votes}`}</p>
+                        <p>Total votes: <strong>{congress.total_votes}</strong></p>
                       )}
                       {congress.missed_votes !== null && (
-                        <p>{`Missed votes: ${congress.missed_votes}${
-                          congress.missed_votes_pct !== null &&
+                        <p>Missed votes: <strong>{congress.missed_votes}
+                          {congress.missed_votes_pct !== null &&
                           ` (${congress.missed_votes_pct}%)`
-                        }`}</p>
+                        }</strong></p>
                       )}
                       {congress.votes_with_party_pct !== null && (
-                        <p>{`Votes with party ${congress.votes_with_party_pct}% of the time`}</p>
+                        <p>Votes with party <span><strong>{`${congress.votes_with_party_pct}%`}</strong></span>
+</p>
                       )}
                       {congress.votes_against_party_pct !== null && (
-                        <p>{`Votes against party ${congress.votes_against_party_pct}% of the time`}</p>
+                        <p>Votes against party <strong>{`${congress.votes_against_party_pct}%`}</strong></p>
                       )}
                     </ul>
                   </div>
