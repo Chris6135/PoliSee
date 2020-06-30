@@ -190,7 +190,12 @@ router.patch("/edit", (req, res) => {
       })
       .catch((err) => res.status(404).end());
   } else if (req.body.interests) {
-    const interests = req.body.interests.split("%20");
+    let interests;
+    if (req.body.interests !== "none") {
+      interests = req.body.interests.split("%20");
+    } else {
+      interests = [];
+    }
     User.findByIdAndUpdate(
       req.body.id,
       {
@@ -288,7 +293,7 @@ router.patch("/search", async (req, res) => {
   const params = { state: req.body.state, county: req.body.county };
 
   const updatedInterests = {};
-  if (req.body.interests && req.body.interests !== "all") {
+  if (req.body.interests !== "" && req.body.interests !== "all") {
     const interests = req.body.interests.split("%20");
     for (i = 0; i < interests.length; i++) {
       updatedInterests[interests[i]] = 1;
@@ -297,6 +302,10 @@ router.patch("/search", async (req, res) => {
     updatedInterests["education"] = 1;
     updatedInterests["justice"] = 1;
     updatedInterests["legislation"] = 1;
+  } else {
+    updatedInterests["education"] = 0;
+    updatedInterests["justice"] = 0;
+    updatedInterests["legislation"] = 0;
   }
 });
 

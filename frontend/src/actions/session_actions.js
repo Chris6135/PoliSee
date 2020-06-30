@@ -45,7 +45,9 @@ export const logout = () => (dispatch) => {
 };
 
 export const editUser = (userData) => (dispatch) => {
+  console.log("made it here")
   UserAPI.editUser(userData).then((res) => {
     dispatch(receiveCurrentUser(getUser(res)));
   });
 };
+

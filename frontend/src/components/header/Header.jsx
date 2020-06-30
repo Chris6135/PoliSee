@@ -158,8 +158,11 @@ class Header extends React.Component {
           </Link>
         </div>
       );
-
-      logoRoute = `/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`
+      if (this.props.user.interests.length !== 0){
+        logoRoute = `/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`
+      }else{
+        logoRoute = `/search?address=${this.props.user.address}&levels=all&issues=all`
+      }
     } else {
       loggedInStuff = (
         <div className="header-links">

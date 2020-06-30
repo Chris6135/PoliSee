@@ -10,8 +10,14 @@ class InterestEdit extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    console.log(this.state.interests)
     let interests = [...this.state.interests];
-    this.props.editUser({ id: this.props.user.id, interests: interests.join('%20') })
+    console.log(interests)
+    if (interests.length === 0){
+      this.props.editUser({ id: this.props.user.id, interests: "none" });
+    }else{
+      this.props.editUser({ id: this.props.user.id, interests: interests.join('%20') });
+    }
     setTimeout(() => {
       if (this.props.user.interests.length !== 0) {
         this.props.history.push(`/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`)
