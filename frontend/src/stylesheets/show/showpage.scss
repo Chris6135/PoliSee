@@ -213,6 +213,9 @@ $image-border: $border;
       border-radius: 2px;
       color: $sources-text;
       padding: 20px;
+      &:hover {
+        cursor: default;
+      }
       h2 {
         letter-spacing: 0.5px;
         font-size: 18px;
@@ -238,7 +241,13 @@ $image-border: $border;
           border-radius: 3px;
           width: 105px;
           position: relative;
+          &:hover {
+            cursor: pointer;
+          }
           ul {
+            &:hover {
+              cursor: default;
+            }
             font-weight: 400;
             padding: 14px;
             font-size: 13px;
@@ -273,10 +282,10 @@ $image-border: $border;
           @include flex(row, $justify: space-between);
           margin: 4px 0;
           width: 100%;
-          &:nth-of-type(2) {
+          &.bills {
             margin-bottom: 70px;
           }
-          &:nth-of-type(3) {
+          &.recent {
             margin-bottom: 20px;
           }
         }

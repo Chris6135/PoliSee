@@ -266,10 +266,10 @@ const PoliticianShow = ({
                         <p>Bills sponsored: <strong>{congress.bills_sponsored}</strong></p>
                       )}
                       {congress.bills_cosponsored !== null && (
-                        <p>Bills cosponsored: <strong>{congress.bills_cosponsored}</strong></p>
+                        <p className="bills">Bills cosponsored: <strong>{congress.bills_cosponsored}</strong></p>
                       )}
                       {record.most_recent_vote && (
-                        <p>Most recent vote: <strong>{record.most_recent_vote}</strong></p>
+                        <p className="recent">Most recent vote: <strong>{record.most_recent_vote}</strong></p>
                       )}
                       {congress.total_votes && (
                         <p>Total votes: <strong>{congress.total_votes}</strong></p>
