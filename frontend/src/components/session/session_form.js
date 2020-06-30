@@ -63,6 +63,14 @@ const SessionForm = ({ match, history }) => {
     }
   };
 
+  const demoLogin = (e) =>{
+    e.preventDefault();
+    user.email="polisee.devteam@gmail.com"
+    user.password="password"
+    dispatch(login(user))
+  }
+
+
   const formHead = reg ? "Sign Up for Free" : "Sign In";
 
   const emailError =
@@ -78,7 +86,7 @@ const SessionForm = ({ match, history }) => {
     <form className={`session-form` + ( reg ? " reg" : "" ) } onSubmit={handleSubmit}>
       <h1>{formHead}</h1>
       {reg && <h3>AND STAY INFORMED</h3>}
-      <button>GOOGLE BUTTON GOES HERE</button>
+      <button onClick={demoLogin}>DEMO LOGIN</button>
       <label htmlFor="email">
         <h6>EMAIL</h6>
         {emailError && <span className="err-msg">{emailError}</span>}
