@@ -51,8 +51,16 @@ const SessionForm = ({ match, history }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formIsValid()) {
-      return (reg ? dispatch(register(user)) : dispatch(login(user)))
-        .then(action => (history.push(`/search?address=${formatAddress(action.user.address)}&levels=all&issues=all`)))
+      return (reg ? dispatch(register(user)) : dispatch(login(user))).then(
+        (action) => {
+          if (action.type === "RECEIVE_CURRENT_USER")
+            return history.push(
+              `/search?address=${formatAddress(
+                action.user.address
+              )}&levels=all&issues=all`
+            );
+        }
+      );
     }
   };
 
@@ -65,10 +73,14 @@ const SessionForm = ({ match, history }) => {
   const password2Error =
     localErrors.find((e) => e.match(/password confirmation/)) ||
     serverErrors.password2;
-  const addressError = localErrors.find((e) => e.match(/address/)) || serverErrors.address;
+  const addressError =
+    localErrors.find((e) => e.match(/address/)) || serverErrors.address;
 
   return (
-    <form className={`session-form` + ( reg ? " reg" : "" ) } onSubmit={handleSubmit}>
+    <form
+      className={`session-form` + (reg ? " reg" : "")}
+      onSubmit={handleSubmit}
+    >
       <h1>{formHead}</h1>
       {reg && <h3>AND STAY INFORMED</h3>}
       <button>GOOGLE BUTTON GOES HERE</button>
@@ -117,11 +129,15 @@ const SessionForm = ({ match, history }) => {
                 id="address"
               />
             </label>
-            <button type="submit" disabled={ localErrors.length }>SIGN UP</button>
+            <button type="submit" disabled={localErrors.length}>
+              SIGN UP
+            </button>
           </div>
         </div>
       ) : (
-        <button type="submit" disabled={ localErrors.length }>SIGN IN</button>
+        <button type="submit" disabled={localErrors.length}>
+          SIGN IN
+        </button>
       )}
       {reg ? (
         <p>

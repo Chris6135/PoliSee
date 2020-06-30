@@ -15,7 +15,7 @@ transporter.verify((error, success) => {
   if (error) {
     console.log(error);
   } else {
-    console.log("transporter working", success);
+    console.log("transporter", success);
   }
 });
 

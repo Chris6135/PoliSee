@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
@@ -16,28 +17,23 @@ const UserSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   interests: {
     type: Array,
-    default: []
+    default: [],
   },
   savedPoliticians: [
     {
-    type: Schema.Types.ObjectId,
-    ref: 'Politician'
-    }
-  ],
-  contactPoliticians: [
-    {
       type: Schema.Types.ObjectId,
-      ref: 'Politician'
-    }
+      ref: "Politician",
+    },
   ],
-  outgoingEmails: {
-    type: Array,
-    default: []
-  }
-})
+  contact: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+});
 
-module.exports = User = mongoose.model('User', UserSchema);
+module.exports = User = mongoose.model("User", UserSchema);

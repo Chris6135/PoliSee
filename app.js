@@ -30,7 +30,7 @@ mongoose
 
 mongoose.set("useFindAndModify", false);
 
-agenda.start().then(() => agenda.every("30 seconds", "mailer"));
+agenda.start().then(() => agenda.every("1 minute", "group mailer"));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));

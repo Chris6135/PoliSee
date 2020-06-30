@@ -5,10 +5,12 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 const User = require("../../models/User");
+const Mailer = require("../../models/Mailer");
+const agenda = require("../../config/agenda");
 
 const router = express.Router();
 const secret = process.env.SECRET_OR_KEY;
-const mailer = process.env.MAILER_ID;
+const mailerId = process.env.MAILER_ID;
 
 const getPayload = (user) => {
   return {
@@ -126,19 +128,41 @@ router.put(
   "/contact",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const list = await User.findById(mailer);
+    const u = req.user;
+    const mailer = await Mailer.findById(mailerId);
 
-    if (list.usersToMail.includes(req.user.id)) {
-      list.usersToMail.splice(list.usersToMail.indexOf(req.user.id), 1);
+    let { _id, contact } = u.toJSON();
+
+    const id = _id.toJSON();
+
+    const { list } = mailer.toJSON();
+
+    if (contact && list.includes(id)) {
+      list.splice(list.indexOf(id), 1);
+      contact = false;
     } else {
-      list.usersToMail.push(req.user.id);
+      list.push(id);
+      contact = true;
     }
+
     try {
-      list.save();
-      res.status(200).json({ contact: "success" });
+      await Mailer.findByIdAndUpdate(mailerId, { list });
+      await User.findByIdAndUpdate(id, { contact });
+      res.status(200).json({ success: true });
     } catch (e) {
       res.status(500).json(e);
     }
+  }
+);
+
+router.post(
+  "/email",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    User.populate(req.user, { path: "savedPoliticians" })
+      .then((user) => agenda.now("solo mailer", user.toJSON()))
+      .then(() => res.status(200).json({ email: "success" }))
+      .catch((e) => res.status(500).json(e));
   }
 );
 
