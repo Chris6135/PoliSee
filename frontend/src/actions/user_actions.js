@@ -27,11 +27,6 @@ export const receivePassportError = (error) => ({
   error,
 });
 
-export const fetchUserRepresentatives = () => (dispatch) =>
-  UserAPI.fetchUserRepresentatives().then((res) =>
-    dispatch(receiveSavedReps(res.data))
-  );
-
 export const toggleRepresentative = (id, type) => (dispatch) =>
   UserAPI.toggleSubscribe(id, type)
     .then((res) => {
@@ -48,5 +43,5 @@ export const fetchUserRepresentatives = () => (dispatch) =>
 
 export const toggleContact = () => (dispatch) =>
   UserAPI.toggleContact()
-    .then((res) => dispatch(receiveContact(res.data)))
+    .then((res) => dispatch(receiveContact(res.data.contact)))
     .catch((e) => dispatch(receivePassportError(e.response.data)));

@@ -5,7 +5,7 @@ const UserAPI = {
   fetchUserRepresentatives: () => axios.get("/api/users/politicians"),
   toggleSubscribe: (id) => axios.patch(`/api/politicians/${id}/subscribe`),
   toggleContact: () => axios.put("/api/users/contact"),
-  emailNow: () => axios.put("/api/users/email"),
+  emailNow: () => axios.post("/api/users/email"),
 };
 
 export default UserAPI;

@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 
 import SessionAPI from "../util/session_api_util";
-import * as UserAPI from "../util/user_api_util";
+import UserAPI from "../util/user_api_util";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOG_OUT_USER = "LOG_OUT_USER";
