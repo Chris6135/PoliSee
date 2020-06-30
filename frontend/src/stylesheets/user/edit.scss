@@ -35,3 +35,9 @@
   }
 }
 
+ .info-edit-form input[disabled] {
+  background: #CCC;
+  padding: 2px;
+  margin: 0 0 0 0;
+  background-image: none;
+}
