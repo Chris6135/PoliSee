@@ -268,16 +268,16 @@ const Splash = (props) => {
                 href="https://www.propublica.org/datastore/api/propublica-congress-api"
                 className="api-box"
               >
-                propublica congress API
+                propublica
               </a>
-              <a href="https://newsapi.org/" className="api-box">
-                news API
+              <a href="https://contextualweb.io/news-api/" className="api-box">
+                Contextualweb
               </a>
               <a
                 href="https://developers.google.com/civic-information"
                 className="api-box"
               >
-                google civic API
+                google civics
               </a>
             </div>
           </section>
