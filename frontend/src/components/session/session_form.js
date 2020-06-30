@@ -51,25 +51,26 @@ const SessionForm = ({ match, history }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formIsValid()) {
-      return (reg ? dispatch(register(user)) : dispatch(login(user)))
-        .then(action => 
-          {
-            if (!action.user){
-              console.log("Incorrect username/password combination")
-            }else{
-              history.push(`/search?address=${formatAddress(action.user.address)}&levels=all&issues=all`)
-            }
-          })
+      return (reg ? dispatch(register(user)) : dispatch(login(user))).then(
+        (action) => {
+          if (action.user) {
+            history.push(
+              `/search?address=${formatAddress(
+                action.user.address
+              )}&levels=all&issues=all`
+            );
+          }
+        }
+      );
     }
   };
 
-  const demoLogin = (e) =>{
+  const demoLogin = (e) => {
     e.preventDefault();
-    user.email="polisee.devteam@gmail.com"
-    user.password="password"
-    dispatch(login(user))
-  }
-
+    user.email = "polisee.devteam@gmail.com";
+    user.password = "password";
+    dispatch(login(user));
+  };
 
   const formHead = reg ? "Sign Up for Free" : "Sign In";
 
@@ -80,10 +81,14 @@ const SessionForm = ({ match, history }) => {
   const password2Error =
     localErrors.find((e) => e.match(/password confirmation/)) ||
     serverErrors.password2;
-  const addressError = localErrors.find((e) => e.match(/address/)) || serverErrors.address;
+  const addressError =
+    localErrors.find((e) => e.match(/address/)) || serverErrors.address;
 
   return (
-    <form className={`session-form` + ( reg ? " reg" : "" ) } onSubmit={handleSubmit}>
+    <form
+      className={`session-form` + (reg ? " reg" : "")}
+      onSubmit={handleSubmit}
+    >
       <h1>{formHead}</h1>
       {reg && <h3>AND STAY INFORMED</h3>}
       <button onClick={demoLogin}>DEMO LOGIN</button>
@@ -132,11 +137,15 @@ const SessionForm = ({ match, history }) => {
                 id="address"
               />
             </label>
-            <button type="submit" disabled={ localErrors.length }>SIGN UP</button>
+            <button type="submit" disabled={localErrors.length}>
+              SIGN UP
+            </button>
           </div>
         </div>
       ) : (
-        <button type="submit" disabled={ localErrors.length }>SIGN IN</button>
+        <button type="submit" disabled={localErrors.length}>
+          SIGN IN
+        </button>
       )}
       {reg ? (
         <p>

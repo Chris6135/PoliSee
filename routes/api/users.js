@@ -1,77 +1,80 @@
+require("dotenv").config();
 const express = require("express");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+
+const User = require("../../models/User");
+const Mailer = require("../../models/Mailer");
+const agenda = require("../../config/agenda");
+
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const User = require('../../models/User');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
-require('dotenv').config();
 const secret = process.env.SECRET_OR_KEY;
+const mailerId = process.env.MAILER_ID;
 
 const getPayload = (user) => {
   return {
-    id: user.id, 
-    email: user.email, 
-    address: user.address, 
-    interests: user.interests, 
+    id: user.id,
+    email: user.email,
+    address: user.address,
+    interests: user.interests,
     savedPoliticians: user.savedPoliticians,
-    contactPoliticians: user.contactPoliticians
-  }
-}
+    contactPoliticians: user.contactPoliticians,
+  };
+};
 
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 
-
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
-
-router.post('/register', (req, res) => {
-
+router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
   }
   // Check to make sure nobody has already registered with a duplicate email
-  User.findOne({ email: req.body.email })
-    .then(user => {
-      if (user) {
-        // Throw a 400 error if the email address already exists
-        return res.status(400).json({ email: "A user has already registered with this address" })
-      } else {
-        // Otherwise create a new user
-        const newUser = new User({
-          email: req.body.email,
-          password: req.body.password,
-          address: req.body.address,
-        })
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (user) {
+      // Throw a 400 error if the email address already exists
+      return res
+        .status(400)
+        .json({ email: "A user has already registered with this address" });
+    } else {
+      // Otherwise create a new user
+      const newUser = new User({
+        email: req.body.email,
+        password: req.body.password,
+        address: req.body.address,
+      });
 
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save()
-              .then(user => {
-                console.log(getPayload(user));
-                jwt.sign(
-                  getPayload(user),
-                  secret,
-                  { expiresIn: 3600 },
-                  (err, token) => {
-                    res.status(201).json({
-                      success: true,
-                      token: 'Bearer ' + token
-                    });
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then((user) => {
+              console.log(getPayload(user));
+              jwt.sign(
+                getPayload(user),
+                secret,
+                { expiresIn: 3600 },
+                (err, token) => {
+                  res.status(201).json({
+                    success: true,
+                    token: "Bearer " + token,
                   });
-                })
-              .catch(err => console.log(err));
-          })
-        })
-      }
-    })
+                }
+              );
+            })
+            .catch((err) => console.log(err));
+        });
+      });
+    }
+  });
+});
 
-})
-
-router.post('/login', (req, res) => {
-
+router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
   if (!isValid) {
@@ -81,52 +84,98 @@ router.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  User.findOne({ email })
-    .then(user => {
-      if (!user) {
-        return res.status(404).json({ email: 'This user does not exist' });
-      }
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(404).json({ email: "This user does not exist" });
+    }
 
-      bcrypt.compare(password, user.password)
-        .then(isMatch => {
-          if (isMatch) {
-
-            jwt.sign(
-              getPayload(user),
-              secret,
-              { expiresIn: 3600 },
-              (err, token) => {
-                res.json({
-                  success: true,
-                  token: 'Bearer ' + token
-                });
-              });
-          } else {
-            return res.status(400).json({ password: 'Incorrect password' });
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        jwt.sign(
+          getPayload(user),
+          secret,
+          { expiresIn: 3600 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer " + token,
+            });
           }
-        })
-    })
-})
-
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    email: req.user.email,
-    address: req.user.address,
-    interests: req.user.interests,
-    savedPoliticians: req.user.savedPoliticians,
-    contactPoliticians: req.user.contactPoliticians
+        );
+      } else {
+        return res.status(400).json({ password: "Incorrect password" });
+      }
+    });
   });
-})
+});
 
-router.patch('/edit', (req, res) => {
-  if(req.body.email){
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      email: req.user.email,
+      address: req.user.address,
+      interests: req.user.interests,
+      savedPoliticians: req.user.savedPoliticians,
+      contactPoliticians: req.user.contactPoliticians,
+    });
+  }
+);
+
+router.put(
+  "/contact",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const u = req.user;
+    const mailer = await Mailer.findById(mailerId);
+
+    let { _id, contact } = u.toJSON();
+
+    const id = _id.toJSON();
+
+    const { list } = mailer.toJSON();
+
+    if (contact && list.includes(id)) {
+      list.splice(list.indexOf(id), 1);
+      contact = false;
+    } else {
+      list.push(id);
+      contact = true;
+    }
+
+    try {
+      await Mailer.findByIdAndUpdate(mailerId, { list });
+      await User.findByIdAndUpdate(id, { contact });
+      res.status(200).json({ success: true });
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+);
+
+router.post(
+  "/email",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    User.populate(req.user, { path: "savedPoliticians" })
+      .then((user) => agenda.now("solo mailer", user.toJSON()))
+      .then(() => res.status(200).json({ email: "success" }))
+      .catch((e) => res.status(500).json(e));
+  }
+);
+
+router.patch("/edit", (req, res) => {
+  if (req.body.email) {
     User.findByIdAndUpdate(
       req.body.id,
       {
-        $set: {email: req.body.email, address: req.body.address}
+        $set: { email: req.body.email, address: req.body.address },
       },
-      { new: true }).then((result) => {
+      { new: true }
+    )
+      .then((result) => {
         jwt.sign(
           getPayload(result),
           secret,
@@ -134,25 +183,27 @@ router.patch('/edit', (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: 'Bearer ' + token
+              token: "Bearer " + token,
             });
-          });
-        })
-        .catch((err) => res.status(404).end())
-  } 
-  else if(req.body.interests){
+          }
+        );
+      })
+      .catch((err) => res.status(404).end());
+  } else if (req.body.interests) {
     let interests;
-    if (req.body.interests !== "none"){
-      interests = req.body.interests.split('%20');
-    }else{
+    if (req.body.interests !== "none") {
+      interests = req.body.interests.split("%20");
+    } else {
       interests = [];
     }
     User.findByIdAndUpdate(
       req.body.id,
       {
-        interests: interests
+        interests: interests,
       },
-      { new: true }).then((result) => {
+      { new: true }
+    )
+      .then((result) => {
         jwt.sign(
           getPayload(result),
           secret,
@@ -160,11 +211,12 @@ router.patch('/edit', (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: 'Bearer ' + token
+              token: "Bearer " + token,
             });
-          });
+          }
+        );
       })
-        .catch((err) => res.status(404).end())
+      .catch((err) => res.status(404).end());
   }
   // else if(req.body.contactPoliticians){
   //   const contactPoliticians = req.body.contactPoliticians.split('%20');
@@ -189,78 +241,85 @@ router.patch('/edit', (req, res) => {
   //     })
   //     .catch((err) => res.status(404).end())
   // }
+});
 
-})
+// router.patch("/subscribe", async (req, res) => {
+//   const curUser = await User.findById(req.body.userId);
+//   if (curUser) {
+//     const { savedPoliticians, contactPoliticians } = curUser;
 
-router.patch('/subscribe', async (req, res) => {
-  const curUser = await User.findById(req.body.userId)
-  if (curUser) {
-    const { savedPoliticians, contactPoliticians } = curUser;
+//     if (req.body.save) {
+//       if (savedPoliticians.includes(req.body.politicianId)) {
+//         savedPoliticians.splice(
+//           savedPoliticians.indexOf(req.body.politicianId),
+//           1
+//         );
+//       } else {
+//         savedPoliticians.push(req.body.politicianId);
+//       }
+//     } else if (req.body.contact) {
+//       if (contactPoliticians.includes(req.body.politicianId)) {
+//         contactPoliticians.splice(
+//           contactPoliticians.indexOf(req.body.politicianId),
+//           1
+//         );
+//       } else {
+//         contactPoliticians.push(req.body.politicianId);
+//       }
+//     }
+//   }
 
-    if (req.body.save) {
-      if (savedPoliticians.includes(req.body.politicianId)) {
-        savedPoliticians.splice(savedPoliticians.indexOf(req.body.politicianId), 1);
-      } else {
-        savedPoliticians.push(req.body.politicianId)
-      }
-    }
-    else if (req.body.contact) {
-      if (contactPoliticians.includes(req.body.politicianId)) {
-        contactPoliticians.splice(contactPoliticians.indexOf(req.body.politicianId), 1);
-      } else {
-        contactPoliticians.push(req.body.politicianId)
-      }
-    }
-  }
+//   User.updateOne(
+//     { _id: req.body.userId },
+//     { savedPoliticians, contactPoliticians }
+//   )
+//     .then((updatedUser) => {
+//       jwt.sign(
+//         getPayload(updatedUser),
+//         secret,
+//         { expiresIn: 3600 },
+//         (err, token) => {
+//           res.json({
+//             success: true,
+//             token: "Bearer " + token,
+//           });
+//         }
+//       );
+//     })
+//     .catch((err) => res.status(404).end());
+// });
 
-  User.updateOne({ _id: req.body.userId }, { savedPoliticians, contactPoliticians })
-    .then((updatedUser) => {
-      jwt.sign(
-        getPayload(updatedUser),
-        secret,
-        { expiresIn: 3600 },
-        (err, token) => {
-          res.json({
-            success: true,
-            token: 'Bearer ' + token
-          });
-        });
-    })
-    .catch(err => res.status(404).end())
-
-})
-
-router.patch('/search', async (req, res) => {
+router.patch("/search", async (req, res) => {
   const params = { state: req.body.state, county: req.body.county };
 
   const updatedInterests = {};
-  if (req.body.interests !== "" && (req.body.interests !== "all")) {
-    const interests = req.body.interests.split('%20');
+  if (req.body.interests !== "" && req.body.interests !== "all") {
+    const interests = req.body.interests.split("%20");
     for (i = 0; i < interests.length; i++) {
-      updatedInterests[interests[i]] = 1
+      updatedInterests[interests[i]] = 1;
     }
   } else if (req.body.interests === "all") {
-    updatedInterests['education'] = 1
-    updatedInterests['justice'] = 1
-    updatedInterests['legislation'] = 1
-  }else{
-    updatedInterests['education'] = 0
-    updatedInterests['justice'] = 0
-    updatedInterests['legislation'] = 0
+    updatedInterests["education"] = 1;
+    updatedInterests["justice"] = 1;
+    updatedInterests["legislation"] = 1;
+  } else {
+    updatedInterests["education"] = 0;
+    updatedInterests["justice"] = 0;
+    updatedInterests["legislation"] = 0;
   }
-
 });
 
-router.get('/politicians', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-  User.findById(req.user.id)
-    .populate({ path: 'savedPoliticians' })
-    .select("savedPoliticians -_id")
-    .then(savedPoliticians => {
-      res.status(200).json(savedPoliticians)
-    })
-})
-
-// 
+router.get(
+  "/politicians",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findById(req.user.id)
+      .populate({ path: "savedPoliticians" })
+      .select("savedPoliticians -_id")
+      .then((savedPoliticians) => {
+        res.status(200).json(savedPoliticians);
+      });
+  }
+);
 
 module.exports = router;
