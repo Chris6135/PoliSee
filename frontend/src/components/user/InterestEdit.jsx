@@ -10,9 +10,7 @@ class InterestEdit extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state.interests)
     let interests = [...this.state.interests];
-    console.log(interests)
     if (interests.length === 0){
       this.props.editUser({ id: this.props.user.id, interests: "none" });
     }else{

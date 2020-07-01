@@ -12,26 +12,9 @@ import Root from "./components/app/root";
 import axios from "axios";
 import cron from "node-cron";
 import {sendTestMail} from "./util/mail_util"
-// import {nodemailer} from "nodemailer"
-// import {cronBuilder} from "./util/cron_util"
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
-  console.log("key")
-  console.log(process.env.REACT_APP_NEWS_API_KEY)
-//   const data =  {
-//     name: "Chris",
-//     email: "Christopher.simons10@gmail.com",
-//     message: "Continuing to test"
-// }
-
-  // sendTestMail(data) //comment this in to send chris an email.
-  // console.log("sent test mail")
-
-
-
-
-
 
   if (localStorage.jwt) {
     SessionAPI.setAuthToken(localStorage.jwt);
