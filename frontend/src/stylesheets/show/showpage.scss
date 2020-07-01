@@ -19,7 +19,6 @@ $image-border: $border;
       .flag-top {
         @include flex(row, $align: center);
         .image {
-          
           flex: 0 0 auto;
           height: $image-dimensions;
           width: $image-dimensions;
@@ -31,11 +30,11 @@ $image-border: $border;
             clip-path: polygon(
               0% 2.5%,
               2.5% 0%,
-              97.5% 0%,  
-              100% 2.5%, 
+              97.5% 0%,
+              100% 2.5%,
               100% 97.5%,
               97.5% 100%,
-              2.5% 100%, 
+              2.5% 100%,
               0 97.5%
             );
             &::after {
@@ -49,7 +48,7 @@ $image-border: $border;
               opacity: 0.1;
             }
           }
-          border: 10px solid $image-border;  /*can change here if watched! */
+          border: 10px solid $image-border; /*can change here if watched! */
           img {
             opacity: 1;
           }
@@ -65,11 +64,31 @@ $image-border: $border;
             color: $background;
             font-size: 24px;
             font-weight: 700;
-            clip-path: polygon(
-              0 0,
-              100% 0,
-              100% 100%
-            );
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+          }
+          .alert-dropdown{
+            display: none;
+            position: absolute;
+            width: 300px;
+            background-color: rgba($color: $form-bg, $alpha: 0.8);
+            box-shadow: 0px 2px 5px 2px rgba($color: $section-headers, $alpha: 0.25);
+            backdrop-filter: blur(4px);
+            text-align: justify;
+            letter-spacing: 1px;
+            font-size: 14px;
+            color: $section-headers;
+            z-index: 5;
+            border-radius: 8px;
+            top: 28px;
+            right: 10px;
+            padding: 32px 30px;
+            &:hover {
+              cursor: default;
+            }
+          }
+
+          .alert:hover + .alert-dropdown {
+            @include flex(column)
           }
           .follow-btn {
             position: absolute;
@@ -83,11 +102,7 @@ $image-border: $border;
             color: $background;
             font-size: 34px;
             font-weight: 600;
-            clip-path: polygon(
-              100% 0,
-              100% 100%,
-              0 100%
-            );
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
             span {
               margin-left: 30px;
               display: block;
@@ -113,7 +128,7 @@ $image-border: $border;
             padding: 0 20px;
             font-size: 15px;
             @include flex(column, $justify: center);
-            .issues-container{
+            .issues-container {
               @include flex(row);
               div {
                 &:hover {
@@ -171,7 +186,7 @@ $image-border: $border;
           font-weight: 600;
           font-size: 22px;
           a {
-            margin-right: 5px; 
+            margin-right: 5px;
             &:hover {
               text-shadow: 0 0 1px $show-font-color;
             }
@@ -205,6 +220,13 @@ $image-border: $border;
         }
       }
     }
+    .propublica:empty {
+      display:none;
+    }
+    @keyframes unfold {
+      from {width: 0px; margin-top: 0px}
+      to {width: 329.5px; margin-top: 0px}
+    }
     .propublica {
       margin-left: 100px;
       width: 329.5px;
@@ -213,9 +235,12 @@ $image-border: $border;
       border-radius: 2px;
       color: $sources-text;
       padding: 20px;
+      animation-name: unfold;
+      animation-duration: .3s;
       &:hover {
         cursor: default;
       }
+
       h2 {
         letter-spacing: 0.5px;
         font-size: 18px;
@@ -273,7 +298,6 @@ $image-border: $border;
               }
             }
           }
-
         }
         strong {
           font-weight: 600;

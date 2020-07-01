@@ -22,11 +22,13 @@ const receiveProPublicaError = (error) => ({
 export const fetchSenators = (state) => (dispatch) =>
   ProPublicaAPI.senatorsByState(state)
     .then((res) => dispatch(receiveSenators(res.data.results)))
-    .catch((e) => dispatch(receiveProPublicaError(e.response.data)));
+    .catch((e) => {
+      return dispatch(receiveProPublicaError(e.response.data));
+    });
 
 export const fetchMember = (state, cd) => (dispatch) =>
   ProPublicaAPI.memberByDistrict(state, cd)
     .then((res) => dispatch(receiveMember(...res.data.results)))
-    .catch((e) => dispatch(receiveProPublicaError(e.response.data)));
-
-// export const fetchSpecificMember = (id) => (dispatch) => ProPublicaAPI.specificMember(id).then()
+    .catch((e) => {
+      return dispatch(receiveProPublicaError(e.response.data));
+    });

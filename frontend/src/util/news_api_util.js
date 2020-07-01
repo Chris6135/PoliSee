@@ -14,7 +14,7 @@ const NewsAPI = {
         headers:
           {
           "X-RapidAPI-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
-          "X-RapidAPI-Key": key,
+          "X-RapidAPI-Key": "f52e3f3751msh1ac6874faf7def1p162ea7jsn551652b12282",
           "useQueryString": true
         },
         params:

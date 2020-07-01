@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import SearchBar from "./search/search_bar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { fetchRepresentatives } from "../actions/search_actions";
-import logo from "../icons/logo.svg";
-
+import SearchBar from "../search/search_bar";
+import { fetchRepresentatives } from "../../actions/search_actions";
+import logo from "../../icons/logo.svg";
 
 const Splash = (props) => {
   const [headSearchStr, setHeadSearchStr] = useState("");
@@ -20,24 +19,20 @@ const Splash = (props) => {
       .split(" ")
       .join("%20");
 
-
-
-    let loggedInStuff;
-    if (props.user) {
-      loggedInStuff = (
-        <div className="splash-header-right">
+  let loggedInStuff;
+  if (props.user) {
+    loggedInStuff = (
+      <div className="splash-header-right">
         <form
-            className="splash-header-search-bar"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const search = formatAddress(headSearchStr);
-              dispatch(fetchRepresentatives(search)).then(
-                history.push(
-                  `/search?address=${search}&levels=all&issues=all`
-                )
-              );
-            }}
-          >
+          className="splash-header-search-bar"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const search = formatAddress(headSearchStr);
+            dispatch(fetchRepresentatives(search)).then(
+              history.push(`/search?address=${search}&levels=all&issues=all`)
+            );
+          }}
+        >
           <input
             type="text"
             value={headSearchStr}
@@ -55,49 +50,49 @@ const Splash = (props) => {
           <div>Edit</div>
         </Link>
       </div>
-      );
-    } else {
-     loggedInStuff= ( 
-     <div className="splash-header-right">
+    );
+  } else {
+    loggedInStuff = (
+      <div className="splash-header-right">
         <form
           className="splash-header-search-bar"
           onSubmit={(e) => {
             e.preventDefault();
             const search = formatAddress(headSearchStr);
             dispatch(fetchRepresentatives(search)).then(
-              history.push(
-                `/search?address=${search}&levels=all&issues=all`
-              )
+              history.push(`/search?address=${search}&levels=all&issues=all`)
             );
           }}
         >
-        <input
-          type="text"
-          value={headSearchStr}
-          onChange={(e) => setHeadSearchStr(e.target.value)}
-          placeholder="Find Your Representatives"
-        />
-        <button className="header-search-icon">
-          <FontAwesomeIcon icon="search" flip="horizontal" />
-        </button>
-      </form>
-      <Link to="/login" className="signin-button">
-        <div>Sign In</div>
-      </Link>
-      <Link to="/register" className="signup-button">
-        <div>Sign Up</div>
-      </Link>
-   </div>
-      );
-    }
+          <input
+            type="text"
+            value={headSearchStr}
+            onChange={(e) => setHeadSearchStr(e.target.value)}
+            placeholder="Find Your Representatives"
+          />
+          <button className="header-search-icon">
+            <FontAwesomeIcon icon="search" flip="horizontal" />
+          </button>
+        </form>
+        <Link to="/login" className="signin-button">
+          <div>Sign In</div>
+        </Link>
+        <Link to="/register" className="signup-button">
+          <div>Sign Up</div>
+        </Link>
+      </div>
+    );
+  }
   const dropdown = () => {
     return (
       <div className="header-drop-content">
         <p>Welcome to PoliSee!</p>
         <p>Begin by entering an adress into the search bar</p>
         <p>Select levels to only see representitives at your chosen level</p>
-        <p>Selecting issues will limit results to reps who deal with those issues!</p>
-
+        <p>
+          Selecting issues will limit results to reps who deal with those
+          issues!
+        </p>
       </div>
     );
   };
@@ -107,7 +102,7 @@ const Splash = (props) => {
         <section className="splash-header">
           <div className="splash-header-left">
             <div className="splash-header-logo">
-              <img src={ logo } />
+              <img src={logo} />
             </div>
             <div className="information-dropdown">
               <div className="header-drop-btn">
@@ -117,10 +112,7 @@ const Splash = (props) => {
             </div>
           </div>
 
-          
-            {loggedInStuff}
-         
-
+          {loggedInStuff}
         </section>
         <section className="splash-search-text">
           <div className="splash-search-text-container">
@@ -194,7 +186,6 @@ const Splash = (props) => {
           </div>
 
           <div className="splash-body-one-three">
-
             <div className="splash-body-one-three-title-container">
               <div className="splash-body-one-three-title-bold">Keep tabs</div>
               <div className="splash-body-one-three-title-thin">on your</div>

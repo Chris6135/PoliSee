@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { fetchMember, fetchSenators } from "../../actions/propublica_actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SearchSidebar = ({
   levels,
@@ -43,11 +44,22 @@ const SearchSidebar = ({
   return (
     <div className="search-sidebar">
       <header className="search-sidebar-head">
-        <div className="search-sidebar-head-left">
-          <h1>{`${address.city}, ${address.state} ${address.zip}`}</h1>
-          <h2>{countyDiv ? countyDiv.name : ""}</h2>
-          <h3>{cd ? cd.name : ""}</h3>
-        </div>
+        {address.state === undefined ? (
+          <div className="search-sidebar-head-left">
+            <FontAwesomeIcon
+              icon="spinner"
+              size="2x"
+              spin
+              className="search-sidebar-spinner"
+            />
+          </div>
+        ) : (
+          <div className="search-sidebar-head-left">
+            <h1>{`${address.city}, ${address.state} ${address.zip}`}</h1>
+            <h2>{countyDiv ? countyDiv.name : ""}</h2>
+            <h3>{cd ? cd.name : ""}</h3>
+          </div>
+        )}
         <div className="search-sidebar-head-right">
           <h6>Order By</h6>
           <button

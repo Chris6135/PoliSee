@@ -22,12 +22,10 @@ class Header extends React.Component {
           "%20"
         )}`
       );
-      // this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=${this.props.user.interests.join('%20')}`))
     } else {
       this.props.history.push(
         `/search?address=${search}&levels=all&issues=all`
       );
-      // this.props.fetchRepresentatives(search).then(this.props.history.push(`/search?address=${search}&levels=all&issues=all`))
     }
   }
 
@@ -36,19 +34,9 @@ class Header extends React.Component {
     this.setState({ searchQuery: e.currentTarget.value });
   }
 
-  render() {    
+  render() {
+    const { user } = this.props;
     const dropdown = (path) => {
-      console.log(path)
-
-      let emailMessage;
-
-      if (false){
-        emailMessage = 'Or press "Stop my reminders" to cancel weekly emails'
-      }else{
-        emailMessage = 'Or press "Remind me every week"to sign up for weekly emails'
-      }
-
-
       switch (path) {
         case "/login": //when we figure out cases and content we can expand this
           return (
@@ -122,26 +110,35 @@ class Header extends React.Component {
             <div className="header-drop-content">
               <p>This page shows all the reps in the searched adress</p>
               <p>Click on a picture to see more info. </p>
-              <p>Use the nav bar on the left to order by local, and federal representitives
-                as well as sort by gov. level and interests
+              <p>
+                Use the nav bar on the left to order by local, and federal
+                representitives as well as sort by gov. level and interests
               </p>
-          </div>
-          );
-          case "/edit/contact":
-            return (
-              <div className="header-drop-content">
-                <p>From here you can email yourself information on your saved reps.</p>
-                <p>Click send now to instantly receive an email. </p>
-                <p>{emailMessage}
-                </p>
             </div>
-            );
+          );
+        case "/edit/contact":
+          return (
+            <div className="header-drop-content">
+              <p>
+                From here you can email yourself information on your saved reps.
+              </p>
+              <p>Click send now to instantly receive an email. </p>
+              <p>
+                {user && user.contact
+                  ? 'Or press "Stop my reminders" to cancel weekly emails'
+                  : 'Or press "Remind me every week"to sign up for weekly emails'}
+              </p>
+            </div>
+          );
         default:
           return (
             <div className="header-drop-content">
               <p>Here you can see in depth info on reps.</p>
               <p>Scroll to see phone numbers, social media, and recent news</p>
-              <p>Federal Congress Memebers will have more detailed info on the right sidebar</p>
+              <p>
+                Federal Congress Memebers will have more detailed info on the
+                right sidebar
+              </p>
             </div>
           );
       }
@@ -158,10 +155,12 @@ class Header extends React.Component {
           </Link>
         </div>
       );
-      if (this.props.user.interests.length !== 0){
-        logoRoute = `/search?address=${this.props.user.address}&levels=all&issues=${this.props.user.interests.join('%20')}`
-      }else{
-        logoRoute = `/search?address=${this.props.user.address}&levels=all&issues=all`
+      if (this.props.user.interests.length !== 0) {
+        logoRoute = `/search?address=${
+          this.props.user.address
+        }&levels=all&issues=${this.props.user.interests.join("%20")}`;
+      } else {
+        logoRoute = `/search?address=${this.props.user.address}&levels=all&issues=all`;
       }
     } else {
       loggedInStuff = (
@@ -175,7 +174,7 @@ class Header extends React.Component {
         </div>
       );
 
-      logoRoute = "/"
+      logoRoute = "/";
     }
 
     return (
