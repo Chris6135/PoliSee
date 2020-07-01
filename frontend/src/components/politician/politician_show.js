@@ -170,6 +170,11 @@ const PoliticianShow = ({
                       <span>!</span>
                     </div>
                   ) : null}
+                  <div className="alert-dropdown">
+                    {" "}
+                    This representative has an upcoming election
+                  </div>
+
                   {userToggle()}
                 </figure>
                 <aside>
@@ -189,7 +194,7 @@ const PoliticianShow = ({
                   <div>
                     {official.nextElection
                       ? `Up for reelection: ${official.nextElection}`
-                      : "Info TK!"}
+                      : "- Election Data only Available for Federal Congress Members -"}
                     {/* Up for election/ How long they've served/Unopposed?{" "} */}
                     {/* fill in with info  */}
                   </div>

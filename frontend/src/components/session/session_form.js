@@ -91,7 +91,7 @@ const SessionForm = ({ match, history }) => {
     >
       <h1>{formHead}</h1>
       {reg && <h3>AND STAY INFORMED</h3>}
-      <button onClick={demoLogin}>DEMO LOGIN</button>
+      <div className="session-button" onClick={demoLogin}>DEMO LOGIN</div>
       <label htmlFor="email">
         <h6>EMAIL</h6>
         {emailError && <span className="err-msg">{emailError}</span>}
