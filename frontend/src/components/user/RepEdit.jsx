@@ -21,6 +21,7 @@ class RepEdit extends React.Component {
 
   handleToggle(e) {
     e.preventDefault();
+    e.stopPropagation();
     this.props.toggleRepresentative(e.currentTarget.getAttribute("value"));
   }
 
