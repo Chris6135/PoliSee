@@ -10,16 +10,21 @@
     input#password {
         margin-bottom: 40px;
     }
-    button[type="submit"] {
+    .session-button {
         margin-bottom: 25px;
-        width: 250px;
-        background: $button;
+        width: 330px;
+        padding-top: 15.3px;
+        padding-bottom: 15.3px;
+        border-radius: 7px;
+        background: $header-background;
         color: white;
         font-size: 22px;
         font-weight: 600;
-        &:disabled {
-            background: $auth-background-grey;
-            cursor: default;
-        }
+        text-align: center;
+
+    }
+    button[disabled]{
+        background: $auth-background-grey;
+        cursor: default;
     }
 }
