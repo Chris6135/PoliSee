@@ -5,7 +5,7 @@ import RepEdit from "./RepEdit";
 import {
   fetchUserRepresentatives,
   toggleRepresentative,
-} from "../../actions/user_actions";
+} from "../../actions/session_actions";
 
 const mapStateToProps = (state) => {
   return {

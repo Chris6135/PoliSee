@@ -19,7 +19,7 @@ const getPayload = (user) => {
     address: user.address,
     interests: user.interests,
     savedPoliticians: user.savedPoliticians,
-    contactPoliticians: user.contactPoliticians,
+    contact: user.contact,
   };
 };
 
@@ -147,8 +147,17 @@ router.put(
 
     try {
       await Mailer.findByIdAndUpdate(mailerId, { list });
-      await User.findByIdAndUpdate(id, { contact });
-      res.status(200).json({ contact });
+      const user = await User.findByIdAndUpdate(id, { contact });
+      jwt.sign(getPayload(user), secret, { expiresIn: 3600 }, (err, token) => {
+        if (token) {
+          res.status(201).json({
+            success: true,
+            token: `Bearer ${token}`,
+          });
+        } else {
+          res.status(500).json(err);
+        }
+      });
     } catch (e) {
       res.status(500).json(e);
     }

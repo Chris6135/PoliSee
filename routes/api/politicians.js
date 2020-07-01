@@ -15,6 +15,7 @@ const getPayload = (user) => {
     address: user.address,
     interests: user.interests,
     savedPoliticians: user.savedPoliticians,
+    contact: user.contact,
   };
 };
 

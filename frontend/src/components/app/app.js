@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "../../util/route_util";
 import Session from "../session/session";
-import Splash from "../Splash_Container";
+import Splash from "../splash/Splash_Container";
 import SearchLanding from "../search/search_landing";
 import Footer from "./footer";
 import PoliticianShow from "../politician/politician_show";

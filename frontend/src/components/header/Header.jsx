@@ -35,16 +35,8 @@ class Header extends React.Component {
   }
 
   render() {
+    const { user } = this.props;
     const dropdown = (path) => {
-      let emailMessage;
-
-      if (false) {
-        emailMessage = 'Or press "Stop my reminders" to cancel weekly emails';
-      } else {
-        emailMessage =
-          'Or press "Remind me every week"to sign up for weekly emails';
-      }
-
       switch (path) {
         case "/login": //when we figure out cases and content we can expand this
           return (
@@ -131,7 +123,11 @@ class Header extends React.Component {
                 From here you can email yourself information on your saved reps.
               </p>
               <p>Click send now to instantly receive an email. </p>
-              <p>{emailMessage}</p>
+              <p>
+                {user && user.contact
+                  ? 'Or press "Stop my reminders" to cancel weekly emails'
+                  : 'Or press "Remind me every week"to sign up for weekly emails'}
+              </p>
             </div>
           );
         default:

@@ -5,7 +5,7 @@ import shortid from "shortid";
 import man from "../../icons/Man.jpg";
 
 import { fetchRepresentative } from "../../actions/search_actions";
-import { toggleRepresentative } from "../../actions/user_actions";
+import { toggleRepresentative } from "../../actions/session_actions";
 import Article from "./article";
 import { fetchArticles, clearArticles } from "../../actions/news_actions";
 import ProPublicaAPI from "../../util/propublica_api_util";
@@ -151,122 +151,6 @@ const PoliticianShow = ({
     }
   };
 
-  const propublica = () => {
-    if ((!record && !official) || (!record && official.congressId)) {
-      return (
-        <FontAwesomeIcon
-          icon="spinner"
-          size="2x"
-          spin
-          className="propublica-spinner"
-        />
-      );
-    }
-    if (record) {
-      return (
-        <div>
-          <div>
-            <h2>{`${official.name} in the ${congress.congress}th Congress`}</h2>
-            <ul>
-              {congress.cook_pvi && (
-                <p>{`Cook Partisan Voter Index: ${congress.cook_pvi}`}</p>
-              )}
-              {congress.committees && (
-                <div
-                  tabIndex="0"
-                  onFocus={() => {
-                    setShowCommittees(true);
-                  }}
-                  onBlur={() => setShowCommittees(false)}
-                >
-                  Committees
-                  {showCommittees ? (
-                    <ul>
-                      <h3>Committee Chairs</h3>
-                      {congress.committees.map((committee) => (
-                        <li>
-                          <strong>{`${committee.name}`}</strong>
-                          <span>
-                            {committee.side[0].toUpperCase() +
-                              committee.side.slice(1) +
-                              " " +
-                              committee.title}
-                          </span>
-                        </li>
-                      ))}
-                      <h3>Subcommittee Chairs</h3>
-                      {congress.subcommittees.length > 0 ? (
-                        congress.subcommittees.map((subcommittee) => (
-                          <li>
-                            <strong>{`${subcommittee.name}`}</strong>
-                            <span>
-                              {subcommittee.side[0].toUpperCase() +
-                                subcommittee.side.slice(1) +
-                                " " +
-                                subcommittee.title}
-                            </span>
-                          </li>
-                        ))
-                      ) : (
-                        <li>No Subcommittee Chairs</li>
-                      )}
-                    </ul>
-                  ) : null}
-                </div>
-              )}
-              {congress.bills_sponsored !== null && (
-                <p>
-                  Bills sponsored: <strong>{congress.bills_sponsored}</strong>
-                </p>
-              )}
-              {congress.bills_cosponsored !== null && (
-                <p className="bills">
-                  Bills cosponsored:{" "}
-                  <strong>{congress.bills_cosponsored}</strong>
-                </p>
-              )}
-              {record.most_recent_vote && (
-                <p className="recent">
-                  Most recent vote: <strong>{record.most_recent_vote}</strong>
-                </p>
-              )}
-              {congress.total_votes && (
-                <p>
-                  Total votes: <strong>{congress.total_votes}</strong>
-                </p>
-              )}
-              {congress.missed_votes !== null && (
-                <p>
-                  Missed votes:{" "}
-                  <strong>
-                    {congress.missed_votes}
-                    {congress.missed_votes_pct !== null &&
-                      ` (${congress.missed_votes_pct}%)`}
-                  </strong>
-                </p>
-              )}
-              {congress.votes_with_party_pct !== null && (
-                <p>
-                  Votes with party{" "}
-                  <span>
-                    <strong>{`${congress.votes_with_party_pct}%`}</strong>
-                  </span>
-                </p>
-              )}
-              {congress.votes_against_party_pct !== null && (
-                <p>
-                  Votes against party{" "}
-                  <strong>{`${congress.votes_against_party_pct}%`}</strong>
-                </p>
-              )}
-            </ul>
-          </div>
-        </div>
-      );
-    }
-    return "Info tk";
-  };
-
   return (
     <>
       {official && (
@@ -333,11 +217,7 @@ const PoliticianShow = ({
               </aside>
             </div>
             <div className="propublica">
-              {propublica()}
-              {/* {!record && official.congressId && (
-                <FontAwesomeIcon icon="spinner" size="2x" spin />
-              )}
-              {record ? (
+              {record && (
                 <div>
                   <div>
                     <h2>{`${official.name} in the ${congress.congress}th Congress`}</h2>
@@ -438,9 +318,7 @@ const PoliticianShow = ({
                     </ul>
                   </div>
                 </div>
-              ) : (
-                "Info Tk!"
-              )} */}
+              )}
             </div>
           </section>
 

@@ -8,7 +8,7 @@ import {
   RECEIVE_MEMBER,
 } from "../../actions/propublica_actions";
 
-import { RECEIVE_SAVED_REPS, RECEIVE_SUB } from "../../actions/user_actions";
+import { RECEIVE_SAVED_REPS, RECEIVE_SUB } from "../../actions/session_actions";
 
 const formatString = (string) =>
   string.trim().replace(/[\.,]/g, "").replace(/\s/g, "%20");

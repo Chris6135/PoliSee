@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import UserAPI from "../../util/user_api_util";
-import { toggleContact } from "../../actions/user_actions";
+import SessionAPI from "../../util/session_api_util";
+import { toggleContact } from "../../actions/session_actions";
 import { Link } from "react-router-dom";
 
 const ContactEdit = () => {
@@ -11,7 +11,12 @@ const ContactEdit = () => {
   const user = useSelector((store) => store.session.user);
 
   const sendEmail = () =>
-    UserAPI.emailNow().then((res) => setEmailSuccess(Boolean(res.data.email)));
+    SessionAPI.emailNow().then((res) => {
+      if (res.data.email) {
+        setEmailSuccess(true);
+        setTimeout(() => setEmailSuccess(false), 5000);
+      }
+    });
 
   const handleToggle = () => dispatch(toggleContact());
 
