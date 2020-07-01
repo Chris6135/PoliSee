@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Link} from "react-router-dom"
 
 
 const Footer = () => (
@@ -13,7 +14,7 @@ const Footer = () => (
            <a href="https://www.vote.org/register-to-vote/">REGISTER TO VOTE </a>
         </button>
         <button>
-            ABOUT US
+        <Link to="/about"> ABOUT US </Link>
         </button>
     </footer>
 )

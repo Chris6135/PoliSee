@@ -1,0 +1,93 @@
+.about-parent {
+    margin-top:100px;
+    margin-bottom:100px;
+    height: 3000px;
+    width:60%;
+    background:$auth-background-grey;
+    display:flex;
+    flex-direction: column;
+    // z-index: -2;
+}
+
+.team-blurb{
+    padding: 60px;
+    display:flex;
+    // justify-content: space-around;
+}
+
+.team-pic{
+    height:300px;
+    width:300px;
+    background: blue;
+}
+
+.team-content{
+    margin-left:40px;
+    display:flex;
+    flex-direction: column;
+}
+
+.team-title {
+    font-size: 62px;
+    text-transform: unset;
+    font-weight: 600;
+}
+
+.divider{
+    height:30px;
+    background:purple;
+    border:solid 1px black;
+}
+
+.pic-text-box{
+    display:flex
+}
+
+.about-blurb{
+    padding: 60px;
+    padding-right: 0px;
+    display:flex;
+    justify-content: space-between;
+    border: solid 3px $header-background
+}
+
+.chris-pic{
+    height: 380px;
+    width: 300px;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../../icons/Chris.jpeg");
+    border:solid 3px $button
+
+}
+
+.about-content{
+    margin-left:40px;
+    display:flex;
+    flex-direction: column;
+    
+}
+
+.about-title {
+    font-size: 54px;
+    text-transform: unset;
+    font-weight: 600;
+}
+
+.team-role{
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.about-links{
+    margin:40px;
+    margin-top:0;
+    justify-items: center;
+    border: solid 3px $button;
+}
+
+.about-links > *{
+    margin:40px;
+}

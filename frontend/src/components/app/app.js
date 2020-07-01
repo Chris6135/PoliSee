@@ -13,6 +13,7 @@ import InterestEditContainer from "../user/InterestEditContainer";
 import HeaderContainer from "../header/HeaderContainer";
 import RepEditContainer from "../user/RepEditContainer";
 import ContactEdit from "../user/contact";
+import aboutUs from "../about/about_container"
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
       <Route path="/search" component={SearchLanding} />
       <Route path="/officials/:id" component={PoliticianShow} />
+      <Route path ="/about" component={aboutUs}></Route>
 
       <Footer />
     </div>
