@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import SearchBar from "../search/search_bar";
 import { fetchRepresentatives } from "../../actions/search_actions";
 import logo from "../../icons/logo.svg";
+import Star from "../../icons/Star.svg";
+
 
 const Splash = (props) => {
   const [headSearchStr, setHeadSearchStr] = useState("");
@@ -275,30 +277,28 @@ const Splash = (props) => {
         </div>
         <section className="splash-body-bottom">
           <div className="logo">
+            <img src={Star} />
           </div>
           <div className="splash-body-bottom-links">
             <span>Voter Registration Info</span>
             <div></div>
-            <a href="https://www.usa.gov/register-to-vote">Register to Vote!</a>
-            <a href= "https://www.vote.org/polling-place-locator/">Find your Polling Place</a>
-            <a href= "https://www.usa.gov/confirm-voter-registration">Check if you're registered</a>
+            <a target="_blank" href="https://www.usa.gov/register-to-vote">Register to Vote!</a>
+            <a target="_blank" href="https://www.vote.org/polling-place-locator/">Find your Polling Place</a>
+            <a target="_blank" href="https://www.usa.gov/confirm-voter-registration">Check if you're registered</a>
           </div>
           <div className="splash-body-bottom-links">
             <span>Government Resources</span>
             <div></div>
-            <a href= "https://www.loc.gov/">Library of Congress</a>
-            <a href= "https://www.house.gov/">House of Representatives</a>
-            <a href= "https://www.senate.gov/">US Senate</a>
-          </div>  
+            <a target="_blank" href="https://www.loc.gov/">Library of Congress</a>
+            <a target="_blank" href="https://www.house.gov/">House of Representatives</a>
+            <a target="_blank" href="https://www.senate.gov/">US Senate</a>
+          </div>
           <div className="splash-body-bottom-links">
             <span>Additional Resources</span>
             <div></div>
-            <a href="https://www.brennancenter.org/issues/reform-money-politics">Brennan Center</a>
-            <a href="https://www.commoncause.org/">Common Cause</a>
-            <a href="https://www.sentencingproject.org/">The Sentencing Project</a>
-            <a href="https://www.aclu.org/">American Civil Liberties Union</a>
-            <a href="https://www.fairelectionscenter.org/">Fair Elections Center</a>
-            <a href="https://www.pewtrusts.org/en">The PEW Charitable Trusts</a>
+            <a target="_blank" href="https://www.commoncause.org/">Common Cause</a>
+            <a target="_blank" href="https://www.aclu.org/">American Civil Liberties Union</a>
+            <a target="_blank" href="https://www.pewtrusts.org/en">The PEW Charitable Trusts</a>
           </div>
         </section>
       </section>
