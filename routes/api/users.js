@@ -218,76 +218,7 @@ router.patch("/edit", (req, res) => {
       })
       .catch((err) => res.status(404).end());
   }
-  // else if(req.body.contactPoliticians){
-  //   const contactPoliticians = req.body.contactPoliticians.split('%20');
-  //   const savedPoliticians = req.body.savedPoliticians.split('%20');
-  //   User.findByIdAndUpdate(
-  //     req.body.id,
-  //     {
-  //       savedPoliticians: savedPoliticians,
-  //       contactPoliticians: contactPoliticians
-  //     },
-  //     { new: true }).then((result) => {
-  //       jwt.sign(
-  //         getPayload(result),
-  //         secret,
-  //         { expiresIn: 3600 },
-  //         (err, token) => {
-  //           res.json({
-  //             success: true,
-  //             token: 'Bearer ' + token
-  //           });
-  //         });
-  //     })
-  //     .catch((err) => res.status(404).end())
-  // }
 });
-
-// router.patch("/subscribe", async (req, res) => {
-//   const curUser = await User.findById(req.body.userId);
-//   if (curUser) {
-//     const { savedPoliticians, contactPoliticians } = curUser;
-
-//     if (req.body.save) {
-//       if (savedPoliticians.includes(req.body.politicianId)) {
-//         savedPoliticians.splice(
-//           savedPoliticians.indexOf(req.body.politicianId),
-//           1
-//         );
-//       } else {
-//         savedPoliticians.push(req.body.politicianId);
-//       }
-//     } else if (req.body.contact) {
-//       if (contactPoliticians.includes(req.body.politicianId)) {
-//         contactPoliticians.splice(
-//           contactPoliticians.indexOf(req.body.politicianId),
-//           1
-//         );
-//       } else {
-//         contactPoliticians.push(req.body.politicianId);
-//       }
-//     }
-//   }
-
-//   User.updateOne(
-//     { _id: req.body.userId },
-//     { savedPoliticians, contactPoliticians }
-//   )
-//     .then((updatedUser) => {
-//       jwt.sign(
-//         getPayload(updatedUser),
-//         secret,
-//         { expiresIn: 3600 },
-//         (err, token) => {
-//           res.json({
-//             success: true,
-//             token: "Bearer " + token,
-//           });
-//         }
-//       );
-//     })
-//     .catch((err) => res.status(404).end());
-// });
 
 router.patch("/search", async (req, res) => {
   const params = { state: req.body.state, county: req.body.county };

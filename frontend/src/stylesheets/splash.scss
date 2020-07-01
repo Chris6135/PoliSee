@@ -755,9 +755,40 @@ margin-left: 37px;
 
 
 .splash-body-bottom-links{
-    padding: 200px;
-    padding-left:  120px;
-    padding-right: 120px;
+    height: 250px;
+    max-width: 320px;
     background: $red-equiv-to-darker-grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    span{
+      padding-left: 10px;
+      padding-right: 10px;
+      font-weight: 700;
+      line-height: 30px;
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      color: $section-headers;
+
+    }
+    a{
+      text-align: center;
+      padding-left:  30px;
+      padding-right: 30px;
+      color: $body-one-text;
+      line-height: 36px;
+      width: 100%;
+    }
+    a:hover{
+      cursor: pointer; 
+      background-color: $blue-equiv-to-darker-grey;
+;
+    }
+    div{
+      line-height: 1px;
+      border-bottom: 1px solid darkgray;
+    }
 }
 
