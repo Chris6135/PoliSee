@@ -70,6 +70,7 @@ const SessionForm = ({ match, history }) => {
     user.email = "polisee.devteam@gmail.com";
     user.password = "password";
     dispatch(login(user));
+    
   };
 
   const formHead = reg ? "Sign Up for Free" : "Sign In";

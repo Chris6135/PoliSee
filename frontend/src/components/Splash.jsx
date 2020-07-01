@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { fetchRepresentatives } from "../actions/search_actions";
 import logo from "../icons/logo.svg";
+import star from "../icons/Star.svg";
+
 
 
 const Splash = (props) => {
@@ -283,7 +285,10 @@ const Splash = (props) => {
           </section>
         </div>
         <section className="splash-body-bottom">
-          <div className="logo"></div>
+          <div className="logo">
+          <img src={ star } />
+
+          </div>
           <div className="splash-body-bottom-links"></div>
           <div className="splash-body-bottom-links"></div>
           <div className="splash-body-bottom-links"></div>
