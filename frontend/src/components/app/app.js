@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "../../util/route_util";
 import Session from "../session/session";
-import Splash from "../Splash_Container";
+import Splash from "../splash/Splash_Container";
 import SearchLanding from "../search/search_landing";
 import Footer from "./footer";
 import PoliticianShow from "../politician/politician_show";
@@ -12,7 +12,7 @@ import InfoEditContainer from "../user/InfoEditContainer";
 import InterestEditContainer from "../user/InterestEditContainer";
 import HeaderContainer from "../header/HeaderContainer";
 import RepEditContainer from "../user/RepEditContainer";
-import ContactEdit from "../user/ContactEditContainer";
+import ContactEdit from "../user/contact";
 
 function App() {
   return (
@@ -23,10 +23,15 @@ function App() {
       </Switch>
       <ProtectedRoute exact path="/edit" component={Edit} />
       <ProtectedRoute path="/edit/info" component={InfoEditContainer} />
-      <ProtectedRoute path="/edit/interests"component={InterestEditContainer}/>
-      <ProtectedRoute path="/edit/representatives" component={RepEditContainer} />
+      <ProtectedRoute
+        path="/edit/interests"
+        component={InterestEditContainer}
+      />
+      <ProtectedRoute
+        path="/edit/representatives"
+        component={RepEditContainer}
+      />
       <ProtectedRoute path="/edit/contact" component={ContactEdit} />
-
 
       <AuthRoute exact path={["/register", "/login"]} component={Session} />
       <Route path="/search" component={SearchLanding} />

@@ -1,7 +1,7 @@
 import {
   RECEIVE_PASSPORT_ERROR,
   RECEIVE_SUB,
-} from "../../actions/search_actions";
+} from "../../actions/session_actions";
 
 const passportErrorsReducer = (state = null, action) => {
   switch (action.type) {

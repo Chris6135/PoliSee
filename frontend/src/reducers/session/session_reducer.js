@@ -1,9 +1,8 @@
-import { RECEIVE_SUB } from "../../actions/search_actions";
-
 import {
   RECEIVE_CURRENT_USER,
   LOG_OUT_USER,
 } from "../../actions/session_actions";
+import { RECEIVE_SUB } from "../../actions/session_actions";
 
 const initialState = { user: null };
 

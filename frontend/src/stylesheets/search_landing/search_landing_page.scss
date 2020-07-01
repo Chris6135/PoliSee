@@ -1,4 +1,3 @@
-
 .search-landing {
   width: 1475px;
   @include flex(row, $align: center);
@@ -43,8 +42,12 @@
         h1 {
           font-size: 20px;
         }
-        h2, h3 {
+        h2,
+        h3 {
           font-size: 16px;
+        }
+        .search-sidebar-spinner {
+          margin: 0 auto;
         }
       }
       .search-sidebar-head-right {
@@ -72,7 +75,8 @@
             padding-top: 4px;
             &.selected {
               background: $header-background;
-              box-shadow: inset 0 -0.5px 0.5px 0.5px rgba($color: $search-border, $alpha: 0.3);
+              box-shadow: inset 0 -0.5px 0.5px 0.5px rgba($color: $search-border, $alpha:
+                    0.3);
             }
             &:not(.selected):hover {
               background: $auth-background-grey;
@@ -84,7 +88,8 @@
             padding-bottom: 4px;
             &.selected {
               background: mix($header-background, $auth-background-grey, 80%);
-              box-shadow: inset 0 0.5px 0.5px 0.5px rgba($color: $search-border, $alpha: 0.3);
+              box-shadow: inset 0 0.5px 0.5px 0.5px
+                rgba($color: $search-border, $alpha: 0.3);
             }
             &:not(.selected):hover {
               background: $auth-background-grey;
@@ -113,11 +118,7 @@
           width: 21px;
           height: 21px;
           left: 25px;
-          clip-path: polygon(
-            50% 0,
-            100% 100%,
-            0 100%
-          );
+          clip-path: polygon(50% 0, 100% 100%, 0 100%);
           text-align: center;
           padding-top: 5px;
           font-size: 13px;
@@ -171,7 +172,7 @@
         &.selected {
           background: $selected-sidebar-buttons;
         }
-        &:first-of-type{
+        &:first-of-type {
           margin-right: 15px;
         }
         &:last-of-type {
@@ -181,12 +182,11 @@
     }
   }
   .search-index {
-
     position: relative;
     left: -7px;
     width: 1072.5px;
     height: 544px;
     padding: 20.5px 5px 20.5px 62px;
-    background: rgba($color: white, $alpha: .72);
+    background: rgba($color: white, $alpha: 0.72);
   }
 }

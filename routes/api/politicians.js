@@ -15,7 +15,7 @@ const getPayload = (user) => {
     address: user.address,
     interests: user.interests,
     savedPoliticians: user.savedPoliticians,
-    contactPoliticians: user.contactPoliticians,
+    contact: user.contact,
   };
 };
 
@@ -49,31 +49,15 @@ router.patch(
   async (req, res) => {
     const { user, politician } = req;
 
-    if (req.body.save) {
-      if (politician.savedUsers.includes(user.id)) {
-        politician.savedUsers.splice(politician.savedUsers.indexOf(user.id), 1);
-        user.savedPoliticians.splice(
-          user.savedPoliticians.indexOf(politician._id),
-          1
-        );
-      } else {
-        politician.savedUsers.push(user.id);
-        user.savedPoliticians.push(politician._id);
-      }
-    } else if (req.body.contact) {
-      if (politician.contactUsers.includes(user.id)) {
-        politician.contactUsers.splice(
-          politician.contactUsers.indexOf(user.id),
-          1
-        );
-        user.contactPoliticians.splice(
-          user.contactPoliticians.indexOf(politician._id),
-          1
-        );
-      } else {
-        politician.contactUsers.push(user.id);
-        user.contactPoliticians.push(politician._id);
-      }
+    if (politician.savedUsers.includes(user.id)) {
+      politician.savedUsers.splice(politician.savedUsers.indexOf(user.id), 1);
+      user.savedPoliticians.splice(
+        user.savedPoliticians.indexOf(politician._id),
+        1
+      );
+    } else {
+      politician.savedUsers.push(user.id);
+      user.savedPoliticians.push(politician._id);
     }
 
     try {

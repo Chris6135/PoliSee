@@ -23,6 +23,7 @@ const agenda = new Agenda(dbConnect);
 agenda.define("group mailer", async (job, done) => {
   const mailer = await Mailer.findById(mailerId);
   const users = mailer.toJSON().list;
+  if (!users.length) return;
   users.forEach((uId) => {
     User.findById(uId)
       .populate({ path: "savedPoliticians" })
