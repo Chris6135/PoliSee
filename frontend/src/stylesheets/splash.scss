@@ -750,7 +750,7 @@ margin-left: 37px;
     justify-content: space-between;
 }
 .logo{ padding: 40px;
-    background: $blue-equiv-to-darker-grey;
+    // background: $blue-equiv-to-darker-grey;
     margin-right:160px}
 
 
@@ -784,10 +784,8 @@ margin-left: 37px;
     a:hover{
       cursor: pointer; 
       background-color: $blue-equiv-to-darker-grey;
-;
     }
     div{
-      line-height: 1px;
       border-bottom: 1px solid darkgray;
     }
 }
