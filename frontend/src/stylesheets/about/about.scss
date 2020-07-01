@@ -1,0 +1,41 @@
+.about-parent {
+    position: absolute;
+    top:15%;
+
+    height:60%;
+    width:60%;
+    background:yellow;
+    display:flex;
+    flex-direction: column;
+    // z-index: -2;
+}
+
+.team-blurb{
+    padding: 60px;
+    display:flex;
+    // justify-content: space-around;
+}
+
+.team-pic{
+    height:300px;
+    width:300px;
+    background: blue;
+}
+
+.team-content{
+    margin-left:40px;
+    display:flex;
+    flex-direction: column;
+}
+
+.team-title {
+    font-size: 62px;
+    text-transform: unset;
+    font-weight: 600;
+}
+
+.divider{
+    height:30px;
+    background:purple;
+    border:solid 1px black;
+}
