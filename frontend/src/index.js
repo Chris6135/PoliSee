@@ -17,6 +17,8 @@ import {sendTestMail} from "./util/mail_util"
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
+  console.log("key")
+  console.log(process.env.REACT_APP_NEWS_API_KEY)
 //   const data =  {
 //     name: "Chris",
 //     email: "Christopher.simons10@gmail.com",
