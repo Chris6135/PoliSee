@@ -34,29 +34,31 @@ agenda.define("group mailer", async (job, done) => {
           to: user.email,
           subject: "It's Time to Stand Up",
 
-          html: `Don't forget to contact your representatives!\n\n${user.savedPoliticians
+          html: `<div>Don't forget to contact your representatives!\n\n${user.savedPoliticians
             .map((p) =>
-              [
-                p.phone,
-                p.address,
-                p.email,
-                p.socialMedia.Twitter,
-                p.socialMedia.Facebook,
-              ].some((prop) => prop)
-                ? `${p.name}:\n${p.phone ? `phone: ${p.phone}` : ""}\n${
-                    p.address ? `address: ${p.address}` : ""
-                  }\n${p.email ? `email: ${p.email}` : ""}\n${
-                    p.socialMedia.Twitter
-                      ? `Twitter: ${p.socialMedia.Twitter}`
-                      : ""
-                  }\n${
-                    p.socialMedia.Facebook
-                      ? `Facebook: ${p.socialMedia.Facebook}`
-                      : ""
+              [p.phone, p.address, p.email, p.socialMedia].some((prop) => prop)
+                ? `<h3>${p.name}:\n</h3> <p>${p.phone ? `phone: ${p.phone}\n` : ""}</p><p>${
+                p.address ? `address: ${p.address.line1 + ", " + p.address.city + " " + p.address.state}\n` : ""
+                }</p><p>${p.email ? `email: ${p.email}\n` : ""}</p><p>${
+                p.socialMedia
+                  ? `${
+                  p.socialMedia.Twitter
+                    ? `Twitter: ${p.socialMedia.Twitter}\n`
+                    : ""
+                  }${
+                  p.socialMedia.Facebook
+                    ? `Facebook: ${p.socialMedia.Facebook}\n`
+                    : ""
                   }`
-                : `${p.name}:\nSorry, no contact information available!`
+                  : ""
+                }</p>`
+                : `<p>${p.name}:\nSorry, no contact information available!</p>`
             )
-            .join("\n\n")}`,
+            .join("\n")}
+        <p><b>This is an auto-generated e-mail from the Polisee Dev Team<b></p>
+        <p><b>If you would like to opt out of emails or hear about different politicians, please login to your account at
+        <a href="polisee-app.herokuapp.com"> our website </a> <b></p>
+      </div>`,
         };
 
         transporter.sendMail(mail, (error, info) => {
@@ -78,12 +80,12 @@ agenda.define("solo mailer", (job, done) => {
     to: user.email,
     subject: "It's Time to Stand Up",
 
-    html: `Don't forget to contact your representatives!\n\n${user.savedPoliticians
+    html: `<div>Don't forget to contact your representatives!\n\n${user.savedPoliticians
       .map((p) =>
         [p.phone, p.address, p.email, p.socialMedia].some((prop) => prop)
-          ? `${p.name}:\n${p.phone ? `phone: ${p.phone}\n` : ""}${
-              p.address ? `address: ${p.address}\n` : ""
-            }${p.email ? `email: ${p.email}\n` : ""}${
+          ? `<h3>${p.name}:\n</h3> <p>${p.phone ? `phone: ${p.phone}\n` : ""}</p><p>${
+              p.address ? `address: ${p.address.line1 + ", " + p.address.city + " " + p.address.state}\n` : ""
+            }</p><p>${p.email ? `email: ${p.email}\n` : ""}</p><p>${
               p.socialMedia
                 ? `${
                     p.socialMedia.Twitter
@@ -91,14 +93,19 @@ agenda.define("solo mailer", (job, done) => {
                       : ""
                   }${
                     p.socialMedia.Facebook
-                      ? `Facebook: ${p.socialMedia.Facebook}`
+                      ? `Facebook: ${p.socialMedia.Facebook}\n`
                       : ""
                   }`
                 : ""
-            }`
-          : `${p.name}:\nSorry, no contact information available!`
+            }</p>`
+          : `<p>${p.name}:\nSorry, no contact information available!</p>`
       )
-      .join("\n\n")}`,
+      .join("\n")}
+        <p><b>This is an auto-generated e-mail from the Polisee Dev Team<b></p>
+        <p><b>If you would like to opt out of emails or hear about different politicians, please login to your account at
+        <a href="polisee-app.herokuapp.com"> our website </a> <b></p>
+      </div>`,
+      
   };
 
   transporter.sendMail(mail, (error, info) => {
