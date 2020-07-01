@@ -130,6 +130,17 @@ class Header extends React.Component {
               </p>
             </div>
           );
+          case "/about":
+            return (
+              <div className="header-drop-content">
+                <p>
+                  Get to know US!
+                </p>
+                <p>The developers of PoliSee!</p>
+                <p>Feel free to check us out or shoot an email,</p>
+                <p>and thanks for enjoying the site! </p>
+              </div>
+            );
         default:
           return (
             <div className="header-drop-content">
