@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 
@@ -42,10 +44,11 @@ const About = (props) => {
                             </div>
                         </div>
                         <div className="about-links"> 
-                            <div>linked-In</div>
-                            <div>Github</div>
-                            <div>Angel List</div>
-                            <div>Personal Site</div>
+                            <FontAwesomeIcon icon={["fab","linkedin"]}/>
+                            <FontAwesomeIcon icon={["fab","github"]}/>
+                            <FontAwesomeIcon icon={["fab","angellist"]}/>
+                            <FontAwesomeIcon icon={["fas","user"]}/>
+
                     
                             </div>
                     </div>
@@ -66,10 +69,10 @@ const About = (props) => {
                             </div>
                         </div>
                         <div className="about-links"> 
-                            <div>linked-In</div>
-                            <div>Github</div>
-                            <div>Angel List</div>
-                            <div>Personal Site</div>
+                        <FontAwesomeIcon icon={["fab","linkedin"]}/>
+                            <FontAwesomeIcon icon={["fab","github"]}/>
+                            <FontAwesomeIcon icon={["fab","angellist"]}/>
+                            <FontAwesomeIcon icon={["fas","user"]}/>
                     
                             </div>
                     </div>
@@ -90,10 +93,10 @@ const About = (props) => {
                             </div>
                         </div>
                         <div className="about-links"> 
-                            <div>linked-In</div>
-                            <div>Github</div>
-                            <div>Angel List</div>
-                            <div>Personal Site</div>
+                        <FontAwesomeIcon icon={["fab","linkedin"]}/>
+                            <FontAwesomeIcon icon={["fab","github"]}/>
+                            <FontAwesomeIcon icon={["fab","angellist"]}/>
+                            <FontAwesomeIcon icon={["fas","user"]}/>
                     
                             </div>
                     </div>
@@ -115,10 +118,10 @@ const About = (props) => {
                             </div>
                         </div>
                         <div className="about-links"> 
-                            <div>linked-In</div>
-                            <div>Github</div>
-                            <div>Angel List</div>
-                            <div>Personal Site</div>
+                        <FontAwesomeIcon icon={["fab","linkedin"]}/>
+                            <FontAwesomeIcon icon={["fab","github"]}/>
+                            <FontAwesomeIcon icon={["fab","angellist"]}/>
+                            <FontAwesomeIcon icon={["fas","user"]}/>
                     
                             </div>
                     </div>
