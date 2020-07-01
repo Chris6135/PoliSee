@@ -190,7 +190,7 @@ const PoliticianShow = ({
                   <div>
                     {official.nextElection
                       ? `Up for reelection: ${official.nextElection}`
-                      : "Info TK!"}
+                      : "- Election Data only Available for Federal Congress Members -"}
                     {/* Up for election/ How long they've served/Unopposed?{" "} */}
                     {/* fill in with info  */}
                   </div>
@@ -218,7 +218,7 @@ const PoliticianShow = ({
               </aside>
             </div>
             <div className="propublica">
-              {record ? (
+              {record &&
                 <div>
                   <div>
                     <h2>{`${official.name} in the ${congress.congress}th Congress`}</h2>
@@ -290,9 +290,7 @@ const PoliticianShow = ({
                     </ul>
                   </div>
                 </div>
-              ) : (
-                "Info Tk!"
-              )}
+              }
               {/* propublica info coming soon <br />
               committee memberships <br />
               blurb if non-existant <br /> */}

@@ -205,6 +205,13 @@ $image-border: $border;
         }
       }
     }
+    .propublica:empty {
+      display:none;
+    }
+    @keyframes unfold {
+      from {width: 0px; margin-top: 0px}
+      to {width: 329.5px; margin-top: 0px}
+    }
     .propublica {
       margin-left: 100px;
       width: 329.5px;
@@ -213,6 +220,8 @@ $image-border: $border;
       border-radius: 2px;
       color: $sources-text;
       padding: 20px;
+      animation-name: unfold;
+      animation-duration: .3s;
       &:hover {
         cursor: default;
       }
@@ -291,5 +300,10 @@ $image-border: $border;
         }
       }
     }
+  }
+
+  .propublica-TK{
+    align-self: center;
+    position: relative;
   }
 }
