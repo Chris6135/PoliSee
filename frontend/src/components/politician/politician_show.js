@@ -171,6 +171,8 @@ const PoliticianShow = ({
                     <span>!</span>
                   </div>
                   ) : null }
+                 <div className="alert-dropdown"> This representative has an upcoming election</div>
+
                   {userToggle()}
                 </figure>
                 <aside>
