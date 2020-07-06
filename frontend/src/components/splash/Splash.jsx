@@ -250,6 +250,7 @@ const Splash = (props) => {
             </div>
             <div className="open-source-subtitle">find us on</div>
             <a
+              target="_blank"
               href="https://github.com/Chris6135/PoliSee"
               className="github-repo-info"
             >
@@ -258,15 +259,17 @@ const Splash = (props) => {
             <div className="open-source-subtitle">Data sourced from</div>
             <div className="api-boxes">
               <a
+               target="_blank"
                 href="https://www.propublica.org/datastore/api/propublica-congress-api"
                 className="api-box"
               >
                 propublica
               </a>
-              <a href="https://contextualweb.io/news-api/" className="api-box">
+              <a  target="_blank" href="https://contextualweb.io/news-api/" className="api-box">
                 Contextualweb
               </a>
-              <a
+              <a 
+                target="_blank"
                 href="https://developers.google.com/civic-information"
                 className="api-box"
               >

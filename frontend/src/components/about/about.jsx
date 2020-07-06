@@ -18,7 +18,11 @@ const About = (props) => {
                     </div>
                     <div className="team-content">
                         <div className="team-title"> About Us</div>
-                        <div className="team-body">We are a group of remotely linked Full Stack Engineers </div>
+                        <div className="team-body">We are a group of remotely linked Full Stack Engineers who are energized by the power programming gives us to create meaningful connections in this uncertain time
+                            PoliSee was developed over the course of a week in June of 2020 using MERN, NodeMailer, and Mongo-Agenda.  
+                            Please feel free to reach out to any of us for any reason
+                             Thanks for stopping by
+                            </div>
 
                     </div>
 
@@ -38,16 +42,24 @@ const About = (props) => {
                                 <div className="about-content">
                                     <div className="about-title"> Chris Simons</div>
                                     <div className="team-role"> Project Lead</div>
-                                    <div className="about-body">Hi, Im chris. stuff will go here about how chrislike I am. </div>
+                                    <div className="about-body">
+                                        <p>Hi, thanks for taking the time to visit the site! </p>
+                                        <p> </p>
+                                    <p>I came up with the idea of PoliSee to try and make a platform that could help people take ownership of their ability to influence their government. 
+                                        Given that, it shouldn't be suprising that I'm passionate about politics, law and government. </p>
+                                    <p> As a software engineer I have a passion for making platforms that allow people to better digest information, or get their voice into the world. 
+                                        I'm mesmerized by the oportunities programming provides to interact with our world and the information that fills it. 
+                                    </p>
+                                    </div>
 
                                 </div>
                             </div>
                         </div>
                         <div className="about-links"> 
-                            <FontAwesomeIcon icon={["fab","linkedin"]}/>
-                            <FontAwesomeIcon icon={["fab","github"]}/>
-                            <FontAwesomeIcon icon={["fab","angellist"]}/>
-                            <FontAwesomeIcon icon={["fas","user"]}/>
+                        <a target="_blank" href="https://www.linkedin.com/in/christopher-simons-4184a6a0/"><FontAwesomeIcon icon={["fab","linkedin"]}/></a>
+                           <a target="_blank" href="https://github.com/Chris6135"> <FontAwesomeIcon icon={["fab","github"]}/></a>
+                         <a target="_blank" href="https://angel.co/u/chris-simons-2">  <FontAwesomeIcon icon={["fab","angellist"]}/> </a>
+                         <a target="_blank" href="">  <FontAwesomeIcon icon={["fas","user"]}/> </a>
 
                     
                             </div>
