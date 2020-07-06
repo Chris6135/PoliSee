@@ -9,6 +9,20 @@
     > button {
         margin-top: 20px;
     }
+    .session-button {
+        margin-bottom: 25px;
+        width: 330px;
+        padding-top: 15.3px;
+        padding-bottom: 15.3px;
+        border-radius: 7px;
+        background: $header-background;
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+
+    }
     .reg-group {
         @include flex(column, flex-start, center);
 

@@ -1,7 +1,6 @@
 .about-parent {
     margin-top:100px;
     margin-bottom:100px;
-    height: 3000px;
     width:60%;
     background:$auth-background-grey;
     display:flex;
@@ -17,8 +16,11 @@
 
 .team-pic{
     height:300px;
-    width:300px;
+    // width:300px;
     background: blue;
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .team-content{
@@ -31,6 +33,11 @@
     font-size: 62px;
     text-transform: unset;
     font-weight: 600;
+}
+
+.team-body{
+    letter-spacing: 1px;
+    // width:80%;
 }
 
 .divider{
@@ -53,7 +60,9 @@
 
 .chris-pic{
     height: 380px;
-    width: 300px;
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -63,7 +72,7 @@
 }
 
 .about-content{
-    margin-left:40px;
+    margin-left:30px;
     display:flex;
     flex-direction: column;
     
@@ -79,9 +88,11 @@
     font-size: 30px;
     text-transform: uppercase;
     font-weight: 300;
+    margin-bottom:40px;
 }
 
 .about-links{
+    // background: #555;
     margin:40px;
     width:100px;
     margin-top:0;
@@ -95,11 +106,19 @@
 
 .about-links > *{
     margin:25px;
-    font-size: 60px;
-    padding:10px;
+    font-size: 26px;
+    padding:7px;
     border-radius: 5px;
     &:hover{
         background: #FFF;
         color: $button;
     }
+}
+
+.about-body{
+    letter-spacing: 1px;
+}
+
+.about-body > p{
+    margin-bottom: 5px;
 }
