@@ -71,6 +71,19 @@
 
 }
 
+.eric-pic{
+    height: 380px;
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../../icons/Eric.jpeg");
+    border:solid 3px $button
+
+}
+
 .about-content{
     margin-left:30px;
     display:flex;
