@@ -111,11 +111,11 @@ const About = () => {
               {" "}
               <FontAwesomeIcon icon={["fab", "github"]} />
             </a>
-            <a target="_blank"  rel="noopener noreferrer" href="https://angel.co/u/akif-saifi">
+            <a target="_blank"  rel="noopener noreferrer" href="https://angel.co/u/akifsaifi">
               {" "}
               <FontAwesomeIcon icon={["fab", "angellist"]} />{" "}
             </a>
-            <a target="_blank"  rel="noopener noreferrer" href="https://akif2543.github.io">
+            <a target="_blank"  rel="noopener noreferrer" href="https://akifsafi.com">
               {" "}
               <FontAwesomeIcon icon={["fas", "user"]} />{" "}
             </a>
