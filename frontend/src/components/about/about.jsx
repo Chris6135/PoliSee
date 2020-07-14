@@ -68,7 +68,7 @@ const About = (props) => {
                 {/*Akif*/}
 
                 <div className="about-box">
-                    <div className= "about-blurb">
+                    <div className="about-blurb">
                         <div className="about-pic">
                         </div>
                         <div className="about-content">
@@ -79,37 +79,44 @@ const About = (props) => {
 
                             </div>
                         </div>
-                        <div className="about-links"> 
-                        <FontAwesomeIcon icon={["fab","linkedin"]}/>
-                            <FontAwesomeIcon icon={["fab","github"]}/>
-                            <FontAwesomeIcon icon={["fab","angellist"]}/>
-                            <FontAwesomeIcon icon={["fas","user"]}/>
-                    
-                            </div>
+                        <div className="about-links">
+                            <FontAwesomeIcon icon={["fab", "linkedin"]} />
+                            <FontAwesomeIcon icon={["fab", "github"]} />
+                            <FontAwesomeIcon icon={["fab", "angellist"]} />
+                            <FontAwesomeIcon icon={["fas", "user"]} />
+
+                        </div>
                     </div>
                 </div>  
 
                 {/* Eric */}
 
                 <div className="about-box">
-                    <div className= "about-blurb">
-                        <div className="about-pic">
+                    <div className="about-blurb">
+                        <div className="eric-pic">
                         </div>
                         <div className="about-content">
                             <div className="about-content">
-                                <div className="about-title"> Name</div>
-                                <div className="team-role"> Team Role</div>
-                                <div className="about-body">description</div>
+                                <div className="about-title"> Eric Smith </div>
+                                <div className="team-role"> Backend Lead </div>
+                                <div className="about-body">
+                                    <p>Howdy.</p>
+                                    <p>I joined PoliSee in order to use programming to positively affect those around me, and gain experience with the the types of projects I would like to contribute to in the future.
+                                    </p>
+                                    <p></p>
+                                    <p>When I'm not programming I enjoy reading, eating, wine, video-games and long walks - though I enjoy the walks far more if they end up with me in a lake.
+                                    </p>
+                                </div>
 
                             </div>
                         </div>
-                        <div className="about-links"> 
-                        <FontAwesomeIcon icon={["fab","linkedin"]}/>
-                            <FontAwesomeIcon icon={["fab","github"]}/>
-                            <FontAwesomeIcon icon={["fab","angellist"]}/>
-                            <FontAwesomeIcon icon={["fas","user"]}/>
-                    
-                            </div>
+                        <div className="about-links">
+                            <a target="_blank" href="https://www.linkedin.com/in/eric-smith-8832b41aa/"><FontAwesomeIcon icon={["fab", "linkedin"]} /></a>
+                            <a target="_blank" href="https://github.com/ericsmith9161"> <FontAwesomeIcon icon={["fab", "github"]} /></a>
+                            <a target="_blank" href="https://angel.co/u/eric-smith-105">  <FontAwesomeIcon icon={["fab", "angellist"]} /> </a>
+                            <a target="_blank" href="https://ericsmith9161.github.io/">  <FontAwesomeIcon icon={["fas", "user"]} /> </a>
+
+                        </div>
                     </div>
                 </div>  
 
