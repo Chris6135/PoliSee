@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from 'react-redux';
 import {fetchRepresentatives} from '../../actions/search_actions';
 import {logout} from '../../actions/session_actions';

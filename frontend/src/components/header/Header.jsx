@@ -193,7 +193,7 @@ class Header extends React.Component {
         <div className="header-left">
           <div className="header-logo">
             <Link to={logoRoute}>
-              <img src={logo} />
+              <img src={logo} alt="" />
             </Link>
           </div>
           <div className="information-dropdown">

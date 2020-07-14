@@ -1,26 +1,23 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const About = (props) => {
-  const [headSearchStr, setHeadSearchStr] = useState("");
-  const dispatch = useDispatch();
-  const history = useHistory();
+const About = () => {
 
   return (
     <div className="about-parent">
       <div className="team-blurb">
-        <div className="team-pic"> pic</div>
+        {/* <div className="team-pic"> pic</div> */}
         <div className="team-content">
           <div className="team-title"> About Us</div>
-          <div className="team-body">
+          <div className="team-body"><p>
             We are a group of remotely-linked Full Stack Engineers who are
             energized by the power programming gives us to create meaningful
             connections in this uncertain time PoliSee was developed over the
             course of a week in June of 2020 using MERN, NodeMailer, and
-            Mongo-Agenda. Please feel free to reach out to any of us for any
-            reason Thanks for stopping by
+            Mongo-Agenda.</p> 
+            <p>Please feel free to reach out to any of us for any
+            reason. </p> 
+            <p>Thanks for stopping by!</p>
           </div>
         </div>
       </div>
@@ -37,19 +34,19 @@ const About = (props) => {
                   <p>Hi, thanks for taking the time to visit the site! </p>
                   <p> </p>
                   <p>
-                    I came up with the idea of PoliSee to try and make a
-                    platform that could help people take ownership of their
-                    ability to influence their government. Given that, it
-                    shouldn't be suprising that I'm passionate about politics,
-                    law and government.{" "}
+                  I came up with the idea of PoliSee to build a
+                    platform that could help people tap into their power to influence their government.
+                    As a software engineer I have a passion for making platforms
+                    that allow people to better digest information, or get their
+                    voice into the world
+                    {" "}
                   </p>
                   <p>
                     {" "}
-                    As a software engineer I have a passion for making platforms
-                    that allow people to better digest information, or get their
-                    voice into the world. I'm mesmerized by the oportunities
-                    programming provides to interact with our world and the
-                    information that fills it.
+                    On a less serious note I'm a big fan of Video Games, Spaghetti Westerns, and Camping. 
+                    While politics and law are certianly interests of mine, I really am interested in using sofware engineering to give form to interesting ideas!
+                    Please feel free to reach out and contact me with any questions or oportunities. 
+                    Have a nice day!
                   </p>
                 </div>
               </div>
@@ -57,20 +54,20 @@ const About = (props) => {
           </div>
           <div className="about-links">
             <a
-              target="_blank"
+              target="_blank" rel="noopener noreferrer"
               href="https://www.linkedin.com/in/christopher-simons-4184a6a0/"
             >
               <FontAwesomeIcon icon={["fab", "linkedin"]} />
             </a>
-            <a target="_blank" href="https://github.com/Chris6135">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/Chris6135">
               {" "}
               <FontAwesomeIcon icon={["fab", "github"]} />
             </a>
-            <a target="_blank" href="https://angel.co/u/chris-simons-2">
+            <a target="_blank" rel="noopener noreferrer" href="https://angel.co/u/chris-simons-2">
               {" "}
               <FontAwesomeIcon icon={["fab", "angellist"]} />{" "}
             </a>
-            <a target="_blank" href="">
+            <a target="_blank" rel="noopener noreferrer" href="">
               {" "}
               <FontAwesomeIcon icon={["fas", "user"]} />{" "}
             </a>
@@ -82,7 +79,7 @@ const About = (props) => {
 
       <div className="about-box">
         <div className="about-blurb">
-          <div className="about-pic"></div>
+          <div className="akif-pic"></div>
           <div className="about-content">
             <div className="about-content">
               <div className="about-title"> Akif Saifi</div>
@@ -107,18 +104,18 @@ const About = (props) => {
             </div>
           </div>
           <div className="about-links">
-            <a target="_blank" href="https://www.linkedin.com/in/akifsaifi">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/akifsaifi">
               <FontAwesomeIcon icon={["fab", "linkedin"]} />
             </a>
-            <a target="_blank" href="https://github.com/akif2543">
+            <a target="_blank" rel="noopener noreferrer"  href="https://github.com/akif2543">
               {" "}
               <FontAwesomeIcon icon={["fab", "github"]} />
             </a>
-            <a target="_blank" href="https://angel.co/u/akif-saifi">
+            <a target="_blank"  rel="noopener noreferrer" href="https://angel.co/u/akif-saifi">
               {" "}
               <FontAwesomeIcon icon={["fab", "angellist"]} />{" "}
             </a>
-            <a target="_blank" href="https://akif2543.github.io">
+            <a target="_blank"  rel="noopener noreferrer" href="https://akif2543.github.io">
               {" "}
               <FontAwesomeIcon icon={["fas", "user"]} />{" "}
             </a>
@@ -148,10 +145,10 @@ const About = (props) => {
                             </div>
                         </div>
                         <div className="about-links">
-                            <a target="_blank" href="https://www.linkedin.com/in/eric-smith-8832b41aa/"><FontAwesomeIcon icon={["fab", "linkedin"]} /></a>
-                            <a target="_blank" href="https://github.com/ericsmith9161"> <FontAwesomeIcon icon={["fab", "github"]} /></a>
-                            <a target="_blank" href="https://angel.co/u/eric-smith-105">  <FontAwesomeIcon icon={["fab", "angellist"]} /> </a>
-                            <a target="_blank" href="https://ericsmith9161.github.io/">  <FontAwesomeIcon icon={["fas", "user"]} /> </a>
+                            <a target="_blank" rel="noopener noreferrer"  href="https://www.linkedin.com/in/eric-smith-8832b41aa/"><FontAwesomeIcon icon={["fab", "linkedin"]} /></a>
+                            <a target="_blank" rel="noopener noreferrer"  href="https://github.com/ericsmith9161"> <FontAwesomeIcon icon={["fab", "github"]} /></a>
+                            <a target="_blank" rel="noopener noreferrer" href="https://angel.co/u/eric-smith-105">  <FontAwesomeIcon icon={["fab", "angellist"]} /> </a>
+                            <a target="_blank "  rel="noopener noreferrer"href="https://ericsmith9161.github.io/">  <FontAwesomeIcon icon={["fas", "user"]} /> </a>
 
                         </div>
                     </div>
@@ -163,19 +160,39 @@ const About = (props) => {
 
       <div className="about-box">
         <div className="about-blurb">
-          <div className="about-pic"></div>
+          <div className="megan-pic"></div>
           <div className="about-content">
             <div className="about-content">
-              <div className="about-title"> Name</div>
-              <div className="team-role"> Team Role</div>
-              <div className="about-body">description</div>
+              <div className="about-title"> Megan McNulty</div>
+              <div className="team-role"> Frontend Lead</div>
+              <div className="about-body"><p>
+              Hi! Besides coding (and building custom SVGs!) I’m passionate about tons of things! Not the least of which being Disney movies and Dungeons and Dragons!
+I love programming because it gives me the ability to build up functional (and mostly) fancy things to play with and watch! 
+                </p>
+                <p>
+                I acted as both a graphic designer and a front facing lead for all of the styling here on the site! My job was not only to come up with the layout for the site, but to make
+sure the information we were pulling in was organized in an easy to read and generally pleasing way. At the time of writing this I've actually started working as an instructor for App Academy, but please feel free to reach out with any opportunities!
+                </p>
+
+              </div>
             </div>
           </div>
           <div className="about-links">
-            <FontAwesomeIcon icon={["fab", "linkedin"]} />
-            <FontAwesomeIcon icon={["fab", "github"]} />
-            <FontAwesomeIcon icon={["fab", "angellist"]} />
-            <FontAwesomeIcon icon={["fas", "user"]} />
+          <a target="_blank" rel="noopener noreferrer noreferrer"  href="https://www.linkedin.com/in/megan-mcnulty-26a2641b1/">
+              <FontAwesomeIcon icon={["fab", "linkedin"]} />
+            </a>
+            <a target="_blank" rel="noopener noreferrer noreferrer" href="https://github.com/mmcnulty20">
+              {" "}
+              <FontAwesomeIcon icon={["fab", "github"]} />
+            </a>
+            <a target="_blank" rel="noopener noreferrer noreferrer" href="">
+              {" "}
+              <FontAwesomeIcon icon={["fab", "angellist"]} />{" "}
+            </a>
+            <a target="_blank" rel="noopener noreferrer noreferrer" href="">
+              {" "}
+              <FontAwesomeIcon icon={["fas", "user"]} />{" "}
+            </a>
           </div>
         </div>
       </div>

@@ -104,7 +104,7 @@ const Splash = (props) => {
         <section className="splash-header">
           <div className="splash-header-left">
             <div className="splash-header-logo">
-              <img src={logo} />
+              <img src={logo} alt="" />
             </div>
             <div className="information-dropdown">
               <div className="header-drop-btn">
@@ -251,6 +251,7 @@ const Splash = (props) => {
             <div className="open-source-subtitle">find us on</div>
             <a
               target="_blank"
+              rel="noopener noreferrer"
               href="https://github.com/Chris6135/PoliSee"
               className="github-repo-info"
             >
@@ -260,16 +261,18 @@ const Splash = (props) => {
             <div className="api-boxes">
               <a
                target="_blank"
+               rel="noopener noreferrer"
                 href="https://www.propublica.org/datastore/api/propublica-congress-api"
                 className="api-box"
               >
                 propublica
               </a>
-              <a  target="_blank" href="https://contextualweb.io/news-api/" className="api-box">
+              <a  target="_blank" rel="noopener noreferrer" href="https://contextualweb.io/news-api/" className="api-box">
                 Contextualweb
               </a>
               <a 
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://developers.google.com/civic-information"
                 className="api-box"
               >
@@ -285,23 +288,23 @@ const Splash = (props) => {
           <div className="splash-body-bottom-links">
             <span>Voter Registration Info</span>
             <div></div>
-            <a target="_blank" href="https://www.usa.gov/register-to-vote">Register to Vote!</a>
-            <a target="_blank" href="https://www.vote.org/polling-place-locator/">Find your Polling Place</a>
-            <a target="_blank" href="https://www.usa.gov/confirm-voter-registration">Check if you're registered</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.usa.gov/register-to-vote">Register to Vote!</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.vote.org/polling-place-locator/">Find your Polling Place</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.usa.gov/confirm-voter-registration">Check if you're registered</a>
           </div>
           <div className="splash-body-bottom-links">
             <span>Government Resources</span>
             <div></div>
-            <a target="_blank" href="https://www.loc.gov/">Library of Congress</a>
-            <a target="_blank" href="https://www.house.gov/">House of Representatives</a>
-            <a target="_blank" href="https://www.senate.gov/">US Senate</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.loc.gov/">Library of Congress</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.house.gov/">House of Representatives</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.senate.gov/">US Senate</a>
           </div>
           <div className="splash-body-bottom-links">
             <span>Additional Resources</span>
             <div></div>
-            <a target="_blank" href="https://www.commoncause.org/">Common Cause</a>
-            <a target="_blank" href="https://www.aclu.org/">American Civil Liberties Union</a>
-            <a target="_blank" href="https://www.pewtrusts.org/en">The PEW Charitable Trusts</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.commoncause.org/">Common Cause</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.aclu.org/">American Civil Liberties Union</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.pewtrusts.org/en">The PEW Charitable Trusts</a>
           </div>
         </section>
       </section>

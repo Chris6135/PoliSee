@@ -10,8 +10,7 @@ import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
 import Root from "./components/app/root";
 import axios from "axios";
-import cron from "node-cron";
-import {sendTestMail} from "./util/mail_util"
+
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import React from 'react';
 import InfoEdit from './InfoEdit';
 import {editUser} from '../../actions/session_actions'
 

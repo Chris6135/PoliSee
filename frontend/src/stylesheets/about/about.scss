@@ -5,18 +5,16 @@
     background:$auth-background-grey;
     display:flex;
     flex-direction: column;
-    // z-index: -2;
+    border-radius: 15px;
 }
 
 .team-blurb{
     padding: 60px;
     display:flex;
-    // justify-content: space-around;
 }
 
 .team-pic{
     height:300px;
-    // width:300px;
     background: blue;
     flex-basis: 300px;
     flex-grow: 0;
@@ -33,17 +31,16 @@
     font-size: 62px;
     text-transform: unset;
     font-weight: 600;
+    text-align: center;
 }
 
 .team-body{
     letter-spacing: 1px;
-    // width:80%;
 }
 
 .divider{
     height:30px;
-    background:purple;
-    border:solid 1px black;
+    background:$header-background;
 }
 
 .pic-text-box{
@@ -55,7 +52,7 @@
     padding-right: 0px;
     display:flex;
     justify-content: space-between;
-    border: solid 3px $header-background
+    border-top: solid 3px $header-background
 }
 
 .chris-pic{
@@ -70,6 +67,33 @@
     border:solid 3px $button
 
 }
+
+.akif-pic{
+    height: 300px;
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../../icons/Akif.jpeg");
+    border:solid 3px $button
+
+}
+
+.megan-pic{
+    height: 300px;
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../../icons/Megan.jpeg");
+    border:solid 3px $button
+
+}
+
 
 .eric-pic{
     height: 380px;
@@ -105,16 +129,17 @@
 }
 
 .about-links{
-    // background: #555;
+    background: rgb(214, 209, 209);
     margin:40px;
     width:100px;
     margin-top:0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 3px $button;
+    border: solid 3px header-background;
     justify-content: space-between;
     cursor: pointer;
+    border-radius: 25px;
 }
 
 .about-links > *{

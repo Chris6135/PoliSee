@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import React from 'react';
 import InterestEdit from './InterestEdit';
 import {editUser} from '../../actions/session_actions'
 
