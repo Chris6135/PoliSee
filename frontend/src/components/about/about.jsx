@@ -44,7 +44,6 @@ const About = (props) => {
                                     <div className="team-role"> Project Lead</div>
                                     <div className="about-body">
                                         <p>Hi, thanks for taking the time to visit the site! </p>
-                                        <p> </p>
                                     <p>I came up with the idea of PoliSee to try and make a platform that could help people take ownership of their ability to influence their government. 
                                         Given that, it shouldn't be suprising that I'm passionate about politics, law and government. </p>
                                     <p> As a software engineer I have a passion for making platforms that allow people to better digest information, or get their voice into the world. 
