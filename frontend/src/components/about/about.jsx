@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const About = () => {
+  window.scrollTo(0, 0)
 
   return (
     <div className="about-parent">
@@ -67,7 +68,7 @@ const About = () => {
               {" "}
               <FontAwesomeIcon icon={["fab", "angellist"]} />{" "}
             </a>
-            <a target="_blank" rel="noopener noreferrer" href="">
+            <a target="_blank" rel="noopener noreferrer" href="https://chris6135.github.io/">
               {" "}
               <FontAwesomeIcon icon={["fas", "user"]} />{" "}
             </a>
@@ -115,7 +116,7 @@ const About = () => {
               {" "}
               <FontAwesomeIcon icon={["fab", "angellist"]} />{" "}
             </a>
-            <a target="_blank"  rel="noopener noreferrer" href="https://akifsafi.com">
+            <a target="_blank"  rel="noopener noreferrer" href="http://akif2543.github.io/">
               {" "}
               <FontAwesomeIcon icon={["fas", "user"]} />{" "}
             </a>
